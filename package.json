@@ -10,7 +10,8 @@
     "lint": "eslint \"./packages/**/*.{ts,tsx,js,jsx}\" --fix",
     "build": "lerna run build",
     "clean": "lerna run clean && lerna clean -y && rm -rf node_modules",
-    "lerna-publish": "lerna publish"
+    "lerna-publish": "lerna publish",
+    "build-frontend": "cd packages/frontend && yarn build"
   },
   "workspaces": [
     "packages/*"
@@ -18,6 +19,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-config-react-app": "^4.0.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
