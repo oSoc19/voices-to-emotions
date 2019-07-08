@@ -1,1 +1,1 @@
-export const SITE_NAME = 'Voices To Emotions'
+export const SITE_NAME = 'Voices To Emotions';
