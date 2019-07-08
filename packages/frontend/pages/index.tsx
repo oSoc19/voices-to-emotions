@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'next/router';
 
-import '../utils/setup-axios';
-
 export type Props = {
   pong: null | {
     data: string;
@@ -35,4 +33,5 @@ class Index extends React.Component<Props> {
   }
 }
 
+// @ts-ignore
 export default withRouter(Index);
