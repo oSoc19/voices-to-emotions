@@ -1,0 +1,8 @@
+{
+  "name": "@voices-to-emotions/database",
+  "main": "index.ts",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}

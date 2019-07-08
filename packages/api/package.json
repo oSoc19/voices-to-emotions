@@ -1,0 +1,12 @@
+{
+  "name": "@voices-to-emotions/api",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "@voices-to-emotions/database": "^0.0.1",
+    "ajv": "^6.10.0",
+    "uuid": "^3.3.2"
+  }
+}
