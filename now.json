@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "scope": "osoc19",
   "name": "Blazingly.io Site",
   "regions": ["bru1"],
   "builds": [
