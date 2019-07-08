@@ -13,7 +13,7 @@
     {
       "src": "packages/audio-api/index.py",
       "use": "@now/python",
-      "config": { "maxLambdaSize": "100mb" }
+      "config": { "maxLambdaSize": "50mb" }
     }
   ],
   "routes": [

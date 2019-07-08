@@ -1,5 +1,7 @@
 from http.server import BaseHTTPRequestHandler
 
+# TODO: Add librosa code, unfortunately we can't add the library as a dependency
+# TODO: due to size constraints
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
