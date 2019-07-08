@@ -1,7 +1,7 @@
 {
   "version": 2,
   "scope": "osoc19",
-  "name": "Blazingly.io Site",
+  "name": "Voices To Emotions",
   "regions": ["bru1"],
   "builds": [
     { "src": "packages/frontend/next.config.js", "use": "@now/next" },
