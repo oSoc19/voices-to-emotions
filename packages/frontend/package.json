@@ -11,6 +11,9 @@
     "deploy": "now && now alias",
     "now-build": "next build"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.3.3",
     "@emotion/core": "^10.0.10",
