@@ -10,4 +10,4 @@ export default async function(req: NowRequest, res: NowResponse) {
 
   // Send response
   sendSuccess(res, { data: 'Pong', message: 'Pong' });
-};
+}
