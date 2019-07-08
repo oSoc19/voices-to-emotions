@@ -1,12 +1,16 @@
-from http.server import BaseHTTPRequestHandler
+from flask import Flask, Response, request
 
-# TODO: Add librosa code, unfortunately we can't add the library as a dependency
-# TODO: due to size constraints
+app = Flask(__name__)
 
-class handler(BaseHTTPRequestHandler):
-  def do_GET(self):
-    self.send_response(200)
-    self.send_header('Content-Type', 'application/json')
-    self.end_headers()
-    self.wfile.write(bytes('{ "type": "success", "data": "Python Endpoint", "message": "test" }', 'utf-8'))
-    return
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>', methods=['POST'])
+def catch_all(path):
+  if request.method == 'POST':
+    f = request.files['audio']
+    f.save('/tmp/audio.wav')
+
+    return Response("File uploaded", mimetype='text/html')
+
+  else:
+    return Response("Unknown request", mimetype='text/html')

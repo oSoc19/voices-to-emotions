@@ -2,24 +2,48 @@
   "version": 2,
   "scope": "osoc19",
   "name": "Voices To Emotions",
-  "regions": ["bru1"],
+  "regions": [
+    "bru1"
+  ],
   "builds": [
-    { "src": "packages/frontend/next.config.js", "use": "@now/next" },
+    {
+      "src": "packages/frontend/next.config.js",
+      "use": "@now/next"
+    },
     {
       "src": "packages/api/endpoints/*/index.ts",
       "use": "@now/node",
-      "config": { "maxLambdaSize": "10mb" }
+      "config": {
+        "maxLambdaSize": "10mb"
+      }
     },
     {
       "src": "packages/audioapi/main.py",
       "use": "@now/python",
-      "config": { "maxLambdaSize": "50mb" }
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/packages/api/endpoints/$1" },
-    { "src": "/audio-api/(.*)", "dest": "/packages/audioapi/main.py$1" },
-    { "src": "/(.*)", "dest": "/packages/frontend/$1" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/packages/api/endpoints/$1"
+    },
+    {
+      "src": "/audio-api/(.*)",
+      "dest": "/packages/audioapi/main.py$1",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/packages/frontend/$1"
+    }
   ],
-  "alias": ["voices-to-emotions.com", "www.voices-to-emotions.com"]
+  "alias": [
+    "voices-to-emotions.com",
+    "www.voices-to-emotions.com"
+  ]
 }
