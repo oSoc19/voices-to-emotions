@@ -5,6 +5,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "@now/node": "^0.11.1",
     "@voices-to-emotions/database": "^0.0.1",
     "ajv": "^6.10.0",
     "uuid": "^3.3.2"
