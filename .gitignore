@@ -69,3 +69,6 @@ yarn.lock
 
 # Yarn Integrity file
 .yarn-integrity
+
+# PyCharm data
+.idea
