@@ -8,11 +8,17 @@
       "src": "packages/api/endpoints/*/index.ts",
       "use": "@now/node",
       "config": { "maxLambdaSize": "10mb" }
+    },
+    {
+      "src": "packages/audio-api/index.py",
+      "use": "@now/python",
+      "config": { "maxLambdaSize": "20mb" }
     }
   ],
   "routes": [
+    { "src": "/(.*)", "dest": "/packages/frontend/$1" },
     { "src": "/api/(.*)", "dest": "/packages/api/endpoints/$1" },
-    { "src": "/(.*)", "dest": "/packages/frontend/$1" }
+    { "src": "/audio-api/(.*)", "dest": "/packages/audio-api/$1" }
   ],
   "alias": ["voices-to-emotions.com", "www.voices-to-emotions.com"]
 }
