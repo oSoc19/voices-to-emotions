@@ -72,3 +72,4 @@ yarn.lock
 
 # PyCharm data
 .idea
+.now

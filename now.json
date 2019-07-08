@@ -11,15 +11,15 @@
       "config": { "maxLambdaSize": "10mb" }
     },
     {
-      "src": "packages/audio-api/main.py",
+      "src": "packages/audioapi/main.py",
       "use": "@now/python",
       "config": { "maxLambdaSize": "50mb" }
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/packages/frontend/$1" },
     { "src": "/api/(.*)", "dest": "/packages/api/endpoints/$1" },
-    { "src": "/audio-api/(.*)", "dest": "/packages/audio-api/main.py/$1" }
+    { "src": "/audio-api/(.*)", "dest": "/packages/audioapi/main.py$1" },
+    { "src": "/(.*)", "dest": "/packages/frontend/$1" }
   ],
   "alias": ["voices-to-emotions.com", "www.voices-to-emotions.com"]
 }
