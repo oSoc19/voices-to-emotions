@@ -26,5 +26,8 @@
       "dest": "/packages/frontend/$1"
     }
   ],
-  "alias": ["voices-to-emotions.com", "www.voices-to-emotions.com"]
+  "alias": ["voices-to-emotions.com", "www.voices-to-emotions.com"],
+  "env": {
+    "MONGODB_CONN_STRING": "@mongo-db"
+  }
 }
