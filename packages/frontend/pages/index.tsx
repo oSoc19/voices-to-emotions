@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'next/router';
 
+import '../utils/setup-axios';
+
 export type Props = {
   pong: null | {
     data: string;
@@ -13,7 +15,7 @@ export type Props = {
 class Index extends React.Component<Props> {
   static async getInitialProps(): Promise<Props> {
     try {
-      let pong = await axios.get('/api/ping');
+      let pong = await axios.get('/ping');
 
       return { pong: pong.data };
     } catch (e) {
