@@ -18,6 +18,3 @@ steps:
       sudo apt-get update && sudo apt-get install google-cloud-sdk
       sudo apt-get install google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-python-extras
     displayName: Install Google Cloud SDK
-
-  - script: gcloud init
-    displayName: Setup Google Cloud SDK
