@@ -33,7 +33,7 @@ def upload():
         gc.collect()
 
         if extname in ALLOWED_EXTENSIONS:
-          wave, sr = librosa.load(target_path, sr=16000, mono=True, res_type='kaiser_fast')
+          wave, sr = librosa.load(target_path, sr=16000, mono=True)
           wave_frag_offsets = librosa.effects.split(wave, top_db=35)
 
           results = []
