@@ -14,24 +14,12 @@
       "config": {
         "maxLambdaSize": "10mb"
       }
-    },
-    {
-      "src": "packages/audioapi/main.py",
-      "use": "@now/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/packages/api/endpoints/$1"
-    },
-    {
-      "src": "/audio-api/(.*)",
-      "dest": "/packages/audioapi/main.py$1",
-      "methods": ["POST"]
     },
     {
       "src": "/(.*)",
