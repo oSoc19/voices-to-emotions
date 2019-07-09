@@ -1,12 +1,11 @@
 import { NowRequest, NowResponse } from '@now/node';
 
 import sendSuccess from '../../utils/send-success';
-import corsHeaders from '../../utils/cors-headers';
+import setHeaders from '../../utils/set-headers';
 
 export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type
-  corsHeaders(res);
-  res.setHeader('Content-Type', 'application/json');
+  setHeaders(res);
 
   // Send response
   sendSuccess(res, { data: 'Pong', message: 'Pong' });
