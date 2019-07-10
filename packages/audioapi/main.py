@@ -26,7 +26,10 @@ def load_audio_data(file_path):
   wave_frag_offsets = librosa.effects.split(wave, top_db=35)
 
   results = []
+  timestamps = []
   for offsets in wave_frag_offsets:
+    start_sec = offsets[0] / sr
+
     wave_fragment = wave[offsets[0]:offsets[1]]
     mfcc = librosa.feature.mfcc(wave_fragment, sr, n_mfcc=mfcc_features)
     _, y_size = mfcc.shape
@@ -36,8 +39,9 @@ def load_audio_data(file_path):
     for short_mfcc in splitted_mfcc:
       short_mfcc = np.pad(short_mfcc, ((0, 0), (0, 500 - len(short_mfcc[0]))), mode='constant', constant_values=0)
       results.append(np.array(short_mfcc).tolist())
+      timestamps.append([start_sec, start_sec])
 
-  return results
+  return results, timestamps
 
 
 @app.route('/', methods=['POST'])
@@ -58,7 +62,7 @@ def upload():
         del f
         gc.collect()
 
-        mfcc = load_audio_data(target_path)
+        mfcc, timestamps = load_audio_data(target_path)
 
         predicted_emotions = []
         if (len(mfcc) > 0):
@@ -70,6 +74,7 @@ def upload():
           "type": 'success',
           "data": {
             'emotions': predicted_emotions,
+            'timestamps': timestamps
             # 'mfcc': mfcc
           }
         })
