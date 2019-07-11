@@ -51,16 +51,17 @@ let SubHeading = styled.h2`
   line-height: 2rem;
   margin: 0;
   align-self: flex-end;
+  margin-bottom: 20px;
 `;
 
-let UserInfo = styled.h2`
+let UserInfo = styled.h3`
   font-size: 1.2rem;
   align-self: flex-start;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 20px;
-  margin-top: 20px;
   font-weight: inherit;
+  margin: 0;
 `;
 
 let SatisfactionPercentage = styled.div`
