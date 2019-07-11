@@ -116,7 +116,13 @@ class Index extends React.Component<Props> {
     let { user, error }: Props = this.props;
 
     if (error) {
+      // TODO: Render a proper error page
       return 'An error occured';
+    }
+
+    if (!user) {
+      // TODO: Render a 404
+      return '404: User Not Found';
     }
 
     let fullName = `${user.firstName} ${user.lastName}`;
