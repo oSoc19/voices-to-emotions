@@ -51,10 +51,14 @@ def load_audio_data(file_path):
   wave, sr = librosa.load(file_path, mono=True, sr=16000)
   wave_frag_offsets = librosa.effects.split(wave, top_db=35)
 
+  print(wave_frag_offsets)
+
   results = []
   timestamps = []
   for offsets in wave_frag_offsets:
     start_sec = offsets[0] / sr
+    last_secs = start_sec
+    frag_duration = (offsets[1] - offsets[0]) / sr
 
     wave_fragment = wave[offsets[0]:offsets[1]]
     mfcc = librosa.feature.mfcc(wave_fragment, sr, n_mfcc=mfcc_features)
@@ -62,10 +66,16 @@ def load_audio_data(file_path):
 
     splitted_mfcc = np.array_split(mfcc, math.ceil(y_size / 500), axis=1)
 
+    one_mfcc_secs = frag_duration / y_size
+
     for short_mfcc in splitted_mfcc:
+      mfcc_len = len(short_mfcc[0])
       short_mfcc = np.pad(short_mfcc, ((0, 0), (0, 500 - len(short_mfcc[0]))), mode='constant', constant_values=0)
       results.append(np.array(short_mfcc).tolist())
-      timestamps.append([start_sec, start_sec])
+
+      duration = one_mfcc_secs * mfcc_len
+      timestamps.append([last_secs, last_secs + duration])
+      last_secs += duration
 
   return results, timestamps
 
