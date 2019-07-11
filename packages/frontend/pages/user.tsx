@@ -86,7 +86,7 @@ let SatisfactionPercentage = styled.div`
   }};
 `;
 
-const msToYears = ms => {
+const msToYears = (ms: number) => {
   return Math.round(ms / 1000 / 60 / 60 / 24 / 365);
 };
 
