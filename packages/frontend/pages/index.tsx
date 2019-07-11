@@ -10,7 +10,7 @@ export type User = {
   birth: Date;
   hiredOn: Date;
   likelinessToLeave: Number;
-}
+};
 
 export type Users = Array<User>;
 
@@ -38,33 +38,37 @@ class Index extends React.Component<Props> {
       return 'An error occured';
     }
     // temporary data
-    data = [{
-      name: "John",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    },
-    {
-      name: "Smith",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    }];
+    data = [
+      {
+        name: 'John',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      },
+      {
+        name: 'Smith',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      }
+    ];
 
-    return <div>
-      <header>
-        <h1>Staff members</h1>
-      </header>
+    return (
       <div>
-        
-        <ul className="container" >
-          {data.map((user) =>
-            <Link href="/user">
-              <li className="item">{user.name}</li>
-            </Link>
-          )}
-        </ul>
-      </div></div>;
+        <header>
+          <h1>Staff members</h1>
+        </header>
+        <div>
+          <ul className="container">
+            {data.map(user => (
+              <Link href="/user">
+                <li className="item">{user.name}</li>
+              </Link>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
   }
 }
 
