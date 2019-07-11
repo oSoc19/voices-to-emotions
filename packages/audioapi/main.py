@@ -51,8 +51,6 @@ def load_audio_data(file_path):
   wave, sr = librosa.load(file_path, mono=True, sr=16000)
   wave_frag_offsets = librosa.effects.split(wave, top_db=35)
 
-  print(wave_frag_offsets)
-
   results = []
   timestamps = []
   for offsets in wave_frag_offsets:
