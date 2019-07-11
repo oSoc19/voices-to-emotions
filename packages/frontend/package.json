@@ -9,7 +9,8 @@
     "build": "next build",
     "start:server": "next start",
     "deploy": "now && now alias",
-    "now-build": "next build"
+    "now-build": "next build",
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": ">=8.0.0"

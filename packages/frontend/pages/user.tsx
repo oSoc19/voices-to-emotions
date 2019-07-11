@@ -86,8 +86,17 @@ let SatisfactionPercentage = styled.div`
   }};
 `;
 
-const msToYears = (ms: number) => {
+const msToYears = (ms: number): number => {
   return Math.round(ms / 1000 / 60 / 60 / 24 / 365);
+};
+
+const getGenderString = (g: string): string => {
+  let found = GENDER_ENUMS[g];
+  if (found) {
+    return found;
+  }
+
+  return 'Unknown Gender';
 };
 
 class Index extends React.Component<Props> {
@@ -138,7 +147,7 @@ class Index extends React.Component<Props> {
               {fullName} ({msToYears(currDate.diff(user.birthdate))})
             </SubHeading>
             <UserInfo>
-              <div>{GENDER_ENUMS[user.gender]}</div>
+              <div>{getGenderString(user.gender)}</div>
               <div>Hired on {formattedHiredDate}</div>
             </UserInfo>
           </div>
