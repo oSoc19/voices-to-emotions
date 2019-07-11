@@ -21,7 +21,7 @@ export type Props = {
   error?: Error;
 };
 
-const GENDER_ENUMS = {
+const GENDER_ENUMS: { [key: string]: string } = {
   M: 'Male',
   F: 'Female',
   X: 'Gender X'
