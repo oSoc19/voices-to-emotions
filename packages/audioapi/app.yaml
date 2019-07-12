@@ -1,1 +1,10 @@
 runtime: python37
+env: standard
+instance_class: F4_HIGHMEM
+automatic_scaling:
+  target_cpu_utilization: 0.8
+  max_idle_instances: 1
+  max_instances: 2
+  min_pending_latency: 15s
+  max_pending_latency: automatic
+  max_concurrent_requests: 10

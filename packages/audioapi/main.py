@@ -1,8 +1,7 @@
 from flask import Flask, Response, request
 from werkzeug.utils import secure_filename
-import librosa, os, math, tempfile, json, gc, base64, hashlib, shutil
+import librosa, os, math, tempfile, json, gc
 import numpy as np
-from predict_emotions import predict_emotions
 
 app = Flask(__name__)
 
@@ -10,38 +9,8 @@ ALLOWED_EXTENSIONS = ['aiff', 'wav']
 temp_dir = tempfile.gettempdir()
 mfcc_features = 20
 
-emotion_dict = {
-  'neutral': '01',
-  'calm': '02',
-  'happy': '03',
-  'sad': '04',
-  'angry': '05',
-  'fearful': '06',
-  'disgust': '07',
-  'surprised': '08'
-}
 
-
-def filehash(file_path, chunk_size=65536):
-  sha1 = hashlib.sha1()
-
-  with open(file_path, 'rb') as f:
-    while True:
-      data = f.read(chunk_size)
-
-      if not data:
-        break
-
-      sha1.update(data)
-
-  return sha1.hexdigest()
-
-
-def base64JsonResponse(data):
-  data = json.dumps(data, separators=(',', ':'))
-  return Response(base64.b64encode(data.encode('utf-8')), mimetype='text/plain')
-
-
+# TODO: use the built-in flask jsonify thingy
 def jsonResponse(data):
   return Response(json.dumps(data, separators=(',', ':')), mimetype='application/json')
 
@@ -98,31 +67,13 @@ def upload():
 
         mfcc, timestamps = load_audio_data(target_path)
 
-        predicted_emotions = []
-        if (len(mfcc) > 0):
-          predicted_emotions = predict_emotions(mfcc)
-
-        form_data = request.form
-        if form_data['emotion'] and form_data['gender']:
-          emotion = emotion_dict[request.form['emotion']]
-          gender = request.form['gender']
-          hash = filehash(target_path)
-
-          if not os.path.exists('uploads'):
-            os.makedirs('uploads')
-
-          shutil.copy(target_path, 'uploads/' + emotion + '-' + gender + '-' + hash + '.wav')
-
-          gc.collect()
-
         os.remove(target_path)
 
         return jsonResponse({
           "type": 'success',
           "data": {
-            'emotions': predicted_emotions,
+            'mfcc': mfcc,
             'timestamps': timestamps
-            # 'mfcc': mfcc
           }
         })
 
