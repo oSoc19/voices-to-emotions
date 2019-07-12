@@ -1,6 +1,6 @@
 from flask import Flask, Response, request
 from werkzeug.utils import secure_filename
-import librosa, os, math, tempfile, json, gc
+import librosa, os, math, tempfile, json
 import numpy as np
 
 app = Flask(__name__)
@@ -60,10 +60,6 @@ def upload():
       if extname in ALLOWED_EXTENSIONS:
         f.save(target_path)
         f.close()
-
-        # Cleanup memory
-        del f
-        gc.collect()
 
         mfcc, timestamps = load_audio_data(target_path)
 
