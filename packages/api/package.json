@@ -1,6 +1,9 @@
 {
   "name": "@voices-to-emotions/api",
   "version": "0.0.1",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "engines": {
     "node": ">=8.0.0"
   },

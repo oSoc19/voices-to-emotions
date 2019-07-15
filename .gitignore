@@ -70,7 +70,7 @@ yarn.lock
 # Yarn Integrity file
 .yarn-integrity
 
-# PyCharm data
+# Other stuff
 .idea
 .now
 .env
