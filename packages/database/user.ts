@@ -1,6 +1,6 @@
 import { Mongoose } from 'mongoose';
 
-export default function (mongoose: Mongoose) {
+export default function(mongoose: Mongoose) {
   const Schema = mongoose.Schema;
   // @ts-ignore
   const ObjectId = Schema.ObjectId;
