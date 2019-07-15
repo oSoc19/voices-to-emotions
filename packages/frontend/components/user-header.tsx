@@ -53,7 +53,7 @@ let SatisfactionPercentage = styled.div`
     if (typeof children === 'string') {
       try {
         let percentage = parseInt(children.replace('%', '').trim(), 10);
-        if (percentage > 50) {
+        if (percentage < 50) {
           color = '#45a06f';
         } else {
           color = '#f44336';
@@ -106,7 +106,7 @@ export default function(props: Props) {
         </UserInfo>
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
-        <SubHeading style={{ textAlign: 'right' }}>Satisfaction</SubHeading>
+        <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
         <SatisfactionPercentage>90%</SatisfactionPercentage>
       </div>
     </UserHeader>

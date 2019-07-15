@@ -7,6 +7,12 @@ export type User = {
   birthdate: Moment;
   picture: string;
   hiredDate: Moment;
+  happiness: Array<number>;
+  anger: Array<number>;
+  fear: Array<number>;
+  sadness: Array<number>;
+  durations: Array<number>;
+  feedback: Array<number>;
 };
 
 export type UserAPIResponse = {
@@ -16,4 +22,10 @@ export type UserAPIResponse = {
   birthdate: string;
   picture: string;
   hiredDate: string;
+  happiness: Array<number>;
+  anger: Array<number>;
+  fear: Array<number>;
+  sadness: Array<number>;
+  durations: Array<number>;
+  feedback: Array<number>;
 };

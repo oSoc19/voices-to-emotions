@@ -25,6 +25,7 @@
     "next": "^9.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "recharts": "^1.6.2",
     "typescript": "^3.5.1"
   }
 }
