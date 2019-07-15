@@ -10,7 +10,7 @@ export type User = {
   birth: Date;
   hiredOn: Date;
   likelinessToLeave: Number;
-}
+};
 
 export type Users = Array<User>;
 
