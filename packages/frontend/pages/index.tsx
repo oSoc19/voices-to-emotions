@@ -22,7 +22,7 @@ export type Props = {
 class Index extends React.Component<Props> {
   static async getInitialProps(): Promise<Props> {
     try {
-      let users = await axios.get<Users>('/ping');
+      let users = await axios.get<Users>('/users');
 
       return { data: users.data };
     } catch (e) {
