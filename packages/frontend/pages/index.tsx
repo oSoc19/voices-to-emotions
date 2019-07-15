@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter, useRequest } from 'next/router';
 import Link from 'next/link';
-import Head from '../components/head'
+import Head from '../components/head';
 import '../utils/setup-axios';
 
 export type User = {
@@ -38,63 +38,63 @@ class Index extends React.Component<Props> {
       return 'An error occured';
     }
     // temporary data
-    data = [{
-      name: "John",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    },
-    {
-      name: "Smith",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    },
-    {
-      name: "Smith",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    },
-    {
-      name: "Smith",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    },
-    {
-      name: "Smith",
-      birth: new Date(),
-      hiredOn: new Date(),
-      likelinessToLeave: 100
-    }];
+    data = [
+      {
+        name: 'John',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      },
+      {
+        name: 'Smith',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      },
+      {
+        name: 'Smith',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      },
+      {
+        name: 'Smith',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      },
+      {
+        name: 'Smith',
+        birth: new Date(),
+        hiredOn: new Date(),
+        likelinessToLeave: 100
+      }
+    ];
 
-    return <div className="box">
+    return (
+      <div className="box">
+        <div className="container-grid">
+          <Head title="Overview" />
 
-      <div className="container-grid">
+          <header className="title">Staff members</header>
 
-        <Head title="Overview"></Head>
+          <span className="column-name">Staff members name</span>
+          <span className="column-name second">Likeliness to leave</span>
 
-        <header className="title">
-          Staff members
-        </header>
-
-        <span className="column-name">Staff members name</span>
-        <span className="column-name second">Likeliness to leave</span>
-
-        <div className="container-flex" >
-          {data.map((user) =>
-            <Link href="/user">
-              <div className="item-flex subcontainer-grid">
-                <div className="user-text">{user.name}</div>
-                <div className="user-text deuxieme">{user.likelinessToLeave}</div>
-                <div className="color"></div>
-              </div>
-            </Link>
-          )}
+          <div className="container-flex">
+            {data.map(user => (
+              <Link href="/user">
+                <div className="item-flex subcontainer-grid">
+                  <div className="user-text">{user.name}</div>
+                  <div className="user-text deuxieme">{user.likelinessToLeave}</div>
+                  <div className="color" />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>;
+    );
   }
 }
 
