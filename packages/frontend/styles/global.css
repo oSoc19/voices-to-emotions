@@ -5,11 +5,12 @@
   left: 207px;
   top: 112px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 }
 
-.container-flex {  /* used for the vertical list of persons */
+.container-flex {
+  /* used for the vertical list of persons */
   display: flex; /* or inline-flex */
   flex-direction: column;
   padding-inline-start: 0px;
@@ -33,7 +34,8 @@
   grid-template-rows: 40px 60px 40px 1fr;
 }
 
-.subcontainer-grid {   /* use inside each person */
+.subcontainer-grid {
+  /* use inside each person */
   display: grid;
   grid-template-columns: 10px auto 60px 7px;
   grid-template-rows: 1fr 24px 1fr;
@@ -59,7 +61,9 @@
   text-align: center;
 }
 
-ul{ list-style-type: none; }
+ul {
+  list-style-type: none;
+}
 
 .user-text {
   font-family: Roboto;
@@ -74,7 +78,7 @@ ul{ list-style-type: none; }
 }
 
 .color {
-  background: #FF4545;
+  background: #ff4545;
   grid-column-start: 4;
   grid-row-start: 1;
   grid-row-end: 4;
