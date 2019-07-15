@@ -1,8 +1,8 @@
 import { NowResponse } from '@now/node';
 
 export type DataPackage = {
-  data: string;
-  message: string;
+  data: any;
+  message?: string;
 };
 
 export default function sendSuccess(res: NowResponse, { data, message }: DataPackage) {

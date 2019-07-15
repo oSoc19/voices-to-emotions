@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 import User from './user';
 
@@ -23,7 +23,7 @@ async function connect() {
   connected = true;
 }
 
-export default async function getModel(name: string) {
+export default async function getModel(name: string): Promise<Model<any>> {
   await connect();
 
   return models[name];
