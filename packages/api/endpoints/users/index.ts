@@ -8,9 +8,26 @@ export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type
   setHeaders(res);
 
-  let Model = await getModel('user');
-  let users = await Model.find({});
-  console.log(users);
+  let UserModel = await getModel('user');
+  let TeamModel = await getModel('team');
 
-  sendSuccess(res, { data: users });
+  let users = await UserModel.find({});
+
+  let teams: { [key: string]: any } = {};
+  for (let user of users) {
+    teams[user.team] = true;
+  }
+
+  for (let id of Object.keys(teams)) {
+    teams[id] = await TeamModel.findById(id);
+  }
+
+  sendSuccess(res, {
+    data: users.map(user => {
+      return {
+        ...user._doc,
+        team: teams[user.team]
+      };
+    })
+  });
 }

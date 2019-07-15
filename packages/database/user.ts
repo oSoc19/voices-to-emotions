@@ -6,18 +6,12 @@ export default function(mongoose: Mongoose) {
   const ObjectId = Schema.ObjectId;
 
   let schema = new Schema({
-    id: ObjectId,
     first_name: String,
     last_name: String,
     gender: String,
-    dob: Date,
+    birth_date: Date,
     start_date: Date,
-    team: String,
-    happy: [Number],
-    sad: [Number],
-    fearful: [Number],
-    angry: [Number],
-    call_duration: [Number]
+    team: ObjectId
   });
 
   return mongoose.model('User', schema);

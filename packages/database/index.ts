@@ -1,6 +1,8 @@
 import mongoose, { Model } from 'mongoose';
 
 import User from './user';
+import Team from './team';
+import DataEntry from './data-entry';
 
 // @ts-ignore
 mongoose.connect(process.env.MONGODB_CONN_STRING, { useNewUrlParser: true });
@@ -17,7 +19,9 @@ async function connect() {
   });
 
   models = {
-    user: User(mongoose)
+    user: User(mongoose),
+    team: Team(mongoose),
+    dataEntry: DataEntry(mongoose)
   };
 
   connected = true;
