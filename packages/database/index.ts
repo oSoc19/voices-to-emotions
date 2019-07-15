@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import Something from './something';
+import User from './user';
 
 // @ts-ignore
 mongoose.connect(process.env.MONGODB_CONN_STRING, { useNewUrlParser: true });
@@ -17,7 +17,7 @@ async function connect() {
   });
 
   models = {
-    something: Something(mongoose)
+    user: User(mongoose)
   };
 
   connected = true;
