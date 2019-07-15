@@ -8,6 +8,7 @@ export default function(mongoose: Mongoose) {
   let schema = new Schema({
     first_name: String,
     last_name: String,
+    avatar: String,
     gender: String,
     birth_date: Date,
     start_date: Date,
