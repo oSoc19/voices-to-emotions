@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter, useRequest } from 'next/router';
 import Link from 'next/link';
-
+import Head from '../components/head'
 import '../utils/setup-axios';
 
 export type User = {
@@ -51,20 +51,32 @@ class Index extends React.Component<Props> {
       likelinessToLeave: 100
     }];
 
-    return <div>
-      <header>
-        <h1>Staff members</h1>
-      </header>
-      <div>
-        
-        <ul className="container" >
+    return <div className="box">
+
+      <div className="container-grid">
+
+        <Head title="Overview"></Head>
+
+        <header className="title">
+          Staff members
+        </header>
+
+        <span className="column-name">Staff members name</span>
+        <span className="column-name second">Likeliness to leave</span>
+
+        <div className="container-flex" >
           {data.map((user) =>
             <Link href="/user">
-              <li className="item">{user.name}</li>
+              <div className="item-flex subcontainer-grid">
+                <div className="user-text">{user.name}</div>
+                <div className="user-text deuxieme">{user.likelinessToLeave}</div>
+                <div className="color"></div>
+              </div>
             </Link>
           )}
-        </ul>
-      </div></div>;
+        </div>
+      </div>
+    </div>;
   }
 }
 
