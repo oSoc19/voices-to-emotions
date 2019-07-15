@@ -49,6 +49,24 @@ class Index extends React.Component<Props> {
       birth: new Date(),
       hiredOn: new Date(),
       likelinessToLeave: 100
+    },
+    {
+      name: "Smith",
+      birth: new Date(),
+      hiredOn: new Date(),
+      likelinessToLeave: 100
+    },
+    {
+      name: "Smith",
+      birth: new Date(),
+      hiredOn: new Date(),
+      likelinessToLeave: 100
+    },
+    {
+      name: "Smith",
+      birth: new Date(),
+      hiredOn: new Date(),
+      likelinessToLeave: 100
     }];
 
     return <div className="box">

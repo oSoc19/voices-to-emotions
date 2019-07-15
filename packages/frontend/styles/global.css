@@ -1,3 +1,13 @@
+.box {
+  position: absolute;
+  width: 1506px;
+  height: 855px;
+  left: 207px;
+  top: 112px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
 
 .container-flex {  /* used for the vertical list of persons */
   display: flex; /* or inline-flex */
@@ -13,55 +23,46 @@
   width: 1429px;
   height: 93px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 15px;
 }
 
 .container-grid {
   display: grid;
-  grid-template-columns: 40px 20px 1fr 60px 40px;
-  grid-template-rows: 40px 60px 1fr 40px;
+  height: 100%;
+  grid-template-columns: 40px 20px 1fr 90px 40px;
+  grid-template-rows: 40px 60px 40px 1fr;
 }
 
 .subcontainer-grid {   /* use inside each person */
   display: grid;
-  grid-template-columns: 10px auto 50px 7px;
+  grid-template-columns: 10px auto 60px 7px;
   grid-template-rows: 1fr 24px 1fr;
 }
 
 .title {
-  width: 281px;
-  height: 56px;
-  font-family: Roboto Condensed;
+  font-family: Roboto;
   font-size: 48px;
   line-height: 56px;
   grid-column-start: 2;
+  grid-column-start: 3;
   grid-row-start: 2;
 }
 
 .column-name {
-  font-family: Roboto Condensed;
+  font-family: Roboto;
   grid-row-start: 3;
   grid-column-start: 3;
 }
 
 .second {
   grid-column-start: 4;
+  text-align: center;
 }
 
 ul{ list-style-type: none; }
 
-.box {
-  position: absolute;
-  width: 1506px;
-  height: 855px;
-  left: 207px;
-  top: 112px;
-
-  background: #FFFFFF;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-}
-
 .user-text {
-  font-family: Roboto Mono;
+  font-family: Roboto;
   font-size: 24px;
   line-height: 28px;
   grid-row-start: 2;
