@@ -15,10 +15,13 @@ export default async function(req: NowRequest, res: NowResponse) {
   if (req.query['user_id']) {
     let user = await UserModel.findById(req.query['user_id']);
     if (user) {
-      user.team = await TeamModel.findById(user.team);
+      let team = await TeamModel.findById(user.team);
 
       return sendSuccess(res, {
-        data: user
+        data: {
+          ...user._doc,
+          team
+        }
       });
     }
 
