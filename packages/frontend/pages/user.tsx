@@ -1,41 +1,53 @@
 import React from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import { withRouter } from 'next/router';
 
 import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
-import { UserAPIResponse } from '../types/user';
 import Layout from '../components/layout';
 
 import '../utils/setup-axios';
 
+type GraphItem = {
+  angry: number;
+  calm: number;
+  disgust: number;
+  fearful: number;
+  happy: number;
+  neutral: number;
+  sad: number;
+  surprised: number;
+  feedback: number;
+  duration: number;
+};
+
 export type Props = {
-  user?: UserAPIResponse;
+  user?: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    gender: string;
+    birth_date: string;
+    start_date: string;
+    team: string;
+    avatar: string;
+  };
+  graph?: Array<GraphItem>;
   error?: Error;
 };
 
 class Index extends React.Component<Props> {
-  static async getInitialProps(): Promise<Props> {
+  static async getInitialProps(req): Promise<Props> {
     try {
-      // let user = await axios.get('/user');
-      // return { user: user.data };
+      if (req.query && req.query.id) {
+        let user = await axios.get(`/user?user_id=${req.query.id}`);
+        let graph = await axios.get(`/user?user_id=${req.query.id}`);
 
-      let dummyUser = {
-        firstName: 'Johny',
-        lastName: 'Dope',
-        gender: 'X',
-        birthdate: moment('06/05/1965').toString(),
-        picture: '/static/user-pictures/1.png',
-        hiredDate: moment('08/03/2016').toString(),
-        happiness: new Array(10).fill('-').map(() => Math.round(Math.random() * 100)),
-        anger: new Array(10).fill('-').map(() => Math.round(Math.random() * 100)),
-        fear: new Array(10).fill('-').map(() => Math.round(Math.random() * 100)),
-        sadness: new Array(10).fill('-').map(() => Math.round(Math.random() * 100)),
-        durations: new Array(10).fill('-').map(() => Math.round(Math.random() * 100)),
-        feedback: new Array(10).fill('-').map(() => Math.round(Math.random() * 100))
-      };
-
-      return { user: dummyUser };
+        return { user: user.data, graph: graph.data };
+      } else {
+        throw new Error('No query parameter!');
+      }
     } catch (e) {
       console.error(e);
       return { error: e };
@@ -60,18 +72,18 @@ class Index extends React.Component<Props> {
         <UserHeader
           user={{
             ...user,
-            birthdate: moment(user.birthdate),
-            hiredDate: moment(user.hiredDate)
+            birth_date: moment(user.birth_date),
+            start_date: moment(user.start_date)
           }}
         />
-        <UserGraphs
+        {/*<UserGraphs
           happiness={user.happiness}
           anger={user.anger}
           fear={user.fear}
           sadness={user.sadness}
           durations={user.durations}
           feedback={user.feedback}
-        />
+        />*/}
       </Layout>
     );
   }

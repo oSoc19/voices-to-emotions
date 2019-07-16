@@ -1,11 +1,18 @@
 import React from 'react';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import styled from '@emotion/styled';
 
-import { User } from '../types/user';
-
 export type Props = {
-  user: User;
+  user: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    gender: string;
+    birth_date: Moment;
+    start_date: Moment;
+    team: string;
+    avatar: string;
+  };
 };
 
 let UserHeader = styled.div`
@@ -89,16 +96,16 @@ const getGenderString = (g: string): string => {
 export default function(props: Props) {
   let { user } = props;
 
-  let fullName = `${user.firstName} ${user.lastName}`;
+  let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
-  let formattedHiredDate = moment(user.hiredDate).format('DD MMMM YYYY');
+  let formattedHiredDate = moment(user.start_date).format('DD MMMM YYYY');
 
   return (
     <UserHeader>
-      <Avatar src={user.picture} title={fullName} alt={fullName} />
+      <Avatar src={user.avatar} title={fullName} alt={fullName} />
       <div style={{ gridArea: 'heading' }}>
         <SubHeading>
-          {fullName} ({msToYears(currDate.diff(user.birthdate))})
+          {fullName} ({msToYears(currDate.diff(user.birth_date))})
         </SubHeading>
         <UserInfo>
           <div>{getGenderString(user.gender)}</div>
