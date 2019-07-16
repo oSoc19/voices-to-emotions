@@ -16,12 +16,18 @@ let Main = styled.main`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
+let ColorStrip = styled.div`
+  border-top: solid 12px #04AFEE;
+`;
+
 export default function Layout({ title, children }: Props) {
   return (
     <React.Fragment>
-      <Head title={title} />
+      <ColorStrip>
+        <Head title={title} />
 
-      <Main>{children}</Main>
+        <Main>{children}</Main>
+      </ColorStrip>
     </React.Fragment>
   );
 }
