@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'next/router';
-import {default as NextLink} from 'next/link';
+import { default as NextLink } from 'next/link';
 import styled from '@emotion/styled';
 
 import '../utils/setup-axios';
-import Layout from '../components/layout'
+import Layout from '../components/layout';
 
 export type User = {
   _id: string;
@@ -28,9 +28,9 @@ export type Props = {
 };
 
 const Link = styled.a`
-text-decoration: none;
-color: inherit;
-cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 `;
 
 let Heading = styled.h2`
@@ -54,10 +54,10 @@ let User = styled.div`
   border-right: 5px solid red;
   padding: 30px;
   margin: 20px 0;
-`
+`;
 
 let UserName = styled.div`
-  font-family: 'Roboto mono'
+  font-family: 'Roboto mono';
 `;
 
 class Index extends React.Component<Props> {
@@ -81,27 +81,27 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="Overview">
-          <Heading>Staff members</Heading>
+        <Heading>Staff members</Heading>
 
-          <Labels>
-            <span>Staff members name</span>
-            <span>Likeliness to leave</span>
-          </Labels>
+        <Labels>
+          <span>Staff members name</span>
+          <span>Likeliness to leave</span>
+        </Labels>
 
-          <div className="container-flex">
-            {users.map((user: User) => (
-              <NextLink href={`/user?id=${user._id}`}>
-                <Link>
-                  <User>
-                    <UserName>
-                      {user.first_name} {user.last_name}
-                    </UserName>
-                    <div className="user-text deuxieme">57%</div>
-                  </User>
-                </Link>
-              </NextLink>
-            ))}
-          </div>
+        <div className="container-flex">
+          {users.map((user: User) => (
+            <NextLink href={`/user?id=${user._id}`}>
+              <Link>
+                <User>
+                  <UserName>
+                    {user.first_name} {user.last_name}
+                  </UserName>
+                  <div className="user-text deuxieme">57%</div>
+                </User>
+              </Link>
+            </NextLink>
+          ))}
+        </div>
       </Layout>
     );
   }

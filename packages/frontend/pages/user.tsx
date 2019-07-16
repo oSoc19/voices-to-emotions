@@ -76,7 +76,7 @@ class Index extends React.Component<Props> {
             start_date: moment(user.start_date)
           }}
         />
-        <UserGraphs graph={graph}/>
+        <UserGraphs graph={graph} />
       </Layout>
     );
   }
