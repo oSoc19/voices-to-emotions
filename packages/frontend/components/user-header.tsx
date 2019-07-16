@@ -95,14 +95,14 @@ const getGenderString = (g: string): string => {
 
 export default function(props: Props) {
   let { user } = props;
-
+  console.log(user);
   let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
   let formattedHiredDate = moment(user.start_date).format('DD MMMM YYYY');
 
   return (
     <UserHeader>
-      <Avatar src={user.avatar} title={fullName} alt={fullName} />
+      <Avatar src={user.avatar || "/static/user-pictures/default.jpg"} title={fullName} alt={fullName} />
       <div style={{ gridArea: 'heading' }}>
         <SubHeading>
           {fullName} ({msToYears(currDate.diff(user.birth_date))})

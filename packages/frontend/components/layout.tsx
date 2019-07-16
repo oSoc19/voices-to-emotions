@@ -13,7 +13,6 @@ let Main = styled.main`
   box-sizing: border-box;
   max-width: 960px;
   margin: 50px auto;
-  border-radius: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 

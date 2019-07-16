@@ -42,9 +42,9 @@ class Index extends React.Component<Props> {
     try {
       if (req.query && req.query.id) {
         let user = await axios.get(`/user?user_id=${req.query.id}`);
-        let graph = await axios.get(`/user?user_id=${req.query.id}`);
+        let graph = await axios.get(`/graphs?user_id=${req.query.id}`);
 
-        return { user: user.data, graph: graph.data };
+        return { user: user.data.data, graph: graph.data.data };
       } else {
         throw new Error('No query parameter!');
       }
@@ -55,7 +55,7 @@ class Index extends React.Component<Props> {
   }
 
   render() {
-    let { user, error }: Props = this.props;
+    let { user, error, graph }: Props = this.props;
 
     if (error) {
       // TODO: Render a proper error page
@@ -76,14 +76,7 @@ class Index extends React.Component<Props> {
             start_date: moment(user.start_date)
           }}
         />
-        {/*<UserGraphs
-          happiness={user.happiness}
-          anger={user.anger}
-          fear={user.fear}
-          sadness={user.sadness}
-          durations={user.durations}
-          feedback={user.feedback}
-        />*/}
+        <UserGraphs graph={graph}/>
       </Layout>
     );
   }

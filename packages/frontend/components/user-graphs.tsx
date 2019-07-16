@@ -2,14 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
-export type Props = {
-  happiness: Array<number>;
-  anger: Array<number>;
-  fear: Array<number>;
-  sadness: Array<number>;
-  durations: Array<number>;
-  feedback: Array<number>;
-};
+export type Props = {graph: Array<GraphItem>};
 
 const GraphContainer = styled.div`
   display: grid;
@@ -19,35 +12,46 @@ const GraphContainer = styled.div`
   grid-gap: 20px 0;
   width: 100%;
 `;
-
+type GraphItem = {
+  angry: number;
+  calm: number;
+  disgust: number;
+  fearful: number;
+  happy: number;
+  neutral: number;
+  sad: number;
+  surprised: number;
+  feedback: number;
+  duration: number;
+};
 export default function(props: Props) {
-  let { happiness, anger, fear, sadness, durations, feedback } = props;
+  let { graph } = props;
 
-  console.log({ happiness, anger, fear, sadness, durations, feedback });
+  console.log({ graph });
 
-  let hapinessData = happiness.map((val: number) => {
+  let hapinessData = graph.map((val: GraphItem) => {
     return {
-      happiness: val
+      happiness: val.happy * 100
     };
   });
 
-  let durationData = durations.map((val: number) => {
+  let durationData = graph.map((val: GraphItem) => {
     return {
-      duration: val
+      duration: val.duration
     };
   });
 
-  let feedbackData = feedback.map((val: number) => {
+  let feedbackData = graph.map((val: GraphItem) => {
     return {
-      feedback: val
+      feedback: val.feedback * 100
     };
   });
 
-  let emotionsData = anger.map((angerVal: number, i: number) => {
+  let emotionsData = graph.map((graphItem: GraphItem, i: number) => {
     return {
-      anger: angerVal,
-      fear: fear[i],
-      sadness: sadness[i]
+      anger: graphItem.angry * 100,
+      fear: graphItem.fearful * 100,
+      sadness: graphItem.sad * 100
     };
   });
 
