@@ -17,7 +17,7 @@ let Main = styled.main`
 `;
 
 let ColorStrip = styled.div`
-  border-top: solid 12px #04AFEE;
+  border-top: solid 12px #04afee;
 `;
 
 export default function Layout({ title, children }: Props) {
