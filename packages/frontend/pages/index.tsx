@@ -6,16 +6,22 @@ import Head from '../components/head';
 import '../utils/setup-axios';
 
 export type User = {
-  name: string;
-  birth: Date;
-  hiredOn: Date;
-  likelinessToLeave: Number;
+  _id: string;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  birth_date: string;
+  start_date: string;
+  team: {
+    _id: string;
+    name: string;
+  };
 };
 
-export type Users = Array<User>;
+export type Users = { data: Array<User>; type: string };
 
 export type Props = {
-  data?: Users;
+  users?: Array<User>;
   error?: Error;
 };
 
@@ -24,7 +30,7 @@ class Index extends React.Component<Props> {
     try {
       let users = await axios.get<Users>('/users');
 
-      return { data: users.data };
+      return { users: users.data.data };
     } catch (e) {
       console.error(e);
       return { error: e };
@@ -32,44 +38,11 @@ class Index extends React.Component<Props> {
   }
 
   render() {
-    let { data, error }: Props = this.props;
+    let { users, error }: Props = this.props;
 
     if (error) {
       return 'An error occured';
     }
-    // temporary data
-    data = [
-      {
-        name: 'John',
-        birth: new Date(),
-        hiredOn: new Date(),
-        likelinessToLeave: 100
-      },
-      {
-        name: 'Smith',
-        birth: new Date(),
-        hiredOn: new Date(),
-        likelinessToLeave: 100
-      },
-      {
-        name: 'Smith',
-        birth: new Date(),
-        hiredOn: new Date(),
-        likelinessToLeave: 100
-      },
-      {
-        name: 'Smith',
-        birth: new Date(),
-        hiredOn: new Date(),
-        likelinessToLeave: 100
-      },
-      {
-        name: 'Smith',
-        birth: new Date(),
-        hiredOn: new Date(),
-        likelinessToLeave: 100
-      }
-    ];
 
     return (
       <div className="box">
@@ -82,11 +55,13 @@ class Index extends React.Component<Props> {
           <span className="column-name second">Likeliness to leave</span>
 
           <div className="container-flex">
-            {data.map(user => (
-              <Link href="/user">
+            {users.map((user: User) => (
+              <Link href={`/user?id=${user._id}`}>
                 <div className="item-flex subcontainer-grid">
-                  <div className="user-text">{user.name}</div>
-                  <div className="user-text deuxieme">{user.likelinessToLeave}</div>
+                  <div className="user-text">
+                    {user.first_name} {user.last_name}
+                  </div>
+                  <div className="user-text deuxieme">57%</div>
                   <div className="color" />
                 </div>
               </Link>
