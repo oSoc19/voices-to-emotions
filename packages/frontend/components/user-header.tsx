@@ -102,7 +102,7 @@ export default function(props: Props) {
 
   return (
     <UserHeader>
-      <Avatar src={user.avatar || "/static/user-pictures/default.jpg"} title={fullName} alt={fullName} />
+      <Avatar src={user.avatar || '/static/user-pictures/default.jpg'} title={fullName} alt={fullName} />
       <div style={{ gridArea: 'heading' }}>
         <SubHeading>
           {fullName} ({msToYears(currDate.diff(user.birth_date))})
