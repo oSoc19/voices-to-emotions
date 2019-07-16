@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
-export type Props = {graph: Array<GraphItem>};
+export type Props = { graph: Array<GraphItem> };
 
 const GraphContainer = styled.div`
   display: grid;
