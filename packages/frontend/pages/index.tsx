@@ -28,7 +28,7 @@ export type Props = {
 class Index extends React.Component<Props> {
   static async getInitialProps(): Promise<Props> {
     try {
-      let users = await axios.get<Users>('/users');
+      let users = await axios.get<Users>('/user');
 
       return { users: users.data.data };
     } catch (e) {
