@@ -86,7 +86,7 @@ class Index extends React.Component<Props> {
         <Dropzone
           onTrigger={this.handleDropzoneTrigger}
           onDrop={this.handleSelectFile}
-          illustration={<img src="/static/engie-logo.svg" title="Upload icon" alt="Upload icon" />}
+          illustration={<img src="/static/upload.svg" title="Upload icon" alt="Upload icon" />}
         />
       </Layout>
     );
