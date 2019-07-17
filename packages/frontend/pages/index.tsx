@@ -66,8 +66,9 @@ let User = styled.div`
     } catch (e) {
       // do nothing...
     }
-  
-    return color;}};
+
+    return color;
+  }};
   padding: 30px;
   margin: 20px 0;
   border-radius: 0.25rem;
