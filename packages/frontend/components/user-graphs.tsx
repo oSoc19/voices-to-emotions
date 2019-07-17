@@ -31,27 +31,27 @@ export default function(props: Props) {
 
   let hapinessData = graph.map((val: GraphItem) => {
     return {
-      happiness: val.happy * 100
+      happiness: Math.round(val.happy * 10000) / 100
     };
   });
 
   let durationData = graph.map((val: GraphItem) => {
     return {
-      duration: val.duration
+      duration: Math.round(val.duration * 100) / 100
     };
   });
 
   let feedbackData = graph.map((val: GraphItem) => {
     return {
-      feedback: val.feedback * 100
+      feedback: Math.round(val.feedback * 10000)/100
     };
   });
 
   let emotionsData = graph.map((graphItem: GraphItem, i: number) => {
     return {
-      anger: graphItem.angry * 100,
-      fear: graphItem.fearful * 100,
-      sadness: graphItem.sad * 100
+      anger: Math.round(graphItem.angry * 10000) / 100,
+      fear: Math.round(graphItem.fearful * 10000) / 100,
+      sadness: Math.round(graphItem.sad * 10000) / 100
     };
   });
 

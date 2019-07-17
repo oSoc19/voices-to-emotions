@@ -16,18 +16,29 @@ let Main = styled.main`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
-let ColorStrip = styled.div`
+let ColorStripContainer = styled.div`
   border-top: solid 12px #04AFEE;
+`;
+
+let BottomBorder = styled.div`
+  background-image: url('/static/bottom_border.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 12px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
 `;
 
 export default function Layout({ title, children }: Props) {
   return (
     <React.Fragment>
-      <ColorStrip>
+      <ColorStripContainer>
         <Head title={title} />
 
         <Main>{children}</Main>
-      </ColorStrip>
+        <BottomBorder/>
+      </ColorStripContainer>
     </React.Fragment>
   );
 }

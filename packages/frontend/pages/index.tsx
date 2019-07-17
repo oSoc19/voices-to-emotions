@@ -56,8 +56,8 @@ let User = styled.div`
   margin: 20px 0;
 `;
 
-let UserName = styled.div`
-  font-family: 'Roboto mono';
+let UserBox = styled.div`
+  font-size: 1.3rem;
 `;
 
 class Index extends React.Component<Props> {
@@ -93,10 +93,12 @@ class Index extends React.Component<Props> {
             <NextLink href={`/user?id=${user._id}`}>
               <Link>
                 <User>
-                  <UserName>
+                  <UserBox>
                     {user.first_name} {user.last_name}
-                  </UserName>
-                  <div className="user-text deuxieme">57%</div>
+                  </UserBox>
+                  <UserBox>
+                    57%
+                  </UserBox>
                 </User>
               </Link>
             </NextLink>
