@@ -31,8 +31,6 @@ const commaToPercentage = commaValue => {
 };
 
 const TooltipRenderer = (unit: string) => ({ active, payload, label }) => {
-  console.log({ active, payload, label });
-
   if (active) {
     let data = payload[0].payload;
 
@@ -52,7 +50,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload, label }) => {
         {Object.keys(data).map(k => {
           return (
             <div key={k} style={{ fontFamily: 'roboto, sans-serif', color: '#2e2e30' }}>
-              {k}: {data[k]} %
+              {k}: {data[k]} {unit}
             </div>
           );
         })}
@@ -68,24 +66,24 @@ export default function(props: Props) {
 
   let durationData = graph.map((val: GraphItem) => {
     return {
-      duration: Math.round(val.duration * 100) / 100
+      Duration: Math.round(val.duration * 100) / 100
     };
   });
 
   let feedbackData = graph.map((val: GraphItem) => {
     return {
-      feedback: commaToPercentage(val.feedback)
+      Feedback: commaToPercentage(val.feedback)
     };
   });
 
   let emotionsData = graph.map((graphItem: GraphItem, i: number) => {
     return {
-      anger: commaToPercentage(graphItem.angry),
-      fear: commaToPercentage(graphItem.fearful),
-      sadness: commaToPercentage(graphItem.sad),
-      hapiness: commaToPercentage(graphItem.happy),
-      ['positive emotions']: commaToPercentage(graphItem.happy),
-      ['negative emotions']: commaToPercentage(graphItem.angry + graphItem.fearful + graphItem.sad)
+      Anger: commaToPercentage(graphItem.angry),
+      Fear: commaToPercentage(graphItem.fearful),
+      Sadness: commaToPercentage(graphItem.sad),
+      Hapiness: commaToPercentage(graphItem.happy),
+      ['Positive Emotions']: commaToPercentage(graphItem.happy),
+      ['Negative Emotions']: commaToPercentage(graphItem.angry + graphItem.fearful + graphItem.sad)
     };
   });
 
@@ -98,8 +96,8 @@ export default function(props: Props) {
           <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend />
-          <Line type="monotone" dataKey="positive emotions" stroke="#45a06f" />
-          <Line type="monotone" dataKey="negative emotions" stroke="#f44336" />
+          <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
+          <Line type="monotone" dataKey="Negative Emotions" stroke="#f44336" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -110,7 +108,7 @@ export default function(props: Props) {
           <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('secs')} />
           <Legend />
-          <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="Duration" stroke="rgba(0, 0, 0, 0.35)" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -121,7 +119,7 @@ export default function(props: Props) {
           <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend />
-          <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="Feedback" stroke="rgba(0, 0, 0, 0.35)" />
         </LineChart>
       </ResponsiveContainer>
     </GraphContainer>
