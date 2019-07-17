@@ -43,10 +43,10 @@ export default function Layout({ title, children }: Props) {
   return (
     <React.Fragment>
       <ColorStripContainer>
-        <Head title={title}/>
-        <Logo/>
-          <Main>{children}</Main>
-        <BottomBorder/>
+        <Head title={title} />
+        <Logo />
+        <Main>{children}</Main>
+        <BottomBorder />
       </ColorStripContainer>
     </React.Fragment>
   );
