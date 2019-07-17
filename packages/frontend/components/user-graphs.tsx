@@ -30,8 +30,8 @@ const commaToPercentage = commaValue => {
   return Math.round(commaValue * 10000) / 100;
 };
 
-const TooltipRenderer = (unit: string) => ({ active, payload, label }) => {
-  if (active) {
+const TooltipRenderer = (unit: string) => ({ active, payload }) => {
+  if (active && payload) {
     let data = payload[0].payload;
 
     return (
