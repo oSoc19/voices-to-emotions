@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { withRouter } from 'next/router';
+import { default as NextLink } from 'next/link';
 
 import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
@@ -37,6 +38,28 @@ export type Props = {
   graph?: Array<GraphItem>;
   error?: Error;
 };
+
+const ButtonContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: '. upload';
+`;
+
+const UploadButton = styled.button`
+  grid-area: upload;
+  background-color: #019de9;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0074ac;
+  }
+`;
 
 class Index extends React.Component<Props> {
   static async getInitialProps(req): Promise<Props> {
@@ -77,6 +100,11 @@ class Index extends React.Component<Props> {
             start_date: moment(user.start_date)
           }}
         />
+        <ButtonContainer>
+          <NextLink href={`/upload?user_id=${user._id}`}>
+            <UploadButton>Upload</UploadButton>
+          </NextLink>
+        </ButtonContainer>
         <UserGraphs graph={graph} />
       </Layout>
     );
