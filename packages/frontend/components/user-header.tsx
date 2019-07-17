@@ -124,7 +124,7 @@ export default function(props: Props) {
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
         <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>40%</SatisfactionPercentage>
+        <SatisfactionPercentage>90%</SatisfactionPercentage>
       </div>
     </UserHeader>
   );

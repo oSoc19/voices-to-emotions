@@ -8,10 +8,11 @@ const GraphContainer = styled.div`
   display: grid;
   box-sizing: border-box;
   padding: 20px 0;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 20px 0;
   width: 100%;
 `;
+
 type GraphItem = {
   angry: number;
   calm: number;
@@ -26,14 +27,6 @@ type GraphItem = {
 };
 export default function(props: Props) {
   let { graph } = props;
-
-  // console.log({ graph });
-
-  let hapinessData = graph.map((val: GraphItem) => {
-    return {
-      happiness: Math.round(val.happy * 10000) / 100
-    };
-  });
 
   let durationData = graph.map((val: GraphItem) => {
     return {
@@ -51,23 +44,14 @@ export default function(props: Props) {
     return {
       anger: Math.round(graphItem.angry * 10000) / 100,
       fear: Math.round(graphItem.fearful * 10000) / 100,
-      sadness: Math.round(graphItem.sad * 10000) / 100
+      sadness: Math.round(graphItem.sad * 10000) / 100,
+      ['positive emotions']: Math.round(graphItem.happy * 10000) / 100,
+      ['negative emotions']: Math.round((graphItem.angry + graphItem.fearful + graphItem.sad) * 10000) / 100
     };
   });
 
   return (
     <GraphContainer>
-      <ResponsiveContainer width="100%" height={200}>
-        <LineChart width={730} height={250} data={hapinessData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="happiness" stroke="#45a06f" />
-        </LineChart>
-      </ResponsiveContainer>
-
       <ResponsiveContainer width="100%" height={200}>
         <LineChart width={730} height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -75,9 +59,8 @@ export default function(props: Props) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="anger" stroke="#f44336" />
-          <Line type="monotone" dataKey="fear" stroke="#FF8989" />
-          <Line type="monotone" dataKey="sadness" stroke="#FEB069" />
+          <Line type="monotone" dataKey="positive emotions" stroke="#45a06f" unit=" %" />
+          <Line type="monotone" dataKey="negative emotions" stroke="#f44336" unit=" %" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -88,7 +71,7 @@ export default function(props: Props) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" unit=" secs" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -99,7 +82,7 @@ export default function(props: Props) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" unit=" %" />
         </LineChart>
       </ResponsiveContainer>
     </GraphContainer>
