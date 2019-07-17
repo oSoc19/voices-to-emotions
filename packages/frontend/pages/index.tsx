@@ -50,18 +50,15 @@ let Labels = styled.div`
 let User = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  border-right: 5px solid;
-  border-right-color: ${({ children }) => {
+  background-color: ${({ children }) => {
     let color = '#000000';
-    let child = children[1].props.children;
+    let percentage = children[1].props.children[0];
 
     try {
-      let percentage = parseInt(child.replace('%', '').trim(), 10);
       if (percentage <= 40) {
         color = '#45a06f';
       } else if (percentage >= 40 && percentage <= 60) {
-        color = '#feb069';
+        color = '#fb881d';
       } else {
         color = '#f44336';
       }
@@ -71,9 +68,10 @@ let User = styled.div`
 
     return color;
   }};
+  color: #FFFFFF;
   padding: 30px;
   margin: 20px 0;
-  border-radius: 0.25rem;
+  border-radius: 10px;
 `;
 
 let UserBox = styled.div`
@@ -116,7 +114,7 @@ class Index extends React.Component<Props> {
                   <UserBox>
                     {user.first_name} {user.last_name}
                   </UserBox>
-                  <UserBox>57%</UserBox>
+                  <UserBox>{(Math.round(Math.random() * 100) * 100) / 100} %</UserBox>
                 </User>
               </Link>
             </NextLink>
