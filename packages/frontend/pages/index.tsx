@@ -51,7 +51,23 @@ let User = styled.div`
   display: flex;
   justify-content: space-between;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  border-right: 5px solid red;
+  border-right: 5px solid;
+  border-right-color: ${({ children }) => {
+    let color = '#000000';
+    try {
+      let percentage = parseInt(children.replace('%', '').trim(), 10); //TODO: Find percentage in children
+      if (percentage <= 40) {
+        color = '#45a06f';
+      } else if (percentage >= 40 && percentage <= 60) {
+        color = '#feb069';
+      } else {
+        color = '#f44336';
+      }
+    } catch (e) {
+      // do nothing...
+    }
+  
+    return color;}};
   padding: 30px;
   margin: 20px 0;
   border-radius: .25rem;
