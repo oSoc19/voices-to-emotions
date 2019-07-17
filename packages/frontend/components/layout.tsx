@@ -17,6 +17,7 @@ let Main = styled.main`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   border-bottom: solid 5px #009de9;
+  overflow: hidden;
 
   @media (max-width: 960px) {
     border: none;

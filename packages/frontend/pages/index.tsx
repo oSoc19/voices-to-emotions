@@ -51,7 +51,7 @@ let User = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${({ children }) => {
-    let color = '#000000';
+    let color = '#ffffff';
     let percentage = children[1].props.children[0];
 
     try {
