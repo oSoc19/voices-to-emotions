@@ -43,7 +43,7 @@ export default function(props: Props) {
 
   let feedbackData = graph.map((val: GraphItem) => {
     return {
-      feedback: Math.round(val.feedback * 10000)/100
+      feedback: Math.round(val.feedback * 10000) / 100
     };
   });
 
