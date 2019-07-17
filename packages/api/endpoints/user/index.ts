@@ -47,7 +47,7 @@ export default async function(req: NowRequest, res: NowResponse) {
     teams[id] = await TeamModel.findById(id);
   }
 
-  let leavePercentages = likeliness(entries,users);
+  let leavePercentages = likeliness(entries, users);
 
   sendSuccess(res, {
     data: users.map(user => {
