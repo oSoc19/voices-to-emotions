@@ -16,14 +16,16 @@ type DropzoneProps = {
 
 let DropzoneContainer = styled.div<DropzoneProps>(({ isDragging }) => {
   return {
+    boxSizing: 'border-box',
     display: 'grid',
     gridTemplateAreas: '"illustration" "heading" "content"',
     border: '2px dashed',
     borderRadius: '10px',
-    color: isDragging ? '#f5f55e' : '#FFFFFF',
+    color: isDragging ? '#019de9' : '#a2a2a2',
     fontFamily: 'roboto',
     outline: 'none',
-    borderColor: isDragging ? '#f5f55e' : '#FFFFFF'
+    borderColor: isDragging ? '#019de9' : '#a2a2a2',
+    padding: 40
   };
 });
 

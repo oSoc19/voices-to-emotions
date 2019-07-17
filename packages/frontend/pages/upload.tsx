@@ -88,7 +88,6 @@ class Index extends React.Component<Props> {
           onDrop={this.handleSelectFile}
           illustration={<img src="/static/engie-logo.svg" title="Upload icon" alt="Upload icon" />}
         />
-        <div>user id: {userId}</div>
       </Layout>
     );
   }
