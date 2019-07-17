@@ -1,4 +1,34 @@
-export function likeliness(entries, user) {
+type emotions = {
+    angry: number;
+    calm: number;
+    disgust: number;
+    fearful: number;
+    happy: number;
+    neutral: number;
+    sad: number;
+    surprised: number;
+  };
+
+type timestamp = Array<number>
+
+type user ={
+    _id: string;
+    first_name: string;
+    last_name: string;
+    gender: string;
+    birth_date: Date;
+    start_date: Date;
+    team: string;
+    avatar: string;
+  };
+
+type entry = {
+    timestamps:Array<timestamp>,
+    emotions:Array<emotions>,
+    created:Date
+};
+
+export function likeliness(entries:Array<entry>, user:user) {
 
     let gender;
     if(user.gender == "M"){
@@ -12,7 +42,7 @@ export function likeliness(entries, user) {
     let max = 0;
     let min = 10000000;
 
-    let emotions = [];
+    let emotions:Array<emotions> = [];
 
     let i = entries.length - 10;
     if (i < 0){
@@ -77,7 +107,7 @@ export function likeliness(entries, user) {
     return result;
 }
 
-function callEmotions(entry) {
+function callEmotions(entry: entry) {
     let avgEmotions = entry.emotions.reduce(
         (acc, emotions, index) => {
 
@@ -108,13 +138,13 @@ function callEmotions(entry) {
     return avgEmotions;
 }
 
-function calculateAge(birthday) {
+function calculateAge(birthday:Date) {
     var ageDifMs = Date.now() - birthday.getTime();
     var ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-function calculateWorkingTime(start) {
+function calculateWorkingTime(start:Date) {
     var ageDifMs = Date.now() - start.getTime();
     return Math.round(ageDifMs/(1000*60*60*24));
 }
