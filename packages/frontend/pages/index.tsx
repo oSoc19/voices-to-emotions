@@ -54,8 +54,10 @@ let User = styled.div`
   border-right: 5px solid;
   border-right-color: ${({ children }) => {
     let color = '#000000';
+    let child = children[1].props.children;
+
     try {
-      let percentage = parseInt(children.replace('%', '').trim(), 10); //TODO: Find percentage in children
+      let percentage = parseInt(child.replace('%', '').trim(), 10);
       if (percentage <= 40) {
         color = '#45a06f';
       } else if (percentage >= 40 && percentage <= 60) {
