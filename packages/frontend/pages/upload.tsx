@@ -38,7 +38,7 @@ class Index extends React.Component<Props> {
     try {
       let data = new FormData();
       // @ts-ignore
-      data.append('audio', file[0][0]);
+      data.append('audio', file[0]);
       data.append('user_id', this.props.userId);
 
       let res = await axios.post('/upload', data, {
@@ -47,14 +47,11 @@ class Index extends React.Component<Props> {
         }
       });
 
-      if (!res.data.text || !res.data.emotion) {
-        throw new Error('Invalid API Response');
-      }
-
       console.log(res.data);
 
       alert('File uploaded!');
     } catch (e) {
+      console.error(e.response);
       console.error(e);
 
       alert('Could not upload file!');
@@ -71,6 +68,7 @@ class Index extends React.Component<Props> {
     inputElement.type = 'file';
     inputElement.multiple = false;
 
+    let handleSelectFile = this.handleSelectFile;
     inputElement.addEventListener('change', function() {
       if (!this.files) return;
       // @ts-ignore...
