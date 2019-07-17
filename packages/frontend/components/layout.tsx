@@ -13,7 +13,7 @@ let Main = styled.main`
   padding: 50px;
   box-sizing: border-box;
   max-width: 960px;
-  margin: auto auto 50px auto;
+  margin: auto auto 200px auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
   border-bottom: solid 5px #009de9;
@@ -35,8 +35,6 @@ let BottomBorder = styled.div`
   background-size: cover;
   height: 12px;
   width: 100%;
-  bottom: 0;
-  position: fixed;
 `;
 
 let Logo = styled.div`
