@@ -26,6 +26,6 @@ export default async function(req: NowRequest, res: NowResponse) {
   let leavePercentage = likeliness(dataEntries, user);
 
   sendSuccess(res, {
-    data: leavePercentage
+    data: leavePercentage[user._id]
   });
 }

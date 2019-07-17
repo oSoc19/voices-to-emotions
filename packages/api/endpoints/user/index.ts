@@ -4,6 +4,8 @@ import sendSuccess from '../../utils/send-success';
 import sendError from '../../utils/send-error';
 import setHeaders from '../../utils/set-headers';
 import getModel from '../../../database/index';
+import { number } from 'prop-types';
+import { likeliness } from '../../utils/likeliness';
 
 export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type
@@ -11,6 +13,7 @@ export default async function(req: NowRequest, res: NowResponse) {
 
   let UserModel = await getModel('user');
   let TeamModel = await getModel('team');
+  let EntryModel = await getModel('dataEntry');
 
   if (req.query['user_id']) {
     let user = await UserModel.findById(req.query['user_id']);
@@ -33,6 +36,8 @@ export default async function(req: NowRequest, res: NowResponse) {
 
   let users = await UserModel.find({});
 
+  let entries = await EntryModel.find({});
+
   let teams: { [key: string]: any } = {};
   for (let user of users) {
     teams[user.team] = true;
@@ -42,10 +47,13 @@ export default async function(req: NowRequest, res: NowResponse) {
     teams[id] = await TeamModel.findById(id);
   }
 
+  let leavePercentages = likeliness(entries,users);
+
   sendSuccess(res, {
     data: users.map(user => {
       return {
         ...user._doc,
+        leavePercentage: leavePercentages[user.id],
         team: teams[user.team]
       };
     })

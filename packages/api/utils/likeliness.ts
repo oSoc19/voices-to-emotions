@@ -25,11 +25,25 @@ type user ={
 type entry = {
     timestamps:Array<timestamp>,
     emotions:Array<emotions>,
-    created:Date
+    created:Date,
+    user_id: String
 };
 
-export function likeliness(entries:Array<entry>, user:user) {
+export function likeliness(entries:Array<entry>, user:user|Array<user>) {
 
+    if (!Array.isArray(user)){
+        user = [user];
+    }
+
+    let leavePercentage: { [key: string]: number } = {};
+
+    for (let currentUser of user){
+        leavePercentage[currentUser._id] = likelinessAux(entries.filter(entry=>entry.user_id == currentUser._id),currentUser);
+    }
+    return leavePercentage;
+}
+
+function likelinessAux(entries:Array<entry>, user:user){
     let gender;
     if(user.gender == "M"){
         gender = 1;
