@@ -17,7 +17,7 @@ let Main = styled.main`
 `;
 
 let ColorStripContainer = styled.div`
-  border-top: solid 12px #04AFEE;
+  border-top: solid 12px #04afee;
 `;
 
 let BottomBorder = styled.div`
@@ -37,7 +37,7 @@ export default function Layout({ title, children }: Props) {
         <Head title={title} />
 
         <Main>{children}</Main>
-        <BottomBorder/>
+        <BottomBorder />
       </ColorStripContainer>
     </React.Fragment>
   );
