@@ -68,7 +68,7 @@ let User = styled.div`
 
     return color;
   }};
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 30px;
   margin: 20px 0;
   border-radius: 10px;
