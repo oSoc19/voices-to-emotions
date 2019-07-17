@@ -70,7 +70,7 @@ let User = styled.div`
     return color;}};
   padding: 30px;
   margin: 20px 0;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 `;
 
 let UserBox = styled.div`

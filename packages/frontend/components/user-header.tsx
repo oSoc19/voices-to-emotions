@@ -97,7 +97,7 @@ const getGenderString = (g: string): string => {
 
 export default function(props: Props) {
   let { user } = props;
-  console.log(user);
+
   let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
   let formattedHiredDate = moment(user.start_date).format('DD MMMM YYYY');
