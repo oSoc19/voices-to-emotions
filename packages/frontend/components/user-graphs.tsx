@@ -26,6 +26,43 @@ type GraphItem = {
   duration: number;
 };
 
+const commaToPercentage = commaValue => {
+  return Math.round(commaValue * 10000) / 100;
+};
+
+const TooltipRenderer = (unit: string) => ({ active, payload, label }) => {
+  console.log({ active, payload, label });
+
+  if (active) {
+    let data = payload[0].payload;
+
+    return (
+      <div
+        style={{
+          background: '#ffffff',
+          padding: 10,
+          borderRadius: '5px',
+          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
+          overflow: 'hidden'
+        }}
+      >
+        {/*<div style={{
+          fontFamily: 'roboto, sans-serif'
+        }}>{label}</div>*/}
+        {Object.keys(data).map(k => {
+          return (
+            <div key={k} style={{ fontFamily: 'roboto, sans-serif', color: '#2e2e30' }}>
+              {k}: {data[k]} %
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  return null;
+};
+
 export default function(props: Props) {
   let { graph } = props;
 
@@ -37,17 +74,18 @@ export default function(props: Props) {
 
   let feedbackData = graph.map((val: GraphItem) => {
     return {
-      feedback: Math.round(val.feedback * 10000) / 100
+      feedback: commaToPercentage(val.feedback)
     };
   });
 
   let emotionsData = graph.map((graphItem: GraphItem, i: number) => {
     return {
-      anger: Math.round(graphItem.angry * 10000) / 100,
-      fear: Math.round(graphItem.fearful * 10000) / 100,
-      sadness: Math.round(graphItem.sad * 10000) / 100,
-      ['positive emotions']: Math.round(graphItem.happy * 10000) / 100,
-      ['negative emotions']: Math.round((graphItem.angry + graphItem.fearful + graphItem.sad) * 10000) / 100
+      anger: commaToPercentage(graphItem.angry),
+      fear: commaToPercentage(graphItem.fearful),
+      sadness: commaToPercentage(graphItem.sad),
+      hapiness: commaToPercentage(graphItem.happy),
+      ['positive emotions']: commaToPercentage(graphItem.happy),
+      ['negative emotions']: commaToPercentage(graphItem.angry + graphItem.fearful + graphItem.sad)
     };
   });
 
@@ -58,10 +96,10 @@ export default function(props: Props) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis />
           <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip />
+          <Tooltip content={TooltipRenderer('%')} />
           <Legend />
-          <Line type="monotone" dataKey="positive emotions" stroke="#45a06f" unit=" %" />
-          <Line type="monotone" dataKey="negative emotions" stroke="#f44336" unit=" %" />
+          <Line type="monotone" dataKey="positive emotions" stroke="#45a06f" />
+          <Line type="monotone" dataKey="negative emotions" stroke="#f44336" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -70,9 +108,9 @@ export default function(props: Props) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis />
           <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip />
+          <Tooltip content={TooltipRenderer('secs')} />
           <Legend />
-          <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" unit=" secs" />
+          <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -81,9 +119,9 @@ export default function(props: Props) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis />
           <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip />
+          <Tooltip content={TooltipRenderer('%')} />
           <Legend />
-          <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" unit=" %" />
+          <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" />
         </LineChart>
       </ResponsiveContainer>
     </GraphContainer>
