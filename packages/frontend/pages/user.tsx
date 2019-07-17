@@ -8,6 +8,7 @@ import UserGraphs from '../components/user-graphs';
 import Layout from '../components/layout';
 
 import '../utils/setup-axios';
+import styled from '@emotion/styled';
 
 type GraphItem = {
   angry: number;

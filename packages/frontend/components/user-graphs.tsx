@@ -27,7 +27,7 @@ type GraphItem = {
 export default function(props: Props) {
   let { graph } = props;
 
-  console.log({ graph });
+  // console.log({ graph });
 
   let hapinessData = graph.map((val: GraphItem) => {
     return {
