@@ -35,7 +35,7 @@ let Avatar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
 `;
 
 let SubHeading = styled.h2`
@@ -109,7 +109,10 @@ export default function(props: Props) {
 
   return (
     <UserHeader>
-      <Avatar>{user.first_name[0]}{user.last_name[0]}</Avatar>
+      <Avatar>
+        {user.first_name[0]}
+        {user.last_name[0]}
+      </Avatar>
       <div style={{ gridArea: 'heading' }}>
         <SubHeading>
           {fullName} ({msToYears(currDate.diff(user.birth_date))})
