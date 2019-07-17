@@ -108,7 +108,7 @@ export default function(props: Props) {
           <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('secs')} />
           <Legend />
-          <Line type="monotone" dataKey="Duration" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="Duration" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
 
@@ -119,7 +119,7 @@ export default function(props: Props) {
           <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend />
-          <Line type="monotone" dataKey="Feedback" stroke="rgba(0, 0, 0, 0.35)" />
+          <Line type="monotone" dataKey="Feedback" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
     </GraphContainer>
