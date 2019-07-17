@@ -54,6 +54,7 @@ let User = styled.div`
   border-right: 5px solid red;
   padding: 30px;
   margin: 20px 0;
+  border-radius: .25rem;
 `;
 
 let UserBox = styled.div`

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { default as NextLink } from 'next/link';
 
 import Head from './head';
 
@@ -14,10 +15,18 @@ let Main = styled.main`
   max-width: 960px;
   margin: auto auto 50px auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  border-radius: .25rem;
+  border-bottom: solid 5px #009de9;
 `;
 
 let ColorStripContainer = styled.div`
-  border-top: solid 12px #04afee;
+  border-top: solid 12px #009de9;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 `;
 
 let BottomBorder = styled.div`
@@ -27,7 +36,7 @@ let BottomBorder = styled.div`
   height: 12px;
   width: 100%;
   bottom: 0;
-  position: absolute;
+  position: fixed;
 `;
 
 let Logo = styled.div`
@@ -44,7 +53,11 @@ export default function Layout({ title, children }: Props) {
     <React.Fragment>
       <ColorStripContainer>
         <Head title={title} />
-        <Logo />
+        <Link>
+          <NextLink href={'/'}>
+            <Logo />
+          </NextLink>
+        </Link>
         <Main>{children}</Main>
         <BottomBorder />
       </ColorStripContainer>
