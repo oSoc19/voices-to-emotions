@@ -60,8 +60,10 @@ let SatisfactionPercentage = styled.div`
     if (typeof children === 'string') {
       try {
         let percentage = parseInt(children.replace('%', '').trim(), 10);
-        if (percentage < 50) {
+        if (percentage < 40) {
           color = '#45a06f';
+        } else if ((percentage >= 40) && (percentage <= 60)){
+          color = '#feb069';
         } else {
           color = '#f44336';
         }
