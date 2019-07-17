@@ -34,6 +34,7 @@ export type Props = {
     avatar: string;
   };
   graph?: Array<GraphItem>;
+  leavePercentage?: number;
   error?: Error;
 };
 
@@ -43,8 +44,9 @@ class Index extends React.Component<Props> {
       if (req.query && req.query.id) {
         let user = await axios.get(`/user?user_id=${req.query.id}`);
         let graph = await axios.get(`/graphs?user_id=${req.query.id}`);
+        let leavePercentage = await axios.get(`/leave?user_id=${req.query.id}`);
 
-        return { user: user.data.data, graph: graph.data.data };
+        return { user: user.data.data, graph: graph.data.data, leavePercentage: leavePercentage.data.data };
       } else {
         throw new Error('No query parameter!');
       }
@@ -55,7 +57,7 @@ class Index extends React.Component<Props> {
   }
 
   render() {
-    let { user, error, graph }: Props = this.props;
+    let { user, error, graph, leavePercentage }: Props = this.props;
 
     if (error) {
       // TODO: Render a proper error page
@@ -75,6 +77,7 @@ class Index extends React.Component<Props> {
             birth_date: moment(user.birth_date),
             start_date: moment(user.start_date)
           }}
+          leavePercentage={leavePercentage}
         />
         <UserGraphs graph={graph} />
       </Layout>

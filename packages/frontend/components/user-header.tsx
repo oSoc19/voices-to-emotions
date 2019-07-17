@@ -13,6 +13,7 @@ export type Props = {
     team: string;
     avatar: string;
   };
+  leavePercentage: number
 };
 
 let UserHeader = styled.div`
@@ -94,7 +95,7 @@ const getGenderString = (g: string): string => {
 };
 
 export default function(props: Props) {
-  let { user } = props;
+  let { user, leavePercentage } = props;
   console.log(user);
   let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
@@ -114,7 +115,7 @@ export default function(props: Props) {
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
         <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>90%</SatisfactionPercentage>
+        <SatisfactionPercentage>{leavePercentage} %</SatisfactionPercentage>
       </div>
     </UserHeader>
   );
