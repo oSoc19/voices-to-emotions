@@ -15,8 +15,13 @@ let Main = styled.main`
   max-width: 960px;
   margin: auto auto 50px auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 0.25rem;
+  border-radius: 5px;
   border-bottom: solid 5px #009de9;
+
+  @media (max-width: 960px) {
+    border: none;
+    box-shadow: none;
+  }
 `;
 
 let ColorStripContainer = styled.div`

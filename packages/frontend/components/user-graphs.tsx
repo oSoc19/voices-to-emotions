@@ -25,6 +25,7 @@ type GraphItem = {
   feedback: number;
   duration: number;
 };
+
 export default function(props: Props) {
   let { graph } = props;
 
@@ -55,8 +56,8 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={200}>
         <LineChart width={730} height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis />
+          <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="positive emotions" stroke="#45a06f" unit=" %" />
@@ -67,8 +68,8 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={200}>
         <LineChart width={730} height={250} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis />
+          <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="duration" stroke="rgba(0, 0, 0, 0.35)" unit=" secs" />
@@ -78,8 +79,8 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={200}>
         <LineChart width={730} height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis />
+          <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="feedback" stroke="rgba(0, 0, 0, 0.35)" unit=" %" />
