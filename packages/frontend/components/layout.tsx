@@ -22,6 +22,7 @@ let Main = styled.main`
   @media (max-width: 960px) {
     border: none;
     box-shadow: none;
+    padding: 10px;
   }
 `;
 
