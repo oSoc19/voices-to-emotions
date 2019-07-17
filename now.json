@@ -22,7 +22,7 @@
       "dest": "/packages/api/endpoints/$1"
     },
     {
-      "src": "/upload-api/",
+      "src": "/upload-api",
       "dest": "https://europe-west1-voices-to-emotions.cloudfunctions.net/upload"
     },
     {
