@@ -96,9 +96,7 @@ class Index extends React.Component<Props> {
                   <UserBox>
                     {user.first_name} {user.last_name}
                   </UserBox>
-                  <UserBox>
-                    57%
-                  </UserBox>
+                  <UserBox>57%</UserBox>
                 </User>
               </Link>
             </NextLink>
