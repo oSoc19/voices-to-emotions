@@ -18,6 +18,10 @@
   ],
   "routes": [
     {
+      "src": "/api/upload",
+      "dest": "https://europe-west1-voices-to-emotions.cloudfunctions.net/upload"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/packages/api/endpoints/$1"
     },

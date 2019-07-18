@@ -12,6 +12,7 @@ export type Props = {
     start_date: Moment;
     team: string;
     avatar: string;
+    leavePercentage: number;
   };
   leavePercentage: number
 };
@@ -19,7 +20,7 @@ export type Props = {
 let UserHeader = styled.div`
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 140px 1fr auto;
+  grid-template-columns: 150px 1fr auto;
   grid-template-areas: 'avatar heading satisfaction';
   grid-gap: 20px 50px;
   padding-bottom: 20px;
@@ -27,11 +28,16 @@ let UserHeader = styled.div`
   color: #2e2e30;
 `;
 
-let Avatar = styled.img`
-  grid-area: avatar;
-  max-height: 100%;
-  width: 100%;
-  border-radius: 100%;
+let Avatar = styled.div`
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  background: #019de9;
+  font-size: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
 `;
 
 let SubHeading = styled.h2`
@@ -57,18 +63,19 @@ let SatisfactionPercentage = styled.div`
   font-size: 5rem;
   text-align: right;
   color: ${({ children }) => {
-    let color = '#000000';
-    if (typeof children === 'string') {
-      try {
-        let percentage = parseInt(children.replace('%', '').trim(), 10);
-        if (percentage < 50) {
-          color = '#45a06f';
-        } else {
-          color = '#f44336';
-        }
-      } catch (e) {
-        // do nothing...
+    let color = '#ffffff';
+    let percentage = children[0];
+
+    try {
+      if (percentage <= 40) {
+        color = '#45a06f';
+      } else if (percentage >= 40 && percentage <= 60) {
+        color = '#fb881d';
+      } else {
+        color = '#f44336';
       }
+    } catch (e) {
+      // do nothing...
     }
 
     return color;
@@ -103,7 +110,10 @@ export default function(props: Props) {
 
   return (
     <UserHeader>
-      <Avatar src={user.avatar || '/static/user-pictures/default.jpg'} title={fullName} alt={fullName} />
+      <Avatar>
+        {user.first_name[0]}
+        {user.last_name[0]}
+      </Avatar>
       <div style={{ gridArea: 'heading' }}>
         <SubHeading>
           {fullName} ({msToYears(currDate.diff(user.birth_date))})

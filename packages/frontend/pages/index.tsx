@@ -51,14 +51,32 @@ let Labels = styled.div`
 let User = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  border-right: 5px solid red;
+  background-color: ${({ children }) => {
+    let color = '#ffffff';
+    let percentage = children[1].props.children[0];
+
+    try {
+      if (percentage <= 40) {
+        color = '#45a06f';
+      } else if (percentage >= 40 && percentage <= 60) {
+        color = '#fb881d';
+      } else {
+        color = '#f44336';
+      }
+    } catch (e) {
+      // do nothing...
+    }
+
+    return color;
+  }};
+  color: #ffffff;
   padding: 30px;
   margin: 20px 0;
+  border-radius: 10px;
 `;
 
-let UserName = styled.div`
-  font-family: 'Roboto mono';
+let UserBox = styled.div`
+  font-size: 1.3rem;
 `;
 
 class Index extends React.Component<Props> {
@@ -66,7 +84,14 @@ class Index extends React.Component<Props> {
     try {
       let users = await axios.get<Users>('/user');
 
-      return { users: users.data.data };
+      return {
+        users: users.data.data.map(user => {
+          return {
+            ...user,
+            leavePercentage: Math.random()
+          };
+        })
+      };
     } catch (e) {
       console.error(e);
       return { error: e };
@@ -94,9 +119,9 @@ class Index extends React.Component<Props> {
             <NextLink href={`/user?id=${user._id}`}>
               <Link>
                 <User>
-                  <UserName>
+                  <UserBox>
                     {user.first_name} {user.last_name}
-                  </UserName>
+                  </UserBox>
                   <div className="user-text deuxieme">{user.leavePercentage}%</div>
                 </User>
               </Link>
