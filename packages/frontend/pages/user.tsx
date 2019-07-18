@@ -146,7 +146,7 @@ class Index extends React.Component<Props, State> {
               }
             }}
           >
-            Refresh Data
+            {this.state.refreshing ? 'Refreshing...' : 'Refresh Data'}
           </Button>
           <NextLink href={`/upload?user_id=${user._id}`}>
             <Button primary>Upload</Button>
