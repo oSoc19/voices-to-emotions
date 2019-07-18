@@ -2,6 +2,8 @@ import React from 'react';
 import moment, { Moment } from 'moment';
 import styled from '@emotion/styled';
 
+import SubHeading from '../components/sub-heading';
+
 export type Props = {
   user: {
     _id: string;
@@ -38,15 +40,6 @@ let Avatar = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
-`;
-
-let SubHeading = styled.h2`
-  font-weight: inherit;
-  font-size: 2rem;
-  line-height: 2rem;
-  margin: 0;
-  align-self: flex-end;
-  margin-bottom: 20px;
 `;
 
 let UserInfo = styled.h3`
