@@ -4,27 +4,15 @@ import { withRouter } from 'next/router';
 
 import Layout from '../components/layout';
 import Dropzone from '../components/dropzone';
+import SubHeading from '../components/sub-heading';
+import Paragraph from '../components/paragraph';
+import BackButton from '../components/back-button';
 
 import '../utils/setup-axios';
-import styled from '@emotion/styled';
 
 export type Props = {
   userId: string;
 };
-
-let Paragraph = styled.p`
-  font-weight: inherit;
-  font-size: 1rem;
-  margin-bottom: 40px;
-`;
-
-let SubHeading = styled.h2`
-  font-weight: inherit;
-  font-size: 2rem;
-  margin: 0;
-  align-self: flex-end;
-  margin-bottom: 20px;
-`;
 
 class Index extends React.Component<Props> {
   static async getInitialProps(req): Promise<Props> {
@@ -85,6 +73,7 @@ class Index extends React.Component<Props> {
   render() {
     return (
       <Layout title="User">
+        <BackButton href={`/user?id=${this.props.userId}`}>User Page</BackButton>
         <SubHeading>Upload</SubHeading>
         <Paragraph>
           This page is only for DEMO purposes. <br /> In a production environment calls will be recorded and processed

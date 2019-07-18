@@ -51,15 +51,16 @@ let Labels = styled.div`
 let User = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${({ children }) => {
-    let color = '#ffffff';
+  border-right: 15px solid;
+  border-right-color: ${({ children }) => {
+    let color = '#000000';
     let percentage = children[1].props.children[0];
 
     try {
-      if (percentage <= 40) {
+      if (percentage < 45) {
         color = '#45a06f';
-      } else if (percentage >= 40 && percentage <= 60) {
-        color = '#fb881d';
+      } else if (percentage >= 45 && percentage <= 70) {
+        color = '#feb069';
       } else {
         color = '#f44336';
       }
@@ -69,10 +70,10 @@ let User = styled.div`
 
     return color;
   }};
-  color: #ffffff;
   padding: 30px;
   margin: 20px 0;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
 let UserBox = styled.div`
@@ -108,6 +109,7 @@ class Index extends React.Component<Props> {
         </Labels>
 
         <div className="container-flex">
+<<<<<<< HEAD
           {users.map((user: User) => (
             <NextLink href={`/user?id=${user._id}`}>
               <Link>
@@ -120,6 +122,22 @@ class Index extends React.Component<Props> {
               </Link>
             </NextLink>
           ))}
+=======
+          {users
+            .sort((a, b) => b.leavePercentage - a.leavePercentage)
+            .map((user: User) => (
+              <NextLink href={`/user?id=${user._id}`}>
+                <Link>
+                  <User>
+                    <UserBox>
+                      {user.first_name} {user.last_name}
+                    </UserBox>
+                    <UserBox>{Math.round(user.leavePercentage * 10000) / 100} %</UserBox>
+                  </User>
+                </Link>
+              </NextLink>
+            ))}
+>>>>>>> 4c84900bb32c937ace17fe48e38dc1345b38f89e
         </div>
       </Layout>
     );
