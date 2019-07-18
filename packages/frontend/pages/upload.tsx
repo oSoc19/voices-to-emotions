@@ -12,10 +12,15 @@ export type Props = {
   userId: string;
 };
 
+let Paragraph = styled.p`
+  font-weight: inherit;
+  font-size: 1rem;
+  margin-bottom: 40px;
+`;
+
 let SubHeading = styled.h2`
   font-weight: inherit;
   font-size: 2rem;
-  line-height: 2rem;
   margin: 0;
   align-self: flex-end;
   margin-bottom: 20px;
@@ -81,9 +86,15 @@ class Index extends React.Component<Props> {
     return (
       <Layout title="User">
         <SubHeading>Upload</SubHeading>
+        <Paragraph>
+          This page is only for DEMO purposes. <br /> In a production environment calls will be recorded and processed
+          automatically after each call a staff member makes.
+        </Paragraph>
         <Dropzone
           onTrigger={this.handleDropzoneTrigger}
           onDrop={this.handleSelectFile}
+          heading="Upload a call recording"
+          content="allowed extensions: mp3, wav, aiff"
           illustration={<img src="/static/upload.svg" title="Upload icon" alt="Upload icon" />}
         />
       </Layout>
