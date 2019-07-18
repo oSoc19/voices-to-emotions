@@ -21,7 +21,7 @@ const GraphInformation = styled.div`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 20px 20px 20px 0;
 `;
 
 type GraphItem = {
@@ -102,7 +102,7 @@ export default function(props: Props) {
     <GraphContainer>
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
-        <Paragraph>This is a paragraph</Paragraph>
+        <Paragraph>The graph on the right shows an overview of the emotions recorded in each call.</Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
@@ -119,7 +119,7 @@ export default function(props: Props) {
 
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
-        <Paragraph>This is a paragraph</Paragraph>
+        <Paragraph>The graph on the right shows the duration of each call recording.</Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
@@ -134,8 +134,8 @@ export default function(props: Props) {
       </ResponsiveContainer>
 
       <GraphInformation>
-        <SubHeading style={{ fontSize: '1.5rem' }}>Feedback</SubHeading>
-        <Paragraph>This is a paragraph</Paragraph>
+        <SubHeading style={{ fontSize: '1.5rem' }}>Customer Satisfaction</SubHeading>
+        <Paragraph>The graph on the right shows the customer satisfaction of each call.</Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
