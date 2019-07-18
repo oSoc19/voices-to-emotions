@@ -55,13 +55,7 @@ let User = styled.div`
     let percentage = children[1].props.children[0];
 
     try {
-      if (percentage <= 40) {
-        color = '#45a06f';
-      } else if (percentage >= 40 && percentage <= 60) {
-        color = '#fb881d';
-      } else {
-        color = '#f44336';
-      }
+      color = "hsl(" + (60 - Math.round((percentage/2))) + ", 100%, 50%)";
     } catch (e) {
       // do nothing...
     }
