@@ -73,7 +73,7 @@ class Index extends React.Component<Props> {
   render() {
     return (
       <Layout title="User">
-        <BackButton href={`/user?id=${this.props.userId}`}>User Page</BackButton>
+        <BackButton href={`/user?id=${this.props.userId}`}>Profile</BackButton>
         <SubHeading>Upload</SubHeading>
         <Paragraph>
           This page is only for DEMO purposes. <br /> In a production environment calls will be recorded and processed
