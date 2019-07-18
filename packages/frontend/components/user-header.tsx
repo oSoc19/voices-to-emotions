@@ -125,7 +125,7 @@ export default function(props: Props) {
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
         <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>{Math.round(user.leavePercentage * 100) / 100} %</SatisfactionPercentage>
+        <SatisfactionPercentage>{Math.round(user.leavePercentage * 10000) / 100} %</SatisfactionPercentage>
       </div>
     </UserHeader>
   );
