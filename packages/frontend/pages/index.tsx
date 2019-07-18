@@ -14,6 +14,7 @@ export type User = {
   gender: string;
   birth_date: string;
   start_date: string;
+  leavePercentage?: number;
   team: {
     _id: string;
     name: string;
@@ -96,7 +97,7 @@ class Index extends React.Component<Props> {
                   <UserName>
                     {user.first_name} {user.last_name}
                   </UserName>
-                  <div className="user-text deuxieme">57%</div>
+                  <div className="user-text deuxieme">{user.leavePercentage}%</div>
                 </User>
               </Link>
             </NextLink>

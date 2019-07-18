@@ -7,65 +7,72 @@ type emotions = {
     neutral: number;
     sad: number;
     surprised: number;
-  };
+};
 
 type timestamp = Array<number>
 
-type user ={
-    _id: string;
-    first_name: string;
-    last_name: string;
-    gender: string;
-    birth_date: Date;
-    start_date: Date;
-    team: string;
-    avatar: string;
-  };
-
-type entry = {
-    timestamps:Array<timestamp>,
-    emotions:Array<emotions>,
-    created:Date,
-    user_id: String
+type user = {
+    _doc: {
+        _id: string;
+        first_name: string;
+        last_name: string;
+        gender: string;
+        birth_date: Date;
+        start_date: Date;
+        team: string;
+        avatar: string;
+    }
 };
 
-export function likeliness(entries:Array<entry>, user:user|Array<user>) {
+type entry = {
+    _doc: {
+        timestamps: Array<timestamp>,
+        emotions: Array<emotions>,
+        created: Date,
+        user_id: String
+    }
 
-    if (!Array.isArray(user)){
+};
+
+export function likeliness(entries: Array<entry>, user: user | Array<user>) {
+
+    if (!Array.isArray(user)) {
         user = [user];
     }
 
     let leavePercentage: { [key: string]: number } = {};
 
-    for (let currentUser of user){
-        leavePercentage[currentUser._id] = likelinessAux(entries.filter(entry=>entry.user_id == currentUser._id),currentUser);
+    for (let currentUser of user) {
+        let filtered = entries.filter(entry => entry._doc['user_id'].toString() === currentUser._doc['_id'].toString());
+        leavePercentage[currentUser._doc._id] = likelinessAux(filtered, currentUser);
     }
     return leavePercentage;
 }
 
-function likelinessAux(entries:Array<entry>, user:user){
+function likelinessAux(entries: Array<entry>, user: user) {
+
     let gender;
-    if(user.gender == "M"){
+    if (user._doc.gender == "M") {
         gender = 1;
-    }else{
+    } else {
         gender = 0;
     }
-    let age = calculateAge(user.birth_date);
-    let duration = calculateWorkingTime(user.start_date);
+    let age = calculateAge(user._doc.birth_date);
+    let duration = calculateWorkingTime(user._doc.start_date);
 
     let max = 0;
     let min = 10000000;
 
-    let emotions:Array<emotions> = [];
+    let emotions: Array<emotions> = [];
 
     let i = entries.length - 10;
-    if (i < 0){
-        i=0;
+    if (i < 0) {
+        i = 0;
     }
 
     for (; i < entries.length; i++) {  //for each dataenty (10)
-        let length = entries[i].timestamps.length;
-        let callLength = entries[i].timestamps[length - 1][1];
+        let length = entries[i]._doc.timestamps.length;
+        let callLength = entries[i]._doc.timestamps[length - 1][1];
         if (callLength > max) {
             max = callLength;
         }
@@ -77,19 +84,19 @@ function likelinessAux(entries:Array<entry>, user:user){
 
         emotions.push(avgEmotions);
     }
-    
+
     let emotion = emotions.reduce(
-        (acc, emotions) => { 
+        (acc, emotions) => {
             return {
-                angry: acc.angry + emotions.angry /10,
-                calm: acc.calm + emotions.calm /10,
-                disgust: acc.disgust + emotions.disgust /10,
-                fearful: acc.fearful + emotions.fearful /10,
-                happy: acc.happy + emotions.happy /10,
-                neutral: acc.neutral + emotions.neutral /10,
-                sad: acc.sad + emotions.sad /10,
-                surprised: acc.surprised + emotions.surprised /10
-              };
+                angry: acc.angry + emotions.angry / 10,
+                calm: acc.calm + emotions.calm / 10,
+                disgust: acc.disgust + emotions.disgust / 10,
+                fearful: acc.fearful + emotions.fearful / 10,
+                happy: acc.happy + emotions.happy / 10,
+                neutral: acc.neutral + emotions.neutral / 10,
+                sad: acc.sad + emotions.sad / 10,
+                surprised: acc.surprised + emotions.surprised / 10
+            };
         },
         {
             angry: 0,
@@ -101,31 +108,31 @@ function likelinessAux(entries:Array<entry>, user:user){
             sad: 0,
             surprised: 0
         }
-        );
+    );
 
-    let x = -1.1588 + 
-    0.0132 * age +
-    0.0679 * gender +
-    0.0001 * duration +
-    0.0012 * (max - min) +
-    0.0074 * emotion.happy -
-    0.0081 * emotion.angry -
-    0.0321 * emotion.sad -
-    0.0507 * emotion.fearful;
-    
+    let x = -1.1588 +
+        0.0132 * age +
+        0.0679 * gender +
+        0.0001 * duration +
+        0.0012 * (max - min) +
+        0.0074 * emotion.happy -
+        0.0081 * emotion.angry -
+        0.0321 * emotion.sad -
+        0.0507 * emotion.fearful;
 
-    let result = 1/(1 + Math.exp(-x));
 
-    result = Math.round(result*10000)/100;
+    let result = 1 / (1 + Math.exp(-x));
+
+    result = Math.round(result * 10000) / 100;
 
     return result;
 }
 
 function callEmotions(entry: entry) {
-    let avgEmotions = entry.emotions.reduce(
+    let avgEmotions = entry._doc.emotions.reduce(
         (acc, emotions, index) => {
 
-            let diff = entry.timestamps[index][1] - entry.timestamps[index][0];
+            let diff = entry._doc.timestamps[index][1] - entry._doc.timestamps[index][0];
 
             return {
                 angry: acc.angry + Math.round(emotions.angry) * diff,
@@ -152,14 +159,14 @@ function callEmotions(entry: entry) {
     return avgEmotions;
 }
 
-function calculateAge(birthday:Date) {
+function calculateAge(birthday: Date) {
     var ageDifMs = Date.now() - birthday.getTime();
     var ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-function calculateWorkingTime(start:Date) {
+function calculateWorkingTime(start: Date) {
     var ageDifMs = Date.now() - start.getTime();
-    return Math.round(ageDifMs/(1000*60*60*24));
+    return Math.round(ageDifMs / (1000 * 60 * 60 * 24));
 }
 

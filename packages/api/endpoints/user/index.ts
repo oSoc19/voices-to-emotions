@@ -53,7 +53,7 @@ export default async function(req: NowRequest, res: NowResponse) {
     data: users.map(user => {
       return {
         ...user._doc,
-        leavePercentage: leavePercentages[user.id],
+        leavePercentage: leavePercentages[user._id],
         team: teams[user.team]
       };
     })
