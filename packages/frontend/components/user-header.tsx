@@ -42,20 +42,34 @@ let Avatar = styled.div`
 
 let Name = styled.div`
   display: grid;
-  font-size: 3rem;
+  font-size: 2rem;
   grid-gap: 10px;
 `;
 
+// let UserInfo = styled.div`
+//   font-size: 1.2rem;
+//   align-self: flex-start;
+//   grid-gap: 20px;
+//   font-weight: inherit;
+//   margin: 0;
+//   margin: 20px 0;
+//   text-align: right;
+//   display: grid;
+//   grid-gap: 10px;
+//   gridArea: 'information';
+//   justifySelf: 'flex-end';
+// `;
+
 let UserInfo = styled.div`
-  font-size: 1.2rem;
-  align-self: flex-start;
-  grid-gap: 20px;
-  font-weight: inherit;
-  margin: 0;
-  margin: 20px 0;
-  text-align: right;
-  display: grid;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+let Age = styled.div`
+  font-size: 1.25rem;
 `;
 
 const msToYears = (ms: number): number => {
@@ -73,7 +87,6 @@ const getGenderString = (g: string): string => {
   if (found) {
     return found;
   }
-
   return 'Unknown Gender';
 };
 
@@ -89,14 +102,13 @@ export default function(props: Props) {
         {user.first_name[0]}
         {user.last_name[0]}
       </Avatar>
-      <div style={{ gridArea: 'name' }}>
-        <Name style={{ fontSize: '3rem' }}>
-          <span>{user.first_name}</span>
-          <span>{user.last_name}</span>
-        </Name>
-      </div>
-      <UserInfo style={{ gridArea: 'information', justifySelf: 'flex-end' }}>
-        <div>{msToYears(currDate.diff(user.birth_date))}</div>
+      <UserInfo>
+        <div style={{ gridArea: 'name' }}>
+          <Name>
+            <span>{user.first_name} {user.last_name}</span>
+          </Name>
+        </div>
+        <Age>{msToYears(currDate.diff(user.birth_date))}</Age>
         <div>{getGenderString(user.gender)}</div>
         <div>Hired on {formattedHiredDate}</div>
       </UserInfo>
