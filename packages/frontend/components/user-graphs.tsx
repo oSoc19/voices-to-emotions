@@ -95,7 +95,7 @@ export default function(props: Props) {
           <XAxis />
           <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
-          <Legend />
+          <Legend align="center" verticalAlign="middle" />
           <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
           <Line type="monotone" dataKey="Negative Emotions" stroke="#f44336" />
         </LineChart>

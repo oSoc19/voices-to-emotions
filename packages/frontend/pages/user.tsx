@@ -34,6 +34,7 @@ export type Props = {
     start_date: string;
     team: string;
     avatar: string;
+    leavePercentage: number;
   };
   graph?: Array<GraphItem>;
   error?: Error;
@@ -69,12 +70,10 @@ class Index extends React.Component<Props> {
         let graph = await axios.get(`/graphs?user_id=${req.query.id}`);
 
         return {
-          user: user.data.data.map(user => {
-            return {
-              ...user,
-              leavePercentage: Math.random()
-            };
-          }),
+          user: {
+            ...user.data.data,
+            leavePercentage: Math.random()
+          },
           graph: graph.data.data
         };
       } else {
