@@ -2,8 +2,6 @@ import React from 'react';
 import moment, { Moment } from 'moment';
 import styled from '@emotion/styled';
 
-import SubHeading from '../components/sub-heading';
-
 export type Props = {
   user: {
     _id: string;
@@ -22,8 +20,8 @@ export type Props = {
 let UserHeader = styled.div`
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: 150px 1fr auto;
-  grid-template-areas: 'avatar heading satisfaction';
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'avatar name information';
   grid-gap: 20px 50px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -31,48 +29,33 @@ let UserHeader = styled.div`
 `;
 
 let Avatar = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
+  width: 125px;
+  height: 125px;
+  border-radius: 5px;
   background: #019de9;
-  font-size: 100px;
+  font-size: 62.5px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #ffffff;
 `;
 
-let UserInfo = styled.h3`
+let Name = styled.div`
+  display: grid;
+  font-size: 3rem;
+  grid-gap: 10px;
+`;
+
+let UserInfo = styled.div`
   font-size: 1.2rem;
   align-self: flex-start;
-  display: grid;
-  grid-template-columns: auto 1fr;
   grid-gap: 20px;
   font-weight: inherit;
   margin: 0;
-`;
-
-let SatisfactionPercentage = styled.div`
-  font-size: 5rem;
+  margin: 20px 0;
   text-align: right;
-  color: ${({ children }) => {
-    let color = '#ffffff';
-    let percentage = children[0];
-
-    try {
-      if (percentage < 45) {
-        color = '#45a06f';
-      } else if (percentage >= 45 && percentage <= 70) {
-        color = '#feb069';
-      } else {
-        color = '#f44336';
-      }
-    } catch (e) {
-      // do nothing...
-    }
-
-    return color;
-  }};
+  display: grid;
+  grid-gap: 10px;
 `;
 
 const msToYears = (ms: number): number => {
@@ -97,9 +80,8 @@ const getGenderString = (g: string): string => {
 export default function(props: Props) {
   let { user, leavePercentage } = props;
 
-  let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
-  let formattedHiredDate = moment(user.start_date).format('DD MMMM YYYY');
+  let formattedHiredDate = moment(user.start_date).format('DD/MM/YYYY');
 
   return (
     <UserHeader>
@@ -107,19 +89,17 @@ export default function(props: Props) {
         {user.first_name[0]}
         {user.last_name[0]}
       </Avatar>
-      <div style={{ gridArea: 'heading' }}>
-        <SubHeading>
-          {fullName} ({msToYears(currDate.diff(user.birth_date))})
-        </SubHeading>
-        <UserInfo>
-          <div>{getGenderString(user.gender)}</div>
-          <div>Hired on {formattedHiredDate}</div>
-        </UserInfo>
+      <div style={{ gridArea: 'name' }}>
+        <Name style={{ fontSize: '3rem' }}>
+          <span>{user.first_name}</span>
+          <span>{user.last_name}</span>
+        </Name>
       </div>
-      <div style={{ gridArea: 'satisfaction' }}>
-        <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>{leavePercentage} %</SatisfactionPercentage>
-      </div>
+      <UserInfo style={{ gridArea: 'information', justifySelf: 'flex-end' }}>
+        <div>{msToYears(currDate.diff(user.birth_date))}</div>
+        <div>{getGenderString(user.gender)}</div>
+        <div>Hired on {formattedHiredDate}</div>
+      </UserInfo>
     </UserHeader>
   );
 }
