@@ -9,6 +9,7 @@ import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
 import Layout from '../components/layout';
 import Button from '../components/button';
+import BackButton from '../components/back-button';
 
 import '../utils/setup-axios';
 
@@ -85,6 +86,7 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="User">
+        <BackButton href='/'>Overview</BackButton>
         <UserHeader
           user={{
             ...user,

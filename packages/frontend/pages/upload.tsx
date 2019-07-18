@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import Dropzone from '../components/dropzone';
 import SubHeading from '../components/sub-heading';
 import Paragraph from '../components/paragraph';
+import BackButton from '../components/back-button';
 
 import '../utils/setup-axios';
 
@@ -72,6 +73,7 @@ class Index extends React.Component<Props> {
   render() {
     return (
       <Layout title="User">
+        <BackButton href={`/user?id=${this.props.userId}`}>User Page</BackButton>
         <SubHeading>Upload</SubHeading>
         <Paragraph>
           This page is only for DEMO purposes. <br /> In a production environment calls will be recorded and processed
