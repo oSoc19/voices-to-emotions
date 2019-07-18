@@ -19,7 +19,7 @@ export default styled.button<Props>`
   border-color: ${props => (props.primary ? 'transparent' : '#019de9')};
 
   &:hover {
-    color: #FFFFFF;
+    color: #ffffff;
     background-color: ${props => (props.primary ? '#0074ac' : '#019de9')};
   }
 `;
