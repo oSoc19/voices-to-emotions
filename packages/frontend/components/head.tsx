@@ -13,10 +13,7 @@ export default function Head({ title }: Props) {
     <NextHead>
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto Condensed:300,400,500|Roboto Mono:300,400,500"
-        rel="stylesheet"
-      />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
       <title>
         {SITE_NAME} | {title}
       </title>
