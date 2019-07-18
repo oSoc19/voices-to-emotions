@@ -95,7 +95,7 @@ export default function(props: Props) {
           <XAxis />
           <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
-          <Legend align="center" verticalAlign="middle" />
+          <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
           <Line type="monotone" dataKey="Negative Emotions" stroke="#f44336" />
         </LineChart>
@@ -107,7 +107,7 @@ export default function(props: Props) {
           <XAxis />
           <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('secs')} />
-          <Legend />
+          <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Duration" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
@@ -118,7 +118,7 @@ export default function(props: Props) {
           <XAxis />
           <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
-          <Legend />
+          <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Feedback" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
