@@ -51,7 +51,8 @@ let Labels = styled.div`
 let User = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${({ children }) => {
+  border-right: 20px solid;
+  border-right-color: ${({ children }) => {
     let color = '#ffffff';
     let percentage = children[1].props.children[0];
 
