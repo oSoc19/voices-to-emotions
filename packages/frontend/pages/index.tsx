@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 
 import '../utils/setup-axios';
 import Layout from '../components/layout';
+import Paragraph from '../components/paragraph';
 
 export type User = {
   _id: string;
@@ -102,6 +103,12 @@ class Index extends React.Component<Props> {
     return (
       <Layout title="Overview">
         <Heading>Staff members</Heading>
+
+        <Paragraph>
+          All employees are ranked in order of their likeliness-to-leave percentage, with the highest on top.
+          <br />
+          Click on an employee’s name to go to their personal page, which contains more detailed information.
+        </Paragraph>
 
         <Labels>
           <span>Staff members name</span>
