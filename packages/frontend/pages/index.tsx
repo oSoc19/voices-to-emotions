@@ -59,7 +59,7 @@ let User = styled.div`
     try {
       if (percentage < 45) {
         color = '#45a06f';
-      } else if (percentage >= 45 && percentage <= 70) {
+      } else if (percentage >= 45 && percentage <= 65) {
         color = '#feb069';
       } else {
         color = '#f44336';

@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 
 import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
+import LeaveCard from '../components/leave-card';
 import Layout from '../components/layout';
 import Button from '../components/button';
 import BackButton from '../components/back-button';
@@ -152,6 +153,7 @@ class Index extends React.Component<Props, State> {
             <Button primary>Upload</Button>
           </NextLink>
         </ButtonContainer>
+        <LeaveCard leavePercentage={this.state.leavePercentage} user={user} />
         <UserGraphs graph={this.state.graph} />
       </Layout>
     );
