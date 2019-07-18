@@ -51,23 +51,29 @@ let Labels = styled.div`
 let User = styled.div`
   display: flex;
   justify-content: space-between;
-  border-right: 20px solid;
+  border-right: 15px solid;
   border-right-color: ${({ children }) => {
-    let color = '#ffffff';
+    let color = '#000000';
     let percentage = children[1].props.children[0];
 
     try {
-      color = "hsl(" + (60 - Math.round((percentage/2))) + ", 100%, 50%)";
+      if (percentage < 45) {
+        color = '#45a06f';
+      } else if (percentage >= 45 && percentage <= 70) {
+        color = '#feb069';
+      } else {
+        color = '#f44336';
+      }
     } catch (e) {
       // do nothing...
     }
 
     return color;
   }};
-  color: #ffffff;
   padding: 30px;
   margin: 20px 0;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
 let UserBox = styled.div`
@@ -110,7 +116,7 @@ class Index extends React.Component<Props> {
         </Labels>
 
         <div className="container-flex">
-          {users.map((user: User) => (
+          {users.sort((a, b) => (b.leavePercentage - a.leavePercentage)).map((user: User) => (
             <NextLink href={`/user?id=${user._id}`}>
               <Link>
                 <User>
