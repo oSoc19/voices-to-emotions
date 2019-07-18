@@ -15,7 +15,7 @@ const BackButtonStyled = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 const BackIcon = styled.div`
