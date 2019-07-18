@@ -14,7 +14,7 @@ export type Props = {
     avatar: string;
     leavePercentage: number;
   };
-  leavePercentage: number
+  leavePercentage: number;
 };
 
 let UserHeader = styled.div`
