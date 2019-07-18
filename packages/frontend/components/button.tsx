@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export default styled.button`
-  grid-area: upload;
   background-color: #019de9;
   border: none;
   color: #ffffff;

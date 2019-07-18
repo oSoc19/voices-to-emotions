@@ -44,8 +44,8 @@ export type Props = {
 
 const ButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: '. upload';
+  grid-template-columns: 1fr auto auto;
+  grid-gap: 20px;
 `;
 
 class Index extends React.Component<Props> {
@@ -95,6 +95,8 @@ class Index extends React.Component<Props> {
           }}
         />
         <ButtonContainer>
+          <div />
+          <Button>Refresh Data</Button>
           <NextLink href={`/upload?user_id=${user._id}`}>
             <Button>Upload</Button>
           </NextLink>
