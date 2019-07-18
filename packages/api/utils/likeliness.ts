@@ -40,7 +40,7 @@ export function likeliness(entries: Array<entry>, user: user | Array<user>) {
         user = [user];
     }
 
-    let leavePercentage: { [key: string]: number } = {};
+  let leavePercentage: { [key: string]: number } = {};
 
     for (let currentUser of user) {
         let filtered = entries.filter(entry => entry._doc['user_id'].toString() === currentUser._doc['_id'].toString());
@@ -125,7 +125,7 @@ function likelinessAux(entries: Array<entry>, user: user) {
 
     result = Math.round(result * 10000) / 100;
 
-    return result;
+  return result;
 }
 
 function callEmotions(entry: entry) {
@@ -169,4 +169,3 @@ function calculateWorkingTime(start: Date) {
     var ageDifMs = Date.now() - start.getTime();
     return Math.round(ageDifMs / (1000 * 60 * 60 * 24));
 }
-
