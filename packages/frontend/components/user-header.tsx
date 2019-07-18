@@ -105,7 +105,9 @@ export default function(props: Props) {
       <UserInfo>
         <div style={{ gridArea: 'name' }}>
           <Name>
-            <span>{user.first_name} {user.last_name}</span>
+            <span>
+              {user.first_name} {user.last_name}
+            </span>
           </Name>
         </div>
         <Age>{msToYears(currDate.diff(user.birth_date))}</Age>
