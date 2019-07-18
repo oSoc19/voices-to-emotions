@@ -62,20 +62,19 @@ let SatisfactionPercentage = styled.div`
   font-size: 5rem;
   text-align: right;
   color: ${({ children }) => {
-    let color = '#000000';
-    if (typeof children === 'string') {
-      try {
-        let percentage = parseInt(children.replace('%', '').trim(), 10);
-        if (percentage <= 40) {
-          color = '#45a06f';
-        } else if (percentage >= 40 && percentage <= 60) {
-          color = '#feb069';
-        } else {
-          color = '#f44336';
-        }
-      } catch (e) {
-        // do nothing...
+    let color = '#ffffff';
+    let percentage = children[0];
+
+    try {
+      if (percentage <= 40) {
+        color = '#45a06f';
+      } else if (percentage >= 40 && percentage <= 60) {
+        color = '#fb881d';
+      } else {
+        color = '#f44336';
       }
+    } catch (e) {
+      // do nothing...
     }
 
     return color;
