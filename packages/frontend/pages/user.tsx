@@ -68,7 +68,15 @@ class Index extends React.Component<Props> {
         let user = await axios.get(`/user?user_id=${req.query.id}`);
         let graph = await axios.get(`/graphs?user_id=${req.query.id}`);
 
-        return { user: user.data.data, graph: graph.data.data };
+        return {
+          user: user.data.data.map(user => {
+            return {
+              ...user,
+              leavePercentage: Math.random()
+            };
+          }),
+          graph: graph.data.data
+        };
       } else {
         throw new Error('No query parameter!');
       }

@@ -14,6 +14,7 @@ export type User = {
   gender: string;
   birth_date: string;
   start_date: string;
+  leavePercentage: number;
   team: {
     _id: string;
     name: string;
@@ -83,7 +84,14 @@ class Index extends React.Component<Props> {
     try {
       let users = await axios.get<Users>('/user');
 
-      return { users: users.data.data };
+      return {
+        users: users.data.data.map(user => {
+          return {
+            ...user,
+            leavePercentage: Math.random()
+          };
+        })
+      };
     } catch (e) {
       console.error(e);
       return { error: e };
@@ -114,7 +122,7 @@ class Index extends React.Component<Props> {
                   <UserBox>
                     {user.first_name} {user.last_name}
                   </UserBox>
-                  <UserBox>{(Math.round(Math.random() * 100) * 100) / 100} %</UserBox>
+                  <UserBox>{Math.round(user.leavePercentage * 100) / 100} %</UserBox>
                 </User>
               </Link>
             </NextLink>
