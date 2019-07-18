@@ -2,6 +2,8 @@ import React from 'react';
 import moment, { Moment } from 'moment';
 import styled from '@emotion/styled';
 
+import SubHeading from '../components/sub-heading';
+
 export type Props = {
   user: {
     _id: string;
@@ -14,6 +16,7 @@ export type Props = {
     avatar: string;
     leavePercentage: number;
   };
+  leavePercentage: number;
 };
 
 let UserHeader = styled.div`
@@ -37,15 +40,6 @@ let Avatar = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
-`;
-
-let SubHeading = styled.h2`
-  font-weight: inherit;
-  font-size: 2rem;
-  line-height: 2rem;
-  margin: 0;
-  align-self: flex-end;
-  margin-bottom: 20px;
 `;
 
 let UserInfo = styled.h3`
@@ -101,7 +95,7 @@ const getGenderString = (g: string): string => {
 };
 
 export default function(props: Props) {
-  let { user } = props;
+  let { user, leavePercentage } = props;
 
   let fullName = `${user.first_name} ${user.last_name}`;
   let currDate = moment();
@@ -124,7 +118,7 @@ export default function(props: Props) {
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
         <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>{Math.round(user.leavePercentage * 10000) / 100} %</SatisfactionPercentage>
+        <SatisfactionPercentage>{leavePercentage} %</SatisfactionPercentage>
       </div>
     </UserHeader>
   );

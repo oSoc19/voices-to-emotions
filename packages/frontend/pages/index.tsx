@@ -14,7 +14,7 @@ export type User = {
   gender: string;
   birth_date: string;
   start_date: string;
-  leavePercentage: number;
+  leavePercentage?: number;
   team: {
     _id: string;
     name: string;
@@ -85,14 +85,7 @@ class Index extends React.Component<Props> {
     try {
       let users = await axios.get<Users>('/user');
 
-      return {
-        users: users.data.data.map(user => {
-          return {
-            ...user,
-            leavePercentage: Math.random()
-          };
-        })
-      };
+      return { users: users.data.data };
     } catch (e) {
       console.error(e);
       return { error: e };
@@ -116,18 +109,20 @@ class Index extends React.Component<Props> {
         </Labels>
 
         <div className="container-flex">
-          {users.sort((a, b) => (b.leavePercentage - a.leavePercentage)).map((user: User) => (
-            <NextLink href={`/user?id=${user._id}`}>
-              <Link>
-                <User>
-                  <UserBox>
-                    {user.first_name} {user.last_name}
-                  </UserBox>
-                  <UserBox>{Math.round(user.leavePercentage * 10000) / 100} %</UserBox>
-                </User>
-              </Link>
-            </NextLink>
-          ))}
+          {users
+            .sort((a, b) => b.leavePercentage - a.leavePercentage)
+            .map((user: User) => (
+              <NextLink href={`/user?id=${user._id}`}>
+                <Link>
+                  <User>
+                    <UserBox>
+                      {user.first_name} {user.last_name}
+                    </UserBox>
+                    <div className="user-text deuxieme">{user.leavePercentage}%</div>
+                  </User>
+                </Link>
+              </NextLink>
+            ))}
         </div>
       </Layout>
     );

@@ -9,6 +9,7 @@ import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
 import Layout from '../components/layout';
 import Button from '../components/button';
+import BackButton from '../components/back-button';
 
 import '../utils/setup-axios';
 
@@ -37,30 +38,29 @@ export type Props = {
     avatar: string;
     leavePercentage: number;
   };
-  graph?: Array<GraphItem>;
   error?: Error;
+};
+
+export type State = {
+  graph: Array<GraphItem>;
+  error?: Error;
+  refreshing: boolean;
+  leavePercentage: number;
 };
 
 const ButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: '. upload';
+  grid-template-columns: 1fr auto auto;
+  grid-gap: 20px;
 `;
 
-class Index extends React.Component<Props> {
+class Index extends React.Component<Props, State> {
   static async getInitialProps(req): Promise<Props> {
     try {
       if (req.query && req.query.id) {
         let user = await axios.get(`/user?user_id=${req.query.id}`);
-        let graph = await axios.get(`/graphs?user_id=${req.query.id}`);
 
-        return {
-          user: {
-            ...user.data.data,
-            leavePercentage: Math.random()
-          },
-          graph: graph.data.data
-        };
+        return { user: user.data.data };
       } else {
         throw new Error('No query parameter!');
       }
@@ -70,8 +70,50 @@ class Index extends React.Component<Props> {
     }
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      graph: [],
+      leavePercentage: 0,
+      refreshing: false
+    };
+
+    this.refresh = this.refresh.bind(this);
+  }
+
+  componentDidMount() {
+    this.refresh();
+  }
+
+  async refresh() {
+    await new Promise(resolve => setTimeout(resolve, 1));
+    if (this.state.refreshing) return;
+
+    try {
+      this.setState({
+        refreshing: true
+      });
+
+      let graph = await axios.get(`/graphs?user_id=${this.props.user._id}`);
+      let leavePercentage = await axios.get(`/leave?user_id=${this.props.user._id}`);
+
+      this.setState({
+        graph: graph.data.data,
+        leavePercentage: leavePercentage.data.data,
+        error: undefined,
+        refreshing: false
+      });
+    } catch (e) {
+      this.setState({
+        error: e,
+        refreshing: false
+      });
+    }
+  }
+
   render() {
-    let { user, error, graph }: Props = this.props;
+    let { user, error }: Props = this.props;
 
     if (error) {
       // TODO: Render a proper error page
@@ -85,19 +127,32 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="User">
+        <BackButton href="/">Overview</BackButton>
         <UserHeader
           user={{
             ...user,
             birth_date: moment(user.birth_date),
             start_date: moment(user.start_date)
           }}
+          leavePercentage={this.state.leavePercentage}
         />
         <ButtonContainer>
+          <div />
+          <Button
+            onClick={this.refresh}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                this.refresh();
+              }
+            }}
+          >
+            {this.state.refreshing ? 'Refreshing...' : 'Refresh Data'}
+          </Button>
           <NextLink href={`/upload?user_id=${user._id}`}>
-            <Button>Upload</Button>
+            <Button primary>Upload</Button>
           </NextLink>
         </ButtonContainer>
-        <UserGraphs graph={graph} />
+        <UserGraphs graph={this.state.graph} />
       </Layout>
     );
   }
