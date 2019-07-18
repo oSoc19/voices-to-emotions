@@ -109,20 +109,6 @@ class Index extends React.Component<Props> {
         </Labels>
 
         <div className="container-flex">
-<<<<<<< HEAD
-          {users.map((user: User) => (
-            <NextLink href={`/user?id=${user._id}`}>
-              <Link>
-                <User>
-                  <UserBox>
-                    {user.first_name} {user.last_name}
-                  </UserBox>
-                  <div className="user-text deuxieme">{user.leavePercentage}%</div>
-                </User>
-              </Link>
-            </NextLink>
-          ))}
-=======
           {users
             .sort((a, b) => b.leavePercentage - a.leavePercentage)
             .map((user: User) => (
@@ -132,12 +118,11 @@ class Index extends React.Component<Props> {
                     <UserBox>
                       {user.first_name} {user.last_name}
                     </UserBox>
-                    <UserBox>{Math.round(user.leavePercentage * 10000) / 100} %</UserBox>
+                    <div className="user-text deuxieme">{user.leavePercentage}%</div>
                   </User>
                 </Link>
               </NextLink>
             ))}
->>>>>>> 4c84900bb32c937ace17fe48e38dc1345b38f89e
         </div>
       </Layout>
     );
