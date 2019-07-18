@@ -85,7 +85,7 @@ class Index extends React.Component<Props> {
     try {
       let users = await axios.get<Users>('/user');
 
-      return {users: users.data.data}
+      return { users: users.data.data };
     } catch (e) {
       console.error(e);
       return { error: e };
