@@ -2,15 +2,26 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
+import SubHeading from '../components/sub-heading';
+import Paragraph from '../components/paragraph';
+
 export type Props = { graph: Array<GraphItem> };
 
 const GraphContainer = styled.div`
   display: grid;
   box-sizing: border-box;
   padding: 20px 0;
-  grid-template-columns: 1fr;
-  grid-gap: 20px 0;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 20px;
   width: 100%;
+`;
+
+const GraphInformation = styled.div`
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
 `;
 
 type GraphItem = {
@@ -89,6 +100,11 @@ export default function(props: Props) {
 
   return (
     <GraphContainer>
+      <GraphInformation>
+        <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
+        <Paragraph>This is a paragraph</Paragraph>
+      </GraphInformation>
+
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -101,6 +117,11 @@ export default function(props: Props) {
         </LineChart>
       </ResponsiveContainer>
 
+      <GraphInformation>
+        <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
+        <Paragraph>This is a paragraph</Paragraph>
+      </GraphInformation>
+
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -111,6 +132,11 @@ export default function(props: Props) {
           <Line type="monotone" dataKey="Duration" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
+
+      <GraphInformation>
+        <SubHeading style={{ fontSize: '1.5rem' }}>Feedback</SubHeading>
+        <Paragraph>This is a paragraph</Paragraph>
+      </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
