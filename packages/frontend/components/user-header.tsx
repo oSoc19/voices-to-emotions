@@ -66,10 +66,10 @@ let SatisfactionPercentage = styled.div`
     let percentage = children[0];
 
     try {
-      if (percentage <= 40) {
+      if (percentage < 45) {
         color = '#45a06f';
-      } else if (percentage >= 40 && percentage <= 60) {
-        color = '#fb881d';
+      } else if (percentage >= 45 && percentage <= 70) {
+        color = '#feb069';
       } else {
         color = '#f44336';
       }
