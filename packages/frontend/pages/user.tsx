@@ -98,7 +98,7 @@ class Index extends React.Component<Props> {
           <div />
           <Button>Refresh Data</Button>
           <NextLink href={`/upload?user_id=${user._id}`}>
-            <Button>Upload</Button>
+            <Button primary>Upload</Button>
           </NextLink>
         </ButtonContainer>
         <UserGraphs graph={graph} />
