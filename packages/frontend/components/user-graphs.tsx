@@ -17,7 +17,7 @@ const GraphContainer = styled.div`
   width: 100%;
 
   @media (max-width: 960px) {
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(3, auto 1fr);
     grid-template-columns: 1fr;
   }
 `;
