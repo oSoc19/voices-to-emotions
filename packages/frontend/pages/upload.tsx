@@ -7,7 +7,7 @@ import Dropzone from '../components/dropzone';
 import SubHeading from '../components/sub-heading';
 import Paragraph from '../components/paragraph';
 
-import '../utils/setup-axios';;
+import '../utils/setup-axios';
 
 export type Props = {
   userId: string;
