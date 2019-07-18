@@ -15,6 +15,11 @@ const GraphContainer = styled.div`
   grid-template-columns: 1fr 2fr;
   grid-gap: 20px;
   width: 100%;
+
+  @media (max-width: 960px) {
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: 1fr;
+  }
 `;
 
 const GraphInformation = styled.div`
