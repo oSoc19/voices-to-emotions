@@ -122,7 +122,7 @@ class Index extends React.Component<Props> {
                   <UserBox>
                     {user.first_name} {user.last_name}
                   </UserBox>
-                  <UserBox>{Math.round(user.leavePercentage * 100) / 100} %</UserBox>
+                  <UserBox>{Math.round(user.leavePercentage * 10000) / 100} %</UserBox>
                 </User>
               </Link>
             </NextLink>
