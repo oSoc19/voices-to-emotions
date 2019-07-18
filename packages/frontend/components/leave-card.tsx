@@ -4,13 +4,11 @@ import styled from '@emotion/styled';
 import SubHeading from '../components/sub-heading';
 import Paragraph from '../components/paragraph';
 
-const Card = styled.div`
-
-`;
+const Card = styled.div``;
 
 export type Props = {
   leavePercentage: number;
-  user: any
+  user: any;
 };
 
 export default function(props: Props) {
@@ -29,8 +27,8 @@ export default function(props: Props) {
     <Card>
       <SubHeading style={{ color: percentageColor, fontSize: '3rem' }}>{Math.round(leavePercentage)} %</SubHeading>
       <Paragraph>
-        This page displays the profile of {user.first_name}. The percentage on the right indicates how likely an employee
-        is to quit. Click on it to show the calculation.
+        This page displays the profile of {user.first_name}. The percentage on the right indicates how likely an
+        employee is to quit. Click on it to show the calculation.
       </Paragraph>
     </Card>
   );
