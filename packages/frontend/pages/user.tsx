@@ -86,7 +86,7 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="User">
-        <BackButton href='/'>Overview</BackButton>
+        <BackButton href="/">Overview</BackButton>
         <UserHeader
           user={{
             ...user,
