@@ -12,6 +12,7 @@ export type Props = {
     start_date: Moment;
     team: string;
     avatar: string;
+    leavePercentage: number;
   };
 };
 
@@ -124,7 +125,7 @@ export default function(props: Props) {
       </div>
       <div style={{ gridArea: 'satisfaction' }}>
         <SubHeading style={{ textAlign: 'right' }}>Likeliness to quit</SubHeading>
-        <SatisfactionPercentage>90%</SatisfactionPercentage>
+        <SatisfactionPercentage>{Math.round(user.leavePercentage * 100) / 100} %</SatisfactionPercentage>
       </div>
     </UserHeader>
   );
