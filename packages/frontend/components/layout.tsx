@@ -13,7 +13,7 @@ let Main = styled.main`
   padding: 50px;
   box-sizing: border-box;
   max-width: 960px;
-  margin: 0 auto auto auto;
+  margin: 0 auto 40px auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   border-bottom: solid 5px #009de9;
