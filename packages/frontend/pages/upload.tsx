@@ -78,8 +78,6 @@ class Index extends React.Component<Props> {
   }
 
   render() {
-    let { userId }: Props = this.props;
-
     return (
       <Layout title="User">
         <SubHeading>Upload</SubHeading>

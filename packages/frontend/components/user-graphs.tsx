@@ -72,7 +72,7 @@ export default function(props: Props) {
 
   let feedbackData = graph.map((val: GraphItem) => {
     return {
-      Feedback: commaToPercentage(val.feedback)
+      ['Customer Satisfaction']: commaToPercentage(val.feedback)
     };
   });
 
@@ -116,10 +116,10 @@ export default function(props: Props) {
         <LineChart width={730} height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis />
-          <YAxis label={{ value: 'Customer Feedback', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <YAxis label={{ value: 'Customer Satisfaction', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
-          <Line type="monotone" dataKey="Feedback" stroke="#019de9" />
+          <Line type="monotone" dataKey="Customer Satisfaction" stroke="#019de9" />
         </LineChart>
       </ResponsiveContainer>
     </GraphContainer>
