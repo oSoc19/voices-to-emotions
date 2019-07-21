@@ -146,6 +146,7 @@ class Index extends React.Component<Props, State> {
                 this.refresh();
               }
             }}
+            disabled={!!this.state.refreshing}
           >
             {this.state.refreshing ? 'Refreshing...' : 'Refresh Data'}
           </Button>
