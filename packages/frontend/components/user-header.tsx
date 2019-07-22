@@ -14,12 +14,17 @@ export type Props = {
 let UserHeader = styled.div`
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas: 'avatar name information';
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'avatar name';
   grid-gap: 20px 50px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: #2e2e30;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'name';
+  }
 `;
 
 let Avatar = styled.div`
@@ -32,6 +37,10 @@ let Avatar = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
+
+  @media (max-width: 450px) {
+    display: none;
+  }
 `;
 
 let Name = styled.div`

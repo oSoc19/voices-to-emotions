@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import { withRouter } from 'next/router';
 import { default as NextLink } from 'next/link';
 import styled from '@emotion/styled';
@@ -32,6 +31,12 @@ const ButtonContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   grid-gap: 20px;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    margin-bottom: 20px;
+  }
 `;
 
 const REFRESH_RATE = 5; // refresh rate in secs

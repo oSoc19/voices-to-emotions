@@ -22,4 +22,8 @@ export default styled.button<Props>`
     color: #ffffff;
     background-color: ${props => (props.primary ? '#0074ac' : '#019de9')};
   }
+
+  @media (max-width: 450px) {
+    margin: 5px 0;
+  }
 `;
