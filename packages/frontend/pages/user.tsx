@@ -155,7 +155,7 @@ class Index extends React.Component<Props, State> {
         <LeaveCard leavePercentage={this.state.leavePercentage} user={user} />
         <Paragraph>
           The graphs below give information on different predictors of the likeliness-to-leave. Hover over the graphs to
-          see the values per call, and click on the + button for more details.
+          see the values per call.
         </Paragraph>
         <UserGraphs graph={this.state.graph} />
       </Layout>

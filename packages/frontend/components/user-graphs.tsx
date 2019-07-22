@@ -101,16 +101,6 @@ export default function(props: Props) {
           This graph shows an overview of the emotions recorded in each call. The green line indicates the percentage of
           fragments that are classified as a positive emotion, namely happy. The red line indicates the percentage of
           fragments that are classified as a negative emotion, namely angry, sad, or fearful. Each call is a time point.
-          For more detailed information of each call, hoover over the graph.
-        </Paragraph>
-        <Paragraph>
-          (when clicked on a + button, this appears in a box underneath the graph) Employees who experience more
-          negative emotions and less positive emotions, are at risk for burn-out and are more likely to quit their job.
-          Do not look at this in isolation, but compare with the other graphs: this allows for interpretation and limits
-          false conclusions. For example, a high percentage of negative emotions might indicate that the employee
-          experiences more negative emotions during the phone call. However, if the length of the call was very short,
-          only one fragment that is (miss)classified as a negative emotion, will have more of an impact on the graph
-          than in the case of a longer call.
         </Paragraph>
       </GraphInformation>
 
