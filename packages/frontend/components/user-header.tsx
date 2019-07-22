@@ -27,7 +27,7 @@ let UserHeader = styled.div`
   }
 `;
 
-let Avatar = styled.div`
+let Avatar = styled.img`
   width: 125px;
   height: 125px;
   border-radius: 5px;
@@ -61,10 +61,7 @@ export default function(props: Props) {
 
   return (
     <UserHeader>
-      <Avatar>
-        {user.first_name[0]}
-        {user.last_name[0]}
-      </Avatar>
+      <Avatar src={user.avatar} title={`${user.first_name} ${user.last_name}`} alt={`${user.first_name} ${user.last_name}`} />
       <UserInfo>
         <Name>
           {user.first_name} {user.last_name}
