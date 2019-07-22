@@ -46,20 +46,6 @@ let Name = styled.div`
   grid-gap: 10px;
 `;
 
-// let UserInfo = styled.div`
-//   font-size: 1.2rem;
-//   align-self: flex-start;
-//   grid-gap: 20px;
-//   font-weight: inherit;
-//   margin: 0;
-//   margin: 20px 0;
-//   text-align: right;
-//   display: grid;
-//   grid-gap: 10px;
-//   gridArea: 'information';
-//   justifySelf: 'flex-end';
-// `;
-
 let UserInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,7 +77,7 @@ const getGenderString = (g: string): string => {
 };
 
 export default function(props: Props) {
-  let { user, leavePercentage } = props;
+  let { user } = props;
 
   let currDate = moment();
   let formattedHiredDate = moment(user.start_date).format('DD/MM/YYYY');
