@@ -19,7 +19,11 @@ export default async function(req: NowRequest, res: NowResponse) {
   let Model = await getModel('dataEntry');
   let dataEntries = await Model.find({
     user_id: req.query['user_id']
-  });
+  })
+    .sort({
+      created: -1
+    })
+    .limit(10);
 
   let graphData: Array<GraphEntry> = [];
   for (let entry of dataEntries) {
@@ -63,6 +67,6 @@ export default async function(req: NowRequest, res: NowResponse) {
   }
 
   sendSuccess(res, {
-    data: graphData
+    data: graphData.reverse()
   });
 }
