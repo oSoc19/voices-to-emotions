@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { GraphEntry } from '@voices-to-emotions/types';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
 import SubHeading from '../components/sub-heading';
 import Paragraph from '../components/paragraph';
 
-export type Props = { graph: Array<GraphItem> };
+export type Props = {
+  graph: Array<GraphEntry>;
+};
 
 const GraphContainer = styled.div`
   display: grid;
@@ -28,19 +31,6 @@ const GraphInformation = styled.div`
   box-sizing: border-box;
   padding: 20px 20px 20px 0;
 `;
-
-type GraphItem = {
-  angry: number;
-  calm: number;
-  disgust: number;
-  fearful: number;
-  happy: number;
-  neutral: number;
-  sad: number;
-  surprised: number;
-  feedback: number;
-  duration: number;
-};
 
 const commaToPercentage = commaValue => {
   return Math.round(commaValue * 10000) / 100;
@@ -80,19 +70,19 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
 export default function(props: Props) {
   let { graph } = props;
 
-  let durationData = graph.map((val: GraphItem) => {
+  let durationData = graph.map((val: GraphEntry) => {
     return {
       Duration: Math.round(val.duration * 100) / 100
     };
   });
 
-  let feedbackData = graph.map((val: GraphItem) => {
+  let feedbackData = graph.map((val: GraphEntry) => {
     return {
       ['Customer Satisfaction']: commaToPercentage(val.feedback)
     };
   });
 
-  let emotionsData = graph.map((graphItem: GraphItem, i: number) => {
+  let emotionsData = graph.map((graphItem: GraphEntry, i: number) => {
     return {
       Anger: commaToPercentage(graphItem.angry),
       Fear: commaToPercentage(graphItem.fearful),

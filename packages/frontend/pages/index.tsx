@@ -3,24 +3,11 @@ import axios from 'axios';
 import { withRouter } from 'next/router';
 import { default as NextLink } from 'next/link';
 import styled from '@emotion/styled';
+import { User } from '@voices-to-emotions/types';
 
 import '../utils/setup-axios';
 import Layout from '../components/layout';
 import Paragraph from '../components/paragraph';
-
-export type User = {
-  _id: string;
-  first_name: string;
-  last_name: string;
-  gender: string;
-  birth_date: string;
-  start_date: string;
-  leavePercentage?: number;
-  team: {
-    _id: string;
-    name: string;
-  };
-};
 
 export type Users = { data: Array<User>; type: string };
 

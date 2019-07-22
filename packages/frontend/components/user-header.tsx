@@ -1,19 +1,10 @@
 import React from 'react';
 import moment, { Moment } from 'moment';
 import styled from '@emotion/styled';
+import { User } from '@voices-to-emotions/types';
 
 export type Props = {
-  user: {
-    _id: string;
-    first_name: string;
-    last_name: string;
-    gender: string;
-    birth_date: Moment;
-    start_date: Moment;
-    team: string;
-    avatar: string;
-    leavePercentage: number;
-  };
+  user: User;
   leavePercentage: number;
 };
 

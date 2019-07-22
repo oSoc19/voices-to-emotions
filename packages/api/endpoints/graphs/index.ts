@@ -1,33 +1,10 @@
 import { NowRequest, NowResponse } from '@now/node';
+import { GraphEntry, Emotions } from '@voices-to-emotions/types';
 
 import sendSuccess from '../../utils/send-success';
 import sendError from '../../utils/send-error';
 import setHeaders from '../../utils/set-headers';
 import getModel from '../../../database/index';
-
-type Emotions = {
-  angry: number;
-  calm: number;
-  disgust: number;
-  fearful: number;
-  happy: number;
-  neutral: number;
-  sad: number;
-  surprised: number;
-};
-
-type GraphEntry = {
-  angry: number;
-  calm: number;
-  disgust: number;
-  fearful: number;
-  happy: number;
-  neutral: number;
-  sad: number;
-  surprised: number;
-  feedback: number;
-  duration: number;
-};
 
 export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type

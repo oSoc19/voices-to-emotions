@@ -4,6 +4,7 @@ import moment from 'moment';
 import { withRouter } from 'next/router';
 import { default as NextLink } from 'next/link';
 import styled from '@emotion/styled';
+import { User, GraphEntry } from '@voices-to-emotions/types';
 
 import UserHeader from '../components/user-header';
 import UserGraphs from '../components/user-graphs';
@@ -14,36 +15,13 @@ import BackButton from '../components/back-button';
 
 import '../utils/setup-axios';
 
-type GraphItem = {
-  angry: number;
-  calm: number;
-  disgust: number;
-  fearful: number;
-  happy: number;
-  neutral: number;
-  sad: number;
-  surprised: number;
-  feedback: number;
-  duration: number;
-};
-
 export type Props = {
-  user?: {
-    _id: string;
-    first_name: string;
-    last_name: string;
-    gender: string;
-    birth_date: string;
-    start_date: string;
-    team: string;
-    avatar: string;
-    leavePercentage: number;
-  };
+  user?: User;
   error?: Error;
 };
 
 export type State = {
-  graph: Array<GraphItem>;
+  graph: Array<GraphEntry>;
   error?: Error;
   refreshing: boolean;
   leavePercentage: number;
@@ -130,11 +108,7 @@ class Index extends React.Component<Props, State> {
       <Layout title="User">
         <BackButton href="/">Overview</BackButton>
         <UserHeader
-          user={{
-            ...user,
-            birth_date: moment(user.birth_date),
-            start_date: moment(user.start_date)
-          }}
+          user={user}
           leavePercentage={this.state.leavePercentage}
         />
         <ButtonContainer>
