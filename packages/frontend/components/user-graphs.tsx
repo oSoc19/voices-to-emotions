@@ -66,7 +66,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
   return null;
 };
 
-export default function (props: Props) {
+export default function(props: Props) {
   let { graph } = props;
 
   let durationData = graph.map((val: GraphEntry) => {
@@ -96,8 +96,21 @@ export default function (props: Props) {
     <GraphContainer>
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
-        <Paragraph>This graph shows an overview of the emotions recorded in each call. The green line indicates the percentage of fragments that are classified as a positive emotion, namely happy. The red line indicates the percentage of fragments that are classified as a negative emotion, namely angry, sad, or fearful. Each call is a time point. For more detailed information of each call, hoover over the graph.</Paragraph>
-        <Paragraph>(when clicked on a + button, this appears in a box underneath the graph) Employees who experience more negative emotions and less positive emotions, are at risk for burn-out and are more likely to quit their job. Do not look at this in isolation, but compare with the other graphs: this allows for interpretation and limits false conclusions. For example, a high percentage of negative emotions might indicate that the employee experiences more negative emotions during the phone call. However, if the length of the call was very short, only one fragment that is (miss)classified as a negative emotion, will have more of an impact on the graph than in the case of a longer call.</Paragraph>
+        <Paragraph>
+          This graph shows an overview of the emotions recorded in each call. The green line indicates the percentage of
+          fragments that are classified as a positive emotion, namely happy. The red line indicates the percentage of
+          fragments that are classified as a negative emotion, namely angry, sad, or fearful. Each call is a time point.
+          For more detailed information of each call, hoover over the graph.
+        </Paragraph>
+        <Paragraph>
+          (when clicked on a + button, this appears in a box underneath the graph) Employees who experience more
+          negative emotions and less positive emotions, are at risk for burn-out and are more likely to quit their job.
+          Do not look at this in isolation, but compare with the other graphs: this allows for interpretation and limits
+          false conclusions. For example, a high percentage of negative emotions might indicate that the employee
+          experiences more negative emotions during the phone call. However, if the length of the call was very short,
+          only one fragment that is (miss)classified as a negative emotion, will have more of an impact on the graph
+          than in the case of a longer call.
+        </Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
@@ -114,7 +127,13 @@ export default function (props: Props) {
 
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
-        <Paragraph>This graph shows an overview of the length of each call, in seconds. Longer calls than normally might indicate that the employee is less attentive or motivated. Shorter calls than normally might indicate that the employee rushes the calls and feels bored. The likeliness-to-leave percentage is influenced by a deviation in call length from the average of the last 10 calls for this specific employee, and thus both longer and shorter calls than normally increase how likely this employee would quit.</Paragraph>
+        <Paragraph>
+          This graph shows an overview of the length of each call, in seconds. Longer calls than normally might indicate
+          that the employee is less attentive or motivated. Shorter calls than normally might indicate that the employee
+          rushes the calls and feels bored. The likeliness-to-leave percentage is influenced by a deviation in call
+          length from the average of the last 10 calls for this specific employee, and thus both longer and shorter
+          calls than normally increase how likely this employee would quit.
+        </Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
@@ -130,7 +149,12 @@ export default function (props: Props) {
 
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Customer Satisfaction</SubHeading>
-        <Paragraph>This graph shows an overview of feedback the customer gives the call. After the conversation, they get an e-mail to rate the call out of 100, based on how satisfied they are with the service provided. Customer satisfaction is not incorporated in the model, but is displayed here to inspect the other variables per call within their context. NOTE: for now, this is simulated data.</Paragraph>
+        <Paragraph>
+          This graph shows an overview of feedback the customer gives the call. After the conversation, they get an
+          e-mail to rate the call out of 100, based on how satisfied they are with the service provided. Customer
+          satisfaction is not incorporated in the model, but is displayed here to inspect the other variables per call
+          within their context. NOTE: for now, this is simulated data.
+        </Paragraph>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={250}>
