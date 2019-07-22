@@ -27,7 +27,7 @@ let Main = styled.main`
 `;
 
 let ColorStripContainer = styled.div`
-  border-top: solid 12px #009de9;
+  border-top: solid 12px #000000;
 `;
 
 let Logo = styled.div`

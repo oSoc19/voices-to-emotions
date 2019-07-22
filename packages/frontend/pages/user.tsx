@@ -40,7 +40,6 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const REFRESH_RATE = 5; // refresh rate in secs
 
 class Index extends React.Component<Props, State> {
   static async getInitialProps(req): Promise<Props> {
@@ -75,9 +74,6 @@ class Index extends React.Component<Props, State> {
   componentDidMount() {
     this.refresh();
 
-    this.setState({
-      refreshInterval: window.setInterval(this.refresh, REFRESH_RATE * 1000)
-    });
   }
 
   componentWillUnmount() {
