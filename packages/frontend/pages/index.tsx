@@ -102,7 +102,7 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="Overview">
-        <Heading>Staff members</Heading>
+        <Heading>Staff wellbeing tracker</Heading>
 
         <Paragraph>
           All employees are ranked in order of their likeliness-to-leave percentage, with the highest on top.

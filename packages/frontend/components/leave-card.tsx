@@ -4,7 +4,14 @@ import styled from '@emotion/styled';
 import SubHeading from '../components/sub-heading';
 import Paragraph from '../components/paragraph';
 
-const Card = styled.div``;
+const Card = styled.div`
+  display: grid;
+  grid-template-columns: 150px 1fr;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 export type Props = {
   leavePercentage: number;
