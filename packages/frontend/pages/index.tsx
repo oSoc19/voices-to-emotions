@@ -36,7 +36,7 @@ let Labels = styled.div`
   justify-content: space-between;
 `;
 
-let User = styled.div`
+let UserContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border-right: 15px solid;
@@ -109,12 +109,12 @@ class Index extends React.Component<Props> {
             .map((user: User) => (
               <NextLink href={`/user?id=${user._id}`}>
                 <Link>
-                  <User>
+                  <UserContainer>
                     <span>
                       {user.first_name} {user.last_name}
                     </span>
                     <div className="user-text deuxieme">{user.leavePercentage}%</div>
-                  </User>
+                  </UserContainer>
                 </Link>
               </NextLink>
             ))}
