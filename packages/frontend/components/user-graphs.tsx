@@ -55,6 +55,8 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
         }}
       >
         {Object.keys(data).map(k => {
+          if (k === 'datetime') return;
+
           return (
             <div key={k} style={{ fontFamily: 'roboto, sans-serif', color: '#2e2e30' }}>
               {k}: {data[k]} {unit}
