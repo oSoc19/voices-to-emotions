@@ -107,10 +107,7 @@ class Index extends React.Component<Props, State> {
     return (
       <Layout title="User">
         <BackButton href="/">Overview</BackButton>
-        <UserHeader
-          user={user}
-          leavePercentage={this.state.leavePercentage}
-        />
+        <UserHeader user={user} leavePercentage={this.state.leavePercentage} />
         <ButtonContainer>
           <div />
           <Button
