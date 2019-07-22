@@ -29,6 +29,11 @@ const GraphInformation = styled.div`
   grid-template-areas: 'heading heading' 'text graph';
   margin-bottom: 10px;
   grid-gap: 10px;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'heading' 'text' 'graph';
+  }
 `;
 
 const commaToPercentage = commaValue => {
