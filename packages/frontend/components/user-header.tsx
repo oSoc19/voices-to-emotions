@@ -61,7 +61,11 @@ export default function(props: Props) {
 
   return (
     <UserHeader>
-      <Avatar src={user.avatar} title={`${user.first_name} ${user.last_name}`} alt={`${user.first_name} ${user.last_name}`} />
+      <Avatar
+        src={user.avatar}
+        title={`${user.first_name} ${user.last_name}`}
+        alt={`${user.first_name} ${user.last_name}`}
+      />
       <UserInfo>
         <Name>
           {user.first_name} {user.last_name}
