@@ -25,6 +25,7 @@ export type State = {
   error?: Error;
   refreshing: boolean;
   leavePercentage: number;
+  refreshInterval?: number;
 };
 
 const ButtonContainer = styled.div`
@@ -32,6 +33,8 @@ const ButtonContainer = styled.div`
   grid-template-columns: 1fr auto auto auto;
   grid-gap: 20px;
 `;
+
+const REFRESH_RATE = 5; // refresh rate in secs
 
 class Index extends React.Component<Props, State> {
   static async getInitialProps(req): Promise<Props> {
@@ -55,7 +58,8 @@ class Index extends React.Component<Props, State> {
     this.state = {
       graph: [],
       leavePercentage: 0,
-      refreshing: false
+      refreshing: false,
+      refreshInterval: null
     };
 
     this.refresh = this.refresh.bind(this);
@@ -64,6 +68,16 @@ class Index extends React.Component<Props, State> {
 
   componentDidMount() {
     this.refresh();
+
+    this.setState({
+      refreshInterval: window.setInterval(this.refresh, REFRESH_RATE * 1000)
+    });
+  }
+
+  componentWillUnmount() {
+    if (this.state.refreshInterval) {
+      window.clearInterval(this.state.refreshInterval);
+    }
   }
 
   async refresh() {

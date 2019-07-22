@@ -7,6 +7,7 @@ export default function(mongoose: Mongoose) {
 
   let schema = new Schema({
     user_id: ObjectId,
+    created: Date,
     emotions: [
       {
         angry: Number,

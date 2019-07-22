@@ -1,7 +1,10 @@
 import React from 'react';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 import styled from '@emotion/styled';
 import { User } from '@voices-to-emotions/types';
+
+import getGenderString from '../utils/gender-string';
+import { msToYears } from '../utils/time';
 
 export type Props = {
   user: User;
@@ -48,24 +51,6 @@ let UserInfo = styled.div`
 let Age = styled.div`
   font-size: 1.25rem;
 `;
-
-const msToYears = (ms: number): number => {
-  return Math.round(ms / 1000 / 60 / 60 / 24 / 365);
-};
-
-const GENDER_ENUMS: { [key: string]: string } = {
-  M: 'Male',
-  F: 'Female',
-  X: 'Gender X'
-};
-
-const getGenderString = (g: string): string => {
-  let found = GENDER_ENUMS[g];
-  if (found) {
-    return found;
-  }
-  return 'Unknown Gender';
-};
 
 export default function(props: Props) {
   let { user } = props;
