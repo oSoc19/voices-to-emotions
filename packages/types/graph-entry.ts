@@ -9,4 +9,5 @@ export type GraphEntry = {
   surprised: number;
   feedback: number;
   duration: number;
+  created: string;
 };

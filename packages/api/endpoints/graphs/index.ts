@@ -61,8 +61,9 @@ export default async function(req: NowRequest, res: NowResponse) {
       neutral: avgEmotions.neutral / entry.emotions.length,
       sad: avgEmotions.sad / entry.emotions.length,
       surprised: avgEmotions.surprised / entry.emotions.length,
-      feedback: entry.feedback,
-      duration: entry.timestamps[entry.timestamps.length - 1][1]
+      feedback: entry.feedback || Math.random(),
+      duration: entry.timestamps[entry.timestamps.length - 1][1],
+      created: entry.created
     });
   }
 
