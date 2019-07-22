@@ -40,11 +40,10 @@ export function likeliness(entries: Array<entry>, user: user | Array<user>) {
 
   let leavePercentage: { [key: string]: number } = {};
 
-
   for (let currentUser of user) {
-    let filtered = entries.filter(entry => { 
+    let filtered = entries.filter(entry => {
       if (entry._doc['user_id'] === undefined) return false;
-      return entry._doc['user_id'].toString() === currentUser._doc['_id'].toString()
+      return entry._doc['user_id'].toString() === currentUser._doc['_id'].toString();
     });
     leavePercentage[currentUser._doc._id] = likelinessAux(filtered, currentUser);
   }
