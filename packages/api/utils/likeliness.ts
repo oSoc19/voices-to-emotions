@@ -40,7 +40,6 @@ export function likeliness(entries: Array<entry>, user: user | Array<user>) {
 
   let leavePercentage: { [key: string]: number } = {};
 
-  console.log(entries);
 
   for (let currentUser of user) {
     let filtered = entries.filter(entry => { 
