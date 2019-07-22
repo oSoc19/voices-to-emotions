@@ -4,38 +4,29 @@ import sendSuccess from '../../utils/send-success';
 import sendError from '../../utils/send-error';
 import setHeaders from '../../utils/set-headers';
 import getModel from '../../../database/index';
-import fs from 'fs';
-const { join } = require('path');
+
+import backup from './backup.json';
 
 export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type
   setHeaders(res);
 
   let EntryModel = await getModel('dataEntry');
+  let userId = req.query['user_id'];
 
-  if (!req.query['user_id']) {
+  if (!userId) {
     return sendError(res, {
       statusCode: 404,
       message: 'No user specified'
     });
   }
 
-  //let backup = await EntryModel.find({"user_id":req.query['user_id']});
-
-  let dataEntries;
-
-  fs.readFile(join(__dirname, 'backups\\\\' + req.query['user_id'] + '.json'), 'utf-8', (err, data) => {
-    if (err) {
-      console.log(err);
-    }
-    dataEntries = JSON.parse(data);
-  });
-
+  let dataEntries = backup.filter(entry => entry.user_id === userId);
   await EntryModel.deleteMany({ user_id: req.query['user_id'] });
-
   await EntryModel.insertMany(dataEntries);
 
   sendSuccess(res, {
-    data: ''
+    data: {},
+    message: 'Reset succesfully'
   });
 }
