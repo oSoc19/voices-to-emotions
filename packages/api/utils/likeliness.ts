@@ -110,7 +110,7 @@ function likelinessAux(entries: Array<entry>, user: user) {
       surprised: 0
     }
   );
-  console.log("we are here !");
+  console.log('we are here !');
   console.log(user._doc.first_name);
   console.log(emotion);
 
