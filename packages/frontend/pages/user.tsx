@@ -130,7 +130,7 @@ class Index extends React.Component<Props, State> {
         <UserHeader user={user} leavePercentage={this.state.leavePercentage} />
         <ButtonContainer>
           <div />
-          <Button onClick={this.reset} >Reset Data</Button>
+          <Button onClick={this.reset}>Reset Data</Button>
           <Button
             onClick={this.refresh}
             disabled={!!this.state.refreshing}
