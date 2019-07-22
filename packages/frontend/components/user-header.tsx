@@ -44,21 +44,13 @@ let Avatar = styled.div`
 `;
 
 let Name = styled.div`
-  display: grid;
   font-size: 2rem;
-  grid-gap: 10px;
 `;
 
 let UserInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
-
-let Age = styled.div`
-  font-size: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
 `;
 
 export default function(props: Props) {
@@ -74,15 +66,12 @@ export default function(props: Props) {
         {user.last_name[0]}
       </Avatar>
       <UserInfo>
-        <div style={{ gridArea: 'name' }}>
-          <Name>
-            <span>
-              {user.first_name} {user.last_name}
-            </span>
-          </Name>
+        <Name>
+          {user.first_name} {user.last_name}
+        </Name>
+        <div>
+          {msToYears(currDate.diff(user.birth_date))}, {getGenderString(user.gender)}
         </div>
-        <Age>{msToYears(currDate.diff(user.birth_date))}</Age>
-        <div>{getGenderString(user.gender)}</div>
         <div>Hired on {formattedHiredDate}</div>
       </UserInfo>
     </UserHeader>
