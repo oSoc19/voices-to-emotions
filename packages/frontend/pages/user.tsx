@@ -29,7 +29,7 @@ export type State = {
 
 const ButtonContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto auto auto;
   grid-gap: 20px;
 `;
 
@@ -59,6 +59,7 @@ class Index extends React.Component<Props, State> {
     };
 
     this.refresh = this.refresh.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   componentDidMount() {
@@ -91,6 +92,11 @@ class Index extends React.Component<Props, State> {
     }
   }
 
+  async reset() {
+    await axios.get(`/reset?user_id=${this.props.user._id}`);
+    this.refresh();
+  }
+
   render() {
     let { user, error }: Props = this.props;
 
@@ -110,6 +116,7 @@ class Index extends React.Component<Props, State> {
         <UserHeader user={user} leavePercentage={this.state.leavePercentage} />
         <ButtonContainer>
           <div />
+          <Button onClick={this.reset} >Reset Data</Button>
           <Button
             onClick={this.refresh}
             disabled={!!this.state.refreshing}
