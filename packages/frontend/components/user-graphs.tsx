@@ -70,14 +70,14 @@ export default function(props: Props) {
   let durationData = graph.map((val: GraphEntry) => {
     return {
       Duration: Math.round(val.duration * 100) / 100,
-      date: moment(val.created).format('HH:MM')
+      datetime: moment(val.created).format('HH:MM')
     };
   });
 
   let feedbackData = graph.map((val: GraphEntry) => {
     return {
       ['Customer Satisfaction']: commaToPercentage(val.feedback),
-      date: moment(val.created).format('HH:MM')
+      datetime: moment(val.created).format('HH:MM')
     };
   });
 
@@ -89,7 +89,7 @@ export default function(props: Props) {
       Hapiness: commaToPercentage(val.happy),
       ['Positive Emotions']: commaToPercentage(val.happy),
       ['Negative Emotions']: commaToPercentage(val.angry + val.fearful + val.sad),
-      date: moment(val.created).format('HH:MM')
+      datetime: moment(val.created).format('HH:MM')
     };
   });
 
@@ -117,7 +117,7 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="datetime" />
           <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
@@ -140,7 +140,7 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="datetime" />
           <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('secs')} />
           <Legend align="right" verticalAlign="top" />
@@ -161,7 +161,7 @@ export default function(props: Props) {
       <ResponsiveContainer width="100%" height={250}>
         <LineChart height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="datetime" />
           <YAxis label={{ value: 'Customer Satisfaction', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
           <Tooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
