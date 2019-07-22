@@ -53,6 +53,11 @@ let User = styled.div`
   display: flex;
   justify-content: space-between;
   border-right: 15px solid;
+  font-size: 1.3rem;
+  padding: 30px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-right-color: ${({ children }) => {
     let color = '#000000';
     let percentage = children[1].props.children[0];
@@ -71,14 +76,10 @@ let User = styled.div`
 
     return color;
   }};
-  padding: 30px;
-  margin: 20px 0;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-`;
 
-let UserBox = styled.div`
-  font-size: 1.3rem;
+  @media (max-width: 960px) {
+    font-size: 1rem;
+  }
 `;
 
 class Index extends React.Component<Props> {
@@ -122,9 +123,9 @@ class Index extends React.Component<Props> {
               <NextLink href={`/user?id=${user._id}`}>
                 <Link>
                   <User>
-                    <UserBox>
+                    <span>
                       {user.first_name} {user.last_name}
-                    </UserBox>
+                    </span>
                     <div className="user-text deuxieme">{user.leavePercentage}%</div>
                   </User>
                 </Link>
