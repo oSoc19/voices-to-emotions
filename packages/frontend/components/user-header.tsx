@@ -14,12 +14,17 @@ export type Props = {
 let UserHeader = styled.div`
   display: grid;
   box-sizing: border-box;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas: 'avatar name information';
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'avatar name';
   grid-gap: 20px 50px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: #2e2e30;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'name';
+  }
 `;
 
 let Avatar = styled.div`
@@ -32,24 +37,20 @@ let Avatar = styled.div`
   justify-content: center;
   align-items: center;
   color: #ffffff;
+
+  @media (max-width: 450px) {
+    display: none;
+  }
 `;
 
 let Name = styled.div`
-  display: grid;
   font-size: 2rem;
-  grid-gap: 10px;
 `;
 
 let UserInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
-
-let Age = styled.div`
-  font-size: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
 `;
 
 export default function(props: Props) {
@@ -65,15 +66,12 @@ export default function(props: Props) {
         {user.last_name[0]}
       </Avatar>
       <UserInfo>
-        <div style={{ gridArea: 'name' }}>
-          <Name>
-            <span>
-              {user.first_name} {user.last_name}
-            </span>
-          </Name>
+        <Name>
+          {user.first_name} {user.last_name}
+        </Name>
+        <div>
+          {msToYears(currDate.diff(user.birth_date))}, {getGenderString(user.gender)}
         </div>
-        <Age>{msToYears(currDate.diff(user.birth_date))}</Age>
-        <div>{getGenderString(user.gender)}</div>
         <div>Hired on {formattedHiredDate}</div>
       </UserInfo>
     </UserHeader>
