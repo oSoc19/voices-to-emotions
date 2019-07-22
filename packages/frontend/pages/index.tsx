@@ -8,6 +8,7 @@ import { User } from '@voices-to-emotions/types';
 import '../utils/setup-axios';
 import Layout from '../components/layout';
 import Paragraph from '../components/paragraph';
+import getPercentageColor from '../utils/percentage-color';
 
 export type Users = { data: Array<User>; type: string };
 
@@ -45,24 +46,7 @@ let UserContainer = styled.div`
   margin: 20px 0;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-  border-right-color: ${({ children }) => {
-    let color = '#000000';
-    let percentage = children[1].props.children[0];
-
-    try {
-      if (percentage < 45) {
-        color = '#45a06f';
-      } else if (percentage >= 45 && percentage <= 65) {
-        color = '#feb069';
-      } else {
-        color = '#f44336';
-      }
-    } catch (e) {
-      // do nothing...
-    }
-
-    return color;
-  }};
+  border-right-color: ${({ children }) => getPercentageColor(children[1].props.children[0])};
 
   @media (max-width: 960px) {
     font-size: 1rem;
