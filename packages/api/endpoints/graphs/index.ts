@@ -61,7 +61,7 @@ export default async function(req: NowRequest, res: NowResponse) {
       neutral: avgEmotions.neutral / entry.emotions.length,
       sad: avgEmotions.sad / entry.emotions.length,
       surprised: avgEmotions.surprised / entry.emotions.length,
-      feedback: Math.random(),
+      feedback: entry.feedback,
       duration: entry.timestamps[entry.timestamps.length - 1][1]
     });
   }

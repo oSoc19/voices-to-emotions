@@ -8,6 +8,8 @@ export default function(mongoose: Mongoose) {
   let schema = new Schema({
     user_id: ObjectId,
     created: Date,
+    feedback: Number,
+    timestamps: [[Number, Number]],
     emotions: [
       {
         angry: Number,
@@ -19,8 +21,7 @@ export default function(mongoose: Mongoose) {
         sad: Number,
         surprised: Number
       }
-    ],
-    timestamps: [[Number, Number]]
+    ]
   });
 
   return mongoose.model('DataEntry', schema);
