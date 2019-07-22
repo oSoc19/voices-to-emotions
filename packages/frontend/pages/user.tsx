@@ -141,12 +141,12 @@ class Index extends React.Component<Props, State> {
           <div />
           <Button
             onClick={this.refresh}
+            disabled={!!this.state.refreshing}
             onKeyDown={e => {
               if (e.key === 'Enter') {
                 this.refresh();
               }
             }}
-            disabled={!!this.state.refreshing}
           >
             {this.state.refreshing ? 'Refreshing...' : 'Refresh Data'}
           </Button>
