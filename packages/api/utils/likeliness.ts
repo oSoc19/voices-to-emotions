@@ -110,20 +110,22 @@ function likelinessAux(entries: Array<entry>, user: user) {
       surprised: 0
     }
   );
+  console.log("we are here !");
+  console.log(user._doc.first_name);
+  console.log(emotion);
 
   let x =
-    -1.1588 +
-    0.0132 * age +
-    0.0679 * gender +
+    0.0132 * age -
+    0.0379 * gender -
     0.0001 * duration +
-    0.0012 * (max - min) +
-    0.0074 * emotion.happy -
-    0.0081 * emotion.angry -
-    0.0321 * emotion.sad -
+    0.0012 * (max - min) -
+    0.0274 * emotion.happy +
+    0.0481 * emotion.angry +
+    0.0321 * emotion.sad +
     0.0507 * emotion.fearful;
-
+  console.log(x);
   let result = 1 / (1 + Math.exp(-x));
-
+  console.log(result);
   result = Math.round(result * 10000) / 100;
 
   return result;
