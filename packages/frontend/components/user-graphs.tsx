@@ -54,7 +54,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
           overflow: 'hidden'
         }}
       >
-        {data.datetime && <div style={{ marginBottom: 10 }}>{data.datetime}</div>}
+        {data.datetime && <div style={{ marginBottom: 10 }}>Call Date: {data.datetime}</div>}
         {Object.keys(data).map(k => {
           if (k === 'datetime') return;
 
@@ -79,7 +79,7 @@ export default function(props: Props) {
       Duration: Math.round(val.duration * 100) / 100,
       datetime: moment()
         .subtract(10 - i, 'day')
-        .format('DD/MM/YYYY')
+        .format('DD/MM')
     };
   });
 
@@ -88,7 +88,7 @@ export default function(props: Props) {
       ['Customer Satisfaction']: commaToPercentage(val.feedback),
       datetime: moment()
         .subtract(10 - i, 'day')
-        .format('DD/MM/YYYY')
+        .format('DD/MM')
     };
   });
 
@@ -102,7 +102,7 @@ export default function(props: Props) {
       ['Negative Emotions']: commaToPercentage(val.angry + val.fearful + val.sad),
       datetime: moment()
         .subtract(10 - i, 'day')
-        .format('DD/MM/YYYY')
+        .format('DD/MM')
     };
   });
 
