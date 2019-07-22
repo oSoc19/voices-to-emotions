@@ -5,7 +5,7 @@
     "typecheck": "tsc --noEmit"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "dependencies": {
     "@now/node": "^0.11.1",
