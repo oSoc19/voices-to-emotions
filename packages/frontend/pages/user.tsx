@@ -13,7 +13,6 @@ import Button from '../components/button';
 import BackButton from '../components/back-button';
 import Paragraph from '../components/paragraph';
 
-
 import '../utils/setup-axios';
 
 export type Props = {
@@ -154,7 +153,10 @@ class Index extends React.Component<Props, State> {
           </NextLink>
         </ButtonContainer>
         <LeaveCard leavePercentage={this.state.leavePercentage} user={user} />
-        <Paragraph>The graphs below give information on different predictors of the likeliness-to-leave. Hover over the graphs to see the values per call, and click on the + button for more details.</Paragraph>
+        <Paragraph>
+          The graphs below give information on different predictors of the likeliness-to-leave. Hover over the graphs to
+          see the values per call, and click on the + button for more details.
+        </Paragraph>
         <UserGraphs graph={this.state.graph} />
       </Layout>
     );
