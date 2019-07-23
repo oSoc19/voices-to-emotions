@@ -40,6 +40,10 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const TopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 class Index extends React.Component<Props, State> {
   static async getInitialProps(req): Promise<Props> {
@@ -128,7 +132,10 @@ class Index extends React.Component<Props, State> {
 
     return (
       <Layout title="User">
-        <BackButton href="/">Overview</BackButton>
+        <TopContainer>
+          <BackButton href="/">Overview</BackButton>
+          {this.state.leavePercentage > 65 && <img src={"/static/urgent_label.svg"} height={"70px"}/>}
+        </TopContainer>
         <UserHeader user={user} leavePercentage={this.state.leavePercentage} />
         <ButtonContainer>
           <div />
