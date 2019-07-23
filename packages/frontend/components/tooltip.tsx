@@ -15,18 +15,15 @@ export const TooltipContainer = styled.div`
 export const Tooltip = ({ children, tooltip, hideArrow, ...props }) => (
   <TooltipTrigger
     {...props}
-    tooltip={({
-      tooltipRef,
-      getTooltipProps
-    }) => (
-        <TooltipContainer
-          {...getTooltipProps({
-            ref: tooltipRef
-          })}
-        >
-          {tooltip}
-        </TooltipContainer>
-      )}
+    tooltip={({ tooltipRef, getTooltipProps }) => (
+      <TooltipContainer
+        {...getTooltipProps({
+          ref: tooltipRef
+        })}
+      >
+        {tooltip}
+      </TooltipContainer>
+    )}
   >
     {({ getTriggerProps, triggerRef }) => (
       <span
