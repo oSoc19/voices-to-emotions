@@ -64,7 +64,13 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
 
     return (
       <TooltipContainer>
-        {data.datetime && <div style={{ marginBottom: 10 }}>Call Date: {data.datetime}</div>}
+        {data.datetime && (
+          <div
+            style={{ marginBottom: 10, fontWeight: 500, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: 10 }}
+          >
+            Call Date: {data.datetime}
+          </div>
+        )}
         {Object.keys(data).map(k => {
           if (k === 'datetime') return;
 
