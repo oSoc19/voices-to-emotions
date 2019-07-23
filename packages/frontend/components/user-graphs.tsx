@@ -18,8 +18,8 @@ const GraphContainer = styled.div`
   width: 100%;
 `;
 
-const HideableText = styled.div<{show: boolean}>`
-  height: ${props => props.show ? 'auto' : 0};
+const HideableText = styled.div<{ show: boolean }>`
+  height: ${props => (props.show ? 'auto' : 0)};
   -webkit-transition: height 2s;
   transition: height 2s;
   overflow: hidden;
@@ -84,9 +84,9 @@ const showReducer = (state, action) => {
   newState[action.id] = !newState[action.id];
 
   return newState;
-}
+};
 
-export default function (props: Props) {
+export default function(props: Props) {
   let { graph } = props;
   let [showState, dispatchShow] = React.useReducer(showReducer, {});
 
@@ -145,7 +145,14 @@ export default function (props: Props) {
           </LineChart>
         </ResponsiveContainer>
 
-        <HideableText show={showState[0]}>Employees who experience more negative emotions and less positive emotions, are at risk for burn-out and are more likely to quit their job. Do not look at this in isolation, but compare with the other graphs: this allows for interpretation and limits false conclusions. For example, a high percentage of negative emotions might indicate that the employee experiences more negative emotions during the phone call. However, if the length of the call was very short, only one fragment that is (miss)classified as a negative emotion, will have more of an impact on the graph than in the case of a longer call.</HideableText>
+        <HideableText show={showState[0]}>
+          Employees who experience more negative emotions and less positive emotions, are at risk for burn-out and are
+          more likely to quit their job. Do not look at this in isolation, but compare with the other graphs: this
+          allows for interpretation and limits false conclusions. For example, a high percentage of negative emotions
+          might indicate that the employee experiences more negative emotions during the phone call. However, if the
+          length of the call was very short, only one fragment that is (miss)classified as a negative emotion, will have
+          more of an impact on the graph than in the case of a longer call.
+        </HideableText>
       </GraphInformation>
 
       <GraphInformation>
