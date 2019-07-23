@@ -9,7 +9,7 @@
   min-height: 1rem;
   margin-bottom: 0;
   background: #44dba4;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   border-radius: 2px;
   overflow: hidden;
   text-align: center;
@@ -19,11 +19,11 @@
   margin-bottom: 1rem;
 }
 .box-first {
-  background: #0A0A38;
+  background: #0a0a38;
   border-color: #44dba4;
 }
 .box-nested {
-  background: #ED4D48;
+  background: #ed4d48;
   border-color: #44dba4;
 }
 .box-large {
@@ -46,8 +46,8 @@
   }
 }
 
-code{
-  color:#007FFF
+code {
+  color: #007fff;
 }
 
 pre {
