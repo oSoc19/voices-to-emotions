@@ -91,7 +91,7 @@ class Index extends React.Component<Props> {
           {users
             .sort((a, b) => b.leavePercentage - a.leavePercentage)
             .map((user: User) => (
-              <NextLink href={`/user?id=${user._id}`}>
+              <NextLink href={`/user?id=${user._id}`} key={user._id}>
                 <Link>
                   <UserContainer>
                     <span>
