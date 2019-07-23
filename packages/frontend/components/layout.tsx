@@ -66,8 +66,7 @@ export default function Layout({ title, children }: Props) {
       </ColorStripContainer>
 
       <Footer>
-        Open Knowledge © 2019 -{' '}
-        <Link href="https://osoc19.github.io/voices-to-emotions/">Read More about this project</Link>
+        <Link href="https://be.okfn.org/">Open Knowledge Belgium</Link> © 2019 - <Link href="https://osoc19.github.io/voices-to-emotions/">Read More about this project</Link>
       </Footer>
     </React.Fragment>
   );
