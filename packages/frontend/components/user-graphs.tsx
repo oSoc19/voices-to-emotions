@@ -155,7 +155,7 @@ export default function(props: Props) {
           <LineChart height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="datetime" interval="preserveStartEnd" />
-            <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+            <YAxis label={{ value: 'Amount of Emotion (%)', angle: -90, position: 'insideBottomLeft' }} />
             <Tooltip content={TooltipRenderer('%')} />
             <Legend align="right" verticalAlign="top" />
             <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
@@ -188,7 +188,7 @@ export default function(props: Props) {
           <LineChart height={250} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="datetime" interval="preserveStartEnd" />
-            <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+            <YAxis label={{ value: 'Call Duration (secs)', angle: -90, position: 'insideBottomLeft' }} />
             <Tooltip content={TooltipRenderer('secs')} />
             <Legend align="right" verticalAlign="top" />
             <Line type="monotone" dataKey="Duration" stroke="#019de9" />
@@ -210,7 +210,7 @@ export default function(props: Props) {
           <LineChart height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="datetime" interval="preserveStartEnd" />
-            <YAxis label={{ value: 'Customer Satisfaction', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+            <YAxis label={{ value: 'Customer Satisfaction (%)', angle: -90, position: 'insideBottomLeft' }} />
             <Tooltip content={TooltipRenderer('%')} />
             <Legend align="right" verticalAlign="top" />
             <Line type="monotone" dataKey="Customer Satisfaction" stroke="#019de9" />
