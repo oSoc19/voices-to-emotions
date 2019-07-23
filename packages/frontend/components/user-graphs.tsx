@@ -43,6 +43,14 @@ const GraphInformation = styled.div`
   }
 `;
 
+const TooltipContainer = styled.div`
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+`;
+
 const commaToPercentage = commaValue => {
   return Math.round(commaValue * 10000) / 100;
 };
@@ -52,15 +60,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
     let data = payload[0].payload;
 
     return (
-      <div
-        style={{
-          background: '#ffffff',
-          padding: 10,
-          borderRadius: '5px',
-          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-          overflow: 'hidden'
-        }}
-      >
+      <TooltipContainer>
         {data.datetime && <div style={{ marginBottom: 10 }}>Call Date: {data.datetime}</div>}
         {Object.keys(data).map(k => {
           if (k === 'datetime') return;
@@ -71,7 +71,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
             </div>
           );
         })}
-      </div>
+      </TooltipContainer>
     );
   }
 
