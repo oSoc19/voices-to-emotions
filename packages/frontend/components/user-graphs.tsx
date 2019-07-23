@@ -72,7 +72,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
             <div
               key={k}
               style={{
-                fontFamily: 'roboto, sans-serif',
+                fontFamily: 'inherit',
                 color: POSITIVE_EMOTIONS.includes(k) ? '#45a06f' : NAGTIVE_EMOTIONS.includes(k) ? '#f44336' : '#2e2e30'
               }}
             >
