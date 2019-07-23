@@ -77,7 +77,6 @@ class Index extends React.Component<Props, State> {
 
   componentDidMount() {
     this.refresh();
-
   }
 
   componentWillUnmount() {
@@ -134,7 +133,7 @@ class Index extends React.Component<Props, State> {
       <Layout title="User">
         <TopContainer>
           <BackButton href="/">Overview</BackButton>
-          {this.state.leavePercentage > 65 && <img src={"/static/urgent_label.svg"} height={"70px"}/>}
+          {this.state.leavePercentage > 65 && <img src={'/static/urgent_label.svg'} height={'70px'} />}
         </TopContainer>
         <UserHeader user={user} leavePercentage={this.state.leavePercentage} />
         <ButtonContainer>
