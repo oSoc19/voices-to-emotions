@@ -16,7 +16,6 @@ let Main = styled.main`
   margin: 0 auto 40px auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  border-bottom: solid 5px #009de9;
   overflow: hidden;
 
   @media (max-width: 960px) {
@@ -40,6 +39,21 @@ let Logo = styled.div`
   cursor: pointer;
 `;
 
+let Footer = styled.footer`
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+let Link = styled.a`
+  color: #009de9;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export default function Layout({ title, children }: Props) {
   return (
     <React.Fragment>
@@ -50,6 +64,11 @@ export default function Layout({ title, children }: Props) {
         </NextLink>
         <Main>{children}</Main>
       </ColorStripContainer>
+
+      <Footer>
+        <Link href="https://be.okfn.org/">Open Knowledge Belgium</Link> © 2019 -{' '}
+        <Link href="https://osoc19.github.io/voices-to-emotions/">Read More about this project</Link>
+      </Footer>
     </React.Fragment>
   );
 }

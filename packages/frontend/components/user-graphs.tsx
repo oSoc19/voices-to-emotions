@@ -2,10 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import styled from '@emotion/styled';
 import { GraphEntry } from '@voices-to-emotions/types';
-import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
+import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip as ChartTooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
-import SubHeading from '../components/sub-heading';
-import Paragraph from '../components/paragraph';
+import SubHeading from './sub-heading';
+import Paragraph from './paragraph';
+import { Tooltip, TooltipContainer } from './tooltip'
 
 export type Props = {
   graph: Array<GraphEntry>;
@@ -16,7 +17,7 @@ const GraphContainer = styled.div`
   box-sizing: border-box;
   padding: 20px 0;
   grid-template-columns: 1fr 2fr;
-  grid-gap: 0 20px;
+  grid-gap: 20px 20px;
   width: 100%;
 
   @media (max-width: 960px) {
@@ -33,14 +34,6 @@ const GraphInformation = styled.div`
   padding: 20px 20px 0 0;
 `;
 
-const CustomTooltip = styled.div`
-  background: '#ffffff',
-  padding: 10,
-  borderRadius: '5px',
-  boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-  overflow: 'hidden'
-  `;
-
 const commaToPercentage = commaValue => {
   return Math.round(commaValue * 10000) / 100;
 };
@@ -50,15 +43,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
     let data = payload[0].payload;
 
     return (
-      <div
-        style={{
-          background: '#ffffff',
-          padding: 10,
-          borderRadius: '5px',
-          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-          overflow: 'hidden'
-        }}
-      >
+      <TooltipContainer>
         {data.datetime && <div style={{ marginBottom: 10 }}>Call Date: {data.datetime}</div>}
         {Object.keys(data).map(k => {
           if (k === 'datetime') return;
@@ -69,7 +54,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
             </div>
           );
         })}
-      </div>
+      </TooltipContainer>
     );
   }
 
@@ -113,21 +98,29 @@ export default function (props: Props) {
     };
   });
 
+  let text1 = "The green line represents the percentage of fragments that sound happy. The red line represents the percentage of fragments that sound angry, sad, or fearful. Every point corresponds to the averages of one day. For more detailed information for each day, hoover over the graph. More negative emotions and less positive emotions increases the risk of burnout and likeliness to quit a job.";
+  let text2 = "Longer calls than normally indicate that the employee is less attentive or motivated. Shorter calls than normally indicate that the employee rushes the calls and feels bored. Both a sudden drop or rise in call length correspond to a higher likeliness-to-leave.";
+  let text3 = "After each call, the customers have the possibility to rate the service provided out of 100. Customer satisfaction is not incorporated in the model, but is displayed here to inspect the other variables per call within their context.";
+
   return (
     <GraphContainer>
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
-        <Paragraph>
-          Text 1
-        </Paragraph>
+
+
+        <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text1}>
+          <Paragraph>
+            The graph on the right shows an overview of the emotions recorded, per day (hoover cursor here for more information).
+        </Paragraph></Tooltip>
+
       </GraphInformation>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <LineChart height={250} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <ResponsiveContainer width="100%" height={220}>
+        <LineChart height={220} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ value: 'Amount of Emotion', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip content={TooltipRenderer('%')} />
+          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <ChartTooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
           <Line type="monotone" dataKey="Negative Emotions" stroke="#f44336" />
@@ -136,17 +129,21 @@ export default function (props: Props) {
 
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
-        <Paragraph>
-          Text2
+        <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text2}>
+
+          <Paragraph>
+            The graph on the right shows an overview of the average length of the calls, per day (hoover cursor here for more information).
+    
         </Paragraph>
+        </Tooltip>
       </GraphInformation>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <LineChart height={250} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <ResponsiveContainer width="100%" height={220}>
+        <LineChart height={220} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ value: 'Call Duration', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip content={TooltipRenderer('secs')} />
+          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <ChartTooltip content={TooltipRenderer('secs')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Duration" stroke="#019de9" />
         </LineChart>
@@ -154,17 +151,21 @@ export default function (props: Props) {
 
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Customer Satisfaction</SubHeading>
-        <Paragraph>
-          Text3
+        <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text3}>
+
+          <Paragraph>
+            The graph on the right shows an overview of the average feedback this employee received from the customers, per day (hoover cursor here for more information).
+    
         </Paragraph>
+        </Tooltip>
       </GraphInformation>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <LineChart height={250} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <ResponsiveContainer width="100%" height={220}>
+        <LineChart height={220} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ value: 'Customer Satisfaction', angle: -90, position: 'insideBottomLeft', offset: 10 }} />
-          <Tooltip content={TooltipRenderer('%')} />
+          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <ChartTooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Customer Satisfaction" stroke="#019de9" />
         </LineChart>
