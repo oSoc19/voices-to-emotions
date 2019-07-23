@@ -17,6 +17,7 @@ export default styled.button<Props>`
   align-items: center;
   border: 1px solid;
   border-color: ${props => (props.primary ? 'transparent' : '#019de9')};
+  font-family: inherit;
 
   &:hover {
     color: #ffffff;

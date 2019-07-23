@@ -38,18 +38,33 @@ const commaToPercentage = commaValue => {
   return Math.round(commaValue * 10000) / 100;
 };
 
+const POSITIVE_EMOTIONS = ['Positive Emotions', 'Neutral', 'Calm', 'Happiness'];
+const NAGTIVE_EMOTIONS = ['Negative Emotions', 'Anger', 'Fear', 'Sadness', 'Disgust', 'Fearful', 'Surprised'];
+
 const TooltipRenderer = (unit: string) => ({ active, payload }) => {
   if (active && payload) {
     let data = payload[0].payload;
 
     return (
       <TooltipContainer>
-        {data.datetime && <div style={{ marginBottom: 10 }}>Call Date: {data.datetime}</div>}
+        {data.datetime && (
+          <div
+            style={{ marginBottom: 10, fontWeight: 500, borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: 10 }}
+          >
+            Call Date: {data.datetime}
+          </div>
+        )}
         {Object.keys(data).map(k => {
           if (k === 'datetime') return;
 
           return (
-            <div key={k} style={{ fontFamily: 'roboto, sans-serif', color: '#2e2e30' }}>
+            <div
+              key={k}
+              style={{
+                fontFamily: 'inherit',
+                color: POSITIVE_EMOTIONS.includes(k) ? '#45a06f' : NAGTIVE_EMOTIONS.includes(k) ? '#f44336' : '#2e2e30'
+              }}
+            >
               {k}: {data[k]} {unit}
             </div>
           );
@@ -86,12 +101,21 @@ export default function (props: Props) {
 
   let emotionsData = graph.map((val: GraphEntry, i: number) => {
     return {
+      // Positive Emotions
+      ['Positive Emotions']: commaToPercentage(val.happy + val.neutral + val.calm),
+      Happiness: commaToPercentage(val.happy),
+      Neutral: commaToPercentage(val.neutral),
+      Calm: commaToPercentage(val.calm),
+
+      // Negative Emotions
+      ['Negative Emotions']: commaToPercentage(val.angry + val.fearful + val.sad + val.disgust + val.surprised),
       Anger: commaToPercentage(val.angry),
       Fear: commaToPercentage(val.fearful),
       Sadness: commaToPercentage(val.sad),
-      Hapiness: commaToPercentage(val.happy),
-      ['Positive Emotions']: commaToPercentage(val.happy),
-      ['Negative Emotions']: commaToPercentage(val.angry + val.fearful + val.sad),
+      Disgust: commaToPercentage(val.disgust),
+      Fearful: commaToPercentage(val.fearful),
+      Surprised: commaToPercentage(val.surprised),
+
       datetime: moment()
         .subtract(10 - i, 'day')
         .format('DD/MM')

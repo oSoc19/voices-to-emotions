@@ -5,10 +5,12 @@ import { default as NextLink } from 'next/link';
 import styled from '@emotion/styled';
 import { User } from '@voices-to-emotions/types';
 
-import '../utils/setup-axios';
 import Layout from '../components/layout';
 import Paragraph from '../components/paragraph';
 import getPercentageColor from '../utils/percentage-color';
+import SubHeading from '../components/sub-heading';
+
+import '../utils/setup-axios';
 
 export type Users = { data: Array<User>; type: string };
 
@@ -21,15 +23,6 @@ const Link = styled.a`
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-`;
-
-let Heading = styled.h2`
-  font-weight: inherit;
-  font-size: 2rem;
-  line-height: 2rem;
-  margin: 0;
-  align-self: flex-end;
-  margin-bottom: 20px;
 `;
 
 let Labels = styled.div`
@@ -74,7 +67,7 @@ class Index extends React.Component<Props> {
 
     return (
       <Layout title="Overview">
-        <Heading>Staff wellbeing tracker</Heading>
+        <SubHeading>Staff wellbeing tracker</SubHeading>
 
         <Paragraph>
           All employees are ranked in order of their likeliness-to-leave percentage, with the highest on top.
@@ -91,7 +84,7 @@ class Index extends React.Component<Props> {
           {users
             .sort((a, b) => b.leavePercentage - a.leavePercentage)
             .map((user: User) => (
-              <NextLink href={`/user?id=${user._id}`}>
+              <NextLink href={`/user?id=${user._id}`} key={user._id}>
                 <Link>
                   <UserContainer>
                     <span>

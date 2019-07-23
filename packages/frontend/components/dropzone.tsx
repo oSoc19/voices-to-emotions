@@ -22,7 +22,6 @@ let DropzoneContainer = styled.div<DropzoneProps>(({ isDragging }) => {
     border: '2px dashed',
     borderRadius: '10px',
     color: isDragging ? '#019de9' : '#a2a2a2',
-    fontFamily: 'roboto',
     outline: 'none',
     borderColor: isDragging ? '#019de9' : '#a2a2a2',
     padding: 40
@@ -35,7 +34,6 @@ let DropzoneHeading = styled.h2(() => {
     gridArea: 'heading',
     display: 'flex',
     justifyContent: 'center',
-    fontFamily: 'roboto',
     fontWeight: 'auto',
     padding: 0,
     margin: '0 0 5px 0'

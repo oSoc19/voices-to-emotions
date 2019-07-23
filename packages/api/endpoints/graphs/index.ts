@@ -6,6 +6,23 @@ import sendError from '../../utils/send-error';
 import setHeaders from '../../utils/set-headers';
 import getModel from '../../../database/index';
 
+function getPredictedEmotion(emotions: Emotions): string {
+  let prediction_keys = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised'];
+  let predictions = [
+    emotions.angry,
+    emotions.calm,
+    emotions.disgust,
+    emotions.fearful,
+    emotions.happy,
+    emotions.neutral,
+    emotions.sad,
+    emotions.surprised
+  ];
+
+  let maxVal = Math.max.apply(null, predictions);
+  return prediction_keys[predictions.indexOf(maxVal)];
+}
+
 export default async function(req: NowRequest, res: NowResponse) {
   // Set CORS Headers & content-type
   setHeaders(res);
@@ -29,15 +46,17 @@ export default async function(req: NowRequest, res: NowResponse) {
   for (let entry of dataEntries) {
     let avgEmotions = entry.emotions.reduce(
       (acc: Emotions, emotions: Emotions) => {
+        let predictedEmotion = getPredictedEmotion(emotions);
+
         return {
-          angry: acc.angry + emotions.angry,
-          calm: acc.calm + emotions.calm,
-          disgust: acc.disgust + emotions.disgust,
-          fearful: acc.fearful + emotions.fearful,
-          happy: acc.happy + emotions.happy,
-          neutral: acc.neutral + emotions.neutral,
-          sad: acc.sad + emotions.sad,
-          surprised: acc.surprised + emotions.surprised
+          angry: predictedEmotion === 'angry' ? acc.angry + 1 : acc.angry,
+          calm: predictedEmotion === 'calm' ? acc.calm + 1 : acc.calm,
+          disgust: predictedEmotion === 'disgust' ? acc.disgust + 1 : acc.disgust,
+          fearful: predictedEmotion === 'fearful' ? acc.fearful + 1 : acc.fearful,
+          happy: predictedEmotion === 'happy' ? acc.happy + 1 : acc.happy,
+          neutral: predictedEmotion === 'neutral' ? acc.neutral + 1 : acc.neutral,
+          sad: predictedEmotion === 'sad' ? acc.sad + 1 : acc.sad,
+          surprised: predictedEmotion === 'surprised' ? acc.surprised + 1 : acc.surprised
         };
       },
       {
