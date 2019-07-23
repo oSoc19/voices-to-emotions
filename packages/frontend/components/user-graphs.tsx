@@ -138,7 +138,7 @@ export default function(props: Props) {
   return (
     <GraphContainer>
       <GraphInformation>
-        <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
+        <SubHeading style={{ fontSize: '1.2rem' }}>Emotions</SubHeading>
 
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text1}>
           <Paragraph>
@@ -152,7 +152,7 @@ export default function(props: Props) {
         <LineChart height={220} data={emotionsData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <YAxis label={{ value: 'Amount of emotion', angle: -90, position: 'insideBottomLeft' }} />
           <ChartTooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Positive Emotions" stroke="#45a06f" />
@@ -161,7 +161,7 @@ export default function(props: Props) {
       </ResponsiveContainer>
 
       <GraphInformation>
-        <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
+        <SubHeading style={{ fontSize: '1.2rem' }}>Duration</SubHeading>
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text2}>
           <Paragraph>
             The graph on the right shows an overview of the average length of the calls, per day (hoover cursor here for
@@ -174,7 +174,7 @@ export default function(props: Props) {
         <LineChart height={220} data={durationData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <YAxis label={{ value: 'Average Call Duration', angle: -90, position: 'insideBottomLeft' }} />
           <ChartTooltip content={TooltipRenderer('secs')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Duration" stroke="#019de9" />
@@ -182,7 +182,7 @@ export default function(props: Props) {
       </ResponsiveContainer>
 
       <GraphInformation>
-        <SubHeading style={{ fontSize: '1.5rem' }}>Customer Satisfaction</SubHeading>
+        <SubHeading style={{ fontSize: '1.2rem' }}>Customer Satisfaction</SubHeading>
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text3}>
           <Paragraph>
             The graph on the right shows an overview of the average feedback this employee received from the customers,
@@ -195,7 +195,7 @@ export default function(props: Props) {
         <LineChart height={220} data={feedbackData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="datetime" />
-          <YAxis label={{ angle: -90, position: 'insideBottomLeft', offset: 10 }} />
+          <YAxis label={{ value: 'Customer Satisfaction', angle: -90, position: 'insideBottomLeft' }} />
           <ChartTooltip content={TooltipRenderer('%')} />
           <Legend align="right" verticalAlign="top" />
           <Line type="monotone" dataKey="Customer Satisfaction" stroke="#019de9" />
