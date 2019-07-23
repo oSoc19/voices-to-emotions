@@ -142,7 +142,7 @@ export default function(props: Props) {
 
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text1}>
           <Paragraph>
-            The graph on the right shows an overview of the emotions recorded, per day (hoover cursor here for more
+            The graph on the right shows an overview of the emotions recorded, per day (hover cursor here for more
             information).
           </Paragraph>
         </Tooltip>
@@ -164,7 +164,7 @@ export default function(props: Props) {
         <SubHeading style={{ fontSize: '1.2rem' }}>Duration</SubHeading>
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text2}>
           <Paragraph>
-            The graph on the right shows an overview of the average length of the calls, per day (hoover cursor here for
+            The graph on the right shows an overview of the average length of the calls, per day (hover cursor here for
             more information).
           </Paragraph>
         </Tooltip>
@@ -186,7 +186,7 @@ export default function(props: Props) {
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text3}>
           <Paragraph>
             The graph on the right shows an overview of the average feedback this employee received from the customers,
-            per day (hoover cursor here for more information).
+            per day (hover cursor here for more information).
           </Paragraph>
         </Tooltip>
       </GraphInformation>
