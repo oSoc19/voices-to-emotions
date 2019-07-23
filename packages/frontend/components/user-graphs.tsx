@@ -18,6 +18,13 @@ const GraphContainer = styled.div`
   width: 100%;
 `;
 
+const HideableText = styled.div<{show: boolean}>`
+  height: ${props => props.show ? 'auto' : 0};
+  -webkit-transition: height 2s;
+  transition: height 2s;
+  overflow: hidden;
+`;
+
 const GraphInformation = styled.div`
   height: 100%;
   width: 100%;
@@ -71,8 +78,17 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
   return null;
 };
 
-export default function(props: Props) {
+const showReducer = (state, action) => {
+  let newState = { ...state };
+
+  newState[action.id] = !newState[action.id];
+
+  return newState;
+}
+
+export default function (props: Props) {
   let { graph } = props;
+  let [showState, dispatchShow] = React.useReducer(showReducer, {});
 
   let durationData = graph.map((val: GraphEntry, i: number) => {
     return {
@@ -111,7 +127,7 @@ export default function(props: Props) {
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem', gridArea: 'heading' }}>Emotions</SubHeading>
 
-        <Paragraph>
+        <Paragraph onClick={() => dispatchShow({ id: 0 })}>
           This graph shows an overview of the emotions recorded in each call. The green line indicates the percentage of
           fragments that are classified as a positive emotion, namely happy. The red line indicates the percentage of
           fragments that are classified as a negative emotion, namely angry, sad, or fearful. Each call is a time point.
@@ -128,6 +144,8 @@ export default function(props: Props) {
             <Line type="monotone" dataKey="Negative Emotions" stroke="#f44336" />
           </LineChart>
         </ResponsiveContainer>
+
+        <HideableText show={showState[0]}>Employees who experience more negative emotions and less positive emotions, are at risk for burn-out and are more likely to quit their job. Do not look at this in isolation, but compare with the other graphs: this allows for interpretation and limits false conclusions. For example, a high percentage of negative emotions might indicate that the employee experiences more negative emotions during the phone call. However, if the length of the call was very short, only one fragment that is (miss)classified as a negative emotion, will have more of an impact on the graph than in the case of a longer call.</HideableText>
       </GraphInformation>
 
       <GraphInformation>
