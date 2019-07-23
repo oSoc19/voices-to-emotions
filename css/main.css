@@ -1,20 +1,19 @@
 /* main css */
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .layout {
-	overflow-x: hidden;
-	overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 img {
-	width: 100%;
+  width: 100%;
 }
-
 
 /* osoc colors
 
