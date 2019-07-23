@@ -33,6 +33,9 @@ type entry = {
   };
 };
 
+// !! leavepercentage = likeliness to leave
+
+// Function taking an array of entries from multiple user and some users and returning the leave percentage per user.
 export function likeliness(entries: Array<entry>, user: user | Array<user>) {
   if (!Array.isArray(user)) {
     user = [user];
@@ -50,6 +53,7 @@ export function likeliness(entries: Array<entry>, user: user | Array<user>) {
   return leavePercentage;
 }
 
+// Calculate the leavepercentage for a single user based on a list of entries from that user.
 function likelinessAux(entries: Array<entry>, user: user) {
   let gender;
   if (user._doc.gender == 'M') {
@@ -60,9 +64,11 @@ function likelinessAux(entries: Array<entry>, user: user) {
   let age = calculateAge(user._doc.birth_date);
   let duration = calculateWorkingTime(user._doc.start_date);
 
+  //max & min call duration.
   let max = 0;
   let min = 10000000;
 
+  //list of avg emotions per entry.
   let emotions: Array<emotions> = [];
 
   let i = entries.length - 10;
@@ -81,11 +87,13 @@ function likelinessAux(entries: Array<entry>, user: user) {
       min = callLength;
     }
 
+    //average emotions for one entry
     let avgEmotions = callEmotions(entries[i]);
 
     emotions.push(avgEmotions);
   }
 
+  // overall avg emotions
   let emotion = emotions.reduce(
     (acc, emotions) => {
       return {
@@ -110,10 +118,8 @@ function likelinessAux(entries: Array<entry>, user: user) {
       surprised: 0
     }
   );
-  console.log('we are here !');
-  console.log(user._doc.first_name);
-  console.log(emotion);
 
+  // calculating the likeliness to leave based on all metrics.
   let x =
     0.0132 * age -
     0.0379 * gender -
@@ -123,14 +129,14 @@ function likelinessAux(entries: Array<entry>, user: user) {
     0.0481 * emotion.angry +
     0.0321 * emotion.sad +
     0.0507 * emotion.fearful;
-  console.log(x);
+
   let result = 1 / (1 + Math.exp(-x));
-  console.log(result);
   result = Math.round(result * 10000) / 100;
 
   return result;
 }
 
+//average emotions for one entry
 function callEmotions(entry: entry) {
   let avgEmotions = entry._doc.emotions.reduce(
     (acc, emotions, index) => {
