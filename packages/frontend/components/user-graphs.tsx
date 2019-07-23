@@ -2,11 +2,20 @@ import React from 'react';
 import moment from 'moment';
 import styled from '@emotion/styled';
 import { GraphEntry } from '@voices-to-emotions/types';
-import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip as ChartTooltip, Legend, Line, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip as ChartTooltip,
+  Legend,
+  Line,
+  ResponsiveContainer
+} from 'recharts';
 
 import SubHeading from './sub-heading';
 import Paragraph from './paragraph';
-import { Tooltip, TooltipContainer } from './tooltip'
+import { Tooltip, TooltipContainer } from './tooltip';
 
 export type Props = {
   graph: Array<GraphEntry>;
@@ -25,7 +34,6 @@ const GraphContainer = styled.div`
     grid-template-columns: 1fr;
   }
 `;
-
 
 const GraphInformation = styled.div`
   height: 100%;
@@ -76,9 +84,7 @@ const TooltipRenderer = (unit: string) => ({ active, payload }) => {
   return null;
 };
 
-
-
-export default function (props: Props) {
+export default function(props: Props) {
   let { graph } = props;
 
   let durationData = graph.map((val: GraphEntry, i: number) => {
@@ -122,21 +128,24 @@ export default function (props: Props) {
     };
   });
 
-  let text1 = "The green line represents the percentage of fragments that sound happy. The red line represents the percentage of fragments that sound angry, sad, or fearful. Every point corresponds to the averages of one day. For more detailed information for each day, hoover over the graph. More negative emotions and less positive emotions increases the risk of burnout and likeliness to quit a job.";
-  let text2 = "Longer calls than normally indicate that the employee is less attentive or motivated. Shorter calls than normally indicate that the employee rushes the calls and feels bored. Both a sudden drop or rise in call length correspond to a higher likeliness-to-leave.";
-  let text3 = "After each call, the customers have the possibility to rate the service provided out of 100. Customer satisfaction is not incorporated in the model, but is displayed here to inspect the other variables per call within their context.";
+  let text1 =
+    'The green line represents the percentage of fragments that sound happy. The red line represents the percentage of fragments that sound angry, sad, or fearful. Every point corresponds to the averages of one day. For more detailed information for each day, hoover over the graph. More negative emotions and less positive emotions increases the risk of burnout and likeliness to quit a job.';
+  let text2 =
+    'Longer calls than normally indicate that the employee is less attentive or motivated. Shorter calls than normally indicate that the employee rushes the calls and feels bored. Both a sudden drop or rise in call length correspond to a higher likeliness-to-leave.';
+  let text3 =
+    'After each call, the customers have the possibility to rate the service provided out of 100. Customer satisfaction is not incorporated in the model, but is displayed here to inspect the other variables per call within their context.';
 
   return (
     <GraphContainer>
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Emotions</SubHeading>
 
-
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text1}>
           <Paragraph>
-            The graph on the right shows an overview of the emotions recorded, per day (hoover cursor here for more information).
-        </Paragraph></Tooltip>
-
+            The graph on the right shows an overview of the emotions recorded, per day (hoover cursor here for more
+            information).
+          </Paragraph>
+        </Tooltip>
       </GraphInformation>
 
       <ResponsiveContainer width="100%" height={220}>
@@ -154,11 +163,10 @@ export default function (props: Props) {
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Duration</SubHeading>
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text2}>
-
           <Paragraph>
-            The graph on the right shows an overview of the average length of the calls, per day (hoover cursor here for more information).
-    
-        </Paragraph>
+            The graph on the right shows an overview of the average length of the calls, per day (hoover cursor here for
+            more information).
+          </Paragraph>
         </Tooltip>
       </GraphInformation>
 
@@ -176,11 +184,10 @@ export default function (props: Props) {
       <GraphInformation>
         <SubHeading style={{ fontSize: '1.5rem' }}>Customer Satisfaction</SubHeading>
         <Tooltip placement="bottom" hideArrow="true" trigger="hover" tooltip={text3}>
-
           <Paragraph>
-            The graph on the right shows an overview of the average feedback this employee received from the customers, per day (hoover cursor here for more information).
-    
-        </Paragraph>
+            The graph on the right shows an overview of the average feedback this employee received from the customers,
+            per day (hoover cursor here for more information).
+          </Paragraph>
         </Tooltip>
       </GraphInformation>
 
