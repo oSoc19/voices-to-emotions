@@ -15,6 +15,10 @@ const Card = styled.div`
   }
 `;
 
+const GreetingContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
 const UL = styled.ul`
   margin: 0 0 0 20px;
   padding: 0;
@@ -30,6 +34,67 @@ export type Props = {
   user: any;
 };
 
+export type GreetingProps = {
+  likeliness: number;
+};
+
+function Greeting(props: GreetingProps) {
+  const likeliness = props.likeliness;
+
+  if (likeliness < 45) {
+    return (
+      <GreetingContainer>
+        <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
+        <UL>
+          <LI>
+            Schedule quarterly evaluations, instead of annual. This avoids frustrations to build up over time. When an
+            employee is heard, they feel validated, which in turn leads to higher performance.
+          </LI>
+          <LI>
+            Organise remain-calls, instead of only exit-calls. Ask the employee what motivates them to stay in the
+            company, and what it would take for them to leave. This uncoves issues before they become bigger problems,
+            and allows for a focused strategy to support the employee.
+          </LI>
+        </UL>
+      </GreetingContainer>
+    );
+  } else if (likeliness < 65) {
+    return (
+      <GreetingContainer>
+        <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
+        <UL>
+          <LI>
+            This employee might feel like their accomplishments are not recognized. Inspect their performance and reward
+            when due. A reward can be a simple e-mail, card, or note to thank them for their effort.
+          </LI>
+          <LI>
+            Problems with work-life balance contribute to decreases in motivation and performance. Check in with the
+            employee by sending an e-mail to ask how they are. Suggest them to take a day off if they can.
+          </LI>
+        </UL>
+      </GreetingContainer>
+    );
+  }
+
+  return (
+    <GreetingContainer>
+      <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
+      <UL>
+        <LI>
+          Immediate follow-up is required, make sure to handle this personally and discretely. Invite them for a
+          conversation to clarify that the company cares about their well-being, and values them.{' '}
+        </LI>
+        <LI>
+          Absenteeism, sick leave, and increased presence of negative emotions all are warning signs of burn-out.
+          Psychological support can prevent the build-up of stress to the point of a burn-out or decision to leave their
+          job. This is a sensitive topic and should therefore be suggested at an appropriate time. Discuss with the
+          employee whether involvement of HR would help them as well, and suggest they take some time off.
+        </LI>
+      </UL>
+    </GreetingContainer>
+  );
+}
+
 export default function(props: Props) {
   let { leavePercentage, user } = props;
 
@@ -37,62 +102,6 @@ export default function(props: Props) {
     color: getPercentageColor(leavePercentage),
     fontSize: '3rem'
   };
-
-  function Greeting(props) {
-    const likeliness = props.likeliness;
-    if (likeliness < 45) {
-      return (
-        <div>
-          <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
-          <UL>
-            <LI>
-              Schedule quarterly evaluations, instead of annual. This avoids frustrations to build up over time. When an
-              employee is heard, they feel validated, which in turn leads to higher performance.
-            </LI>
-            <LI>
-              Organise remain-calls, instead of only exit-calls. Ask the employee what motivates them to stay in the
-              company, and what it would take for them to leave. This uncoves issues before they become bigger problems,
-              and allows for a focused strategy to support the employee.
-            </LI>
-          </UL>
-        </div>
-      );
-    } else if (likeliness < 65) {
-      return (
-        <div>
-          <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
-          <UL>
-            <LI>
-              This employee might feel like their accomplishments are not recognized. Inspect their performance and
-              reward when due. A reward can be a simple e-mail, card, or note to thank them for their effort.
-            </LI>
-            <LI>
-              Problems with work-life balance contribute to decreases in motivation and performance. Check in with the
-              employee by sending an e-mail to ask how they are. Suggest them to take a day off if they can.
-            </LI>
-          </UL>
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <Paragraph style={{ marginBottom: 20 }}>Suggestions</Paragraph>
-        <UL>
-          <LI>
-            Immediate follow-up is required, make sure to handle this personally and discretely. Invite them for a
-            conversation to clarify that the company cares about their well-being, and values them.{' '}
-          </LI>
-          <LI>
-            Absenteeism, sick leave, and increased presence of negative emotions all are warning signs of burn-out.
-            Psychological support can prevent the build-up of stress to the point of a burn-out or decision to leave
-            their job. This is a sensitive topic and should therefore be suggested at an appropriate time. Discuss with
-            the employee whether involvement of HR would help them as well, and suggest they take some time off.
-          </LI>
-        </UL>
-      </div>
-    );
-  }
 
   return (
     <Card>
