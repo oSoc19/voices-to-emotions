@@ -20,12 +20,14 @@ Run `npm start` or `yarn start` in this directory.
 This should start up the dev server of now, running all API's and frontend all at once.
 
 # Functions
+
 ## Internal Functions
+
 /api/dataentries (Zeit) [GET]: An HTTP endpoint that returns all raw data entries saved in the database.
 
 /api/graphs (Zeit) [GET]: An HTTP endpoint that reads the data entries and creates graph data of the last 10 calls. This function takes in a `user_id` query parameter.
 
-/api/leave (Zeit) [GET]: An HTTP endpoint that calculates and returns the likeliness to leave score for a certain employee.  This function takes in a `user_id` query parameter.
+/api/leave (Zeit) [GET]: An HTTP endpoint that calculates and returns the likeliness to leave score for a certain employee. This function takes in a `user_id` query parameter.
 
 /api/reset (Zeit) [GET]: An HTTP endpoint that resets the data for a certain user. This function takes in a `user_id` query parameter.
 
