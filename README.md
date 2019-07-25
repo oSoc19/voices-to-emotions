@@ -1,5 +1,15 @@
 # Voices To Emotions
 
+This repository is one of the three repositories used for the voices-to-emotions project. You can find more information about this project [here](https://osoc19.github.io/voices-to-emotions/).
+
+This repository containing the backend for the Voices To Emotions project.
+
+You can find the other repositories here:
+* https://github.com/oSoc19/voices-to-emotions
+* https://github.com/oSoc19/voices-to-emotions-audio-api
+* https://github.com/oSoc19/voices-to-emotions-ai
+
+# Instruction
 ## Running dev environment
 
 This project uses Now to run the dev environment automagically.
